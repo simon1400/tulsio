@@ -1,0 +1,109 @@
+$accent: #0000ff;
+$gray: #f1f1f1;
+$text: rgba(0, 0, 0, .8);
+
+$head1: 50px;
+$head2: 34px;
+$head3: 24px;
+
+$text-big: 21px;
+$text-small: 19px;
+
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+$box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+
+
+body{
+  svg{
+    fill: $accent;
+    color: $accent;
+  }
+
+  label{
+    color: $accent;
+    font-weight: $font-bold;
+    font-size: 16px;
+    letter-spacing: 1.52px;
+  }
+
+  h1, h2, h3, h4{
+    font-weight: 700;
+    color: $text;
+    margin-top: 0;
+  }
+
+  h1{
+    line-height: 60px;
+    font-size: $head1;
+    margin-bottom: 40px;
+
+  }
+
+  h2{
+    font-size: $head2;
+    line-height: 41px;
+  }
+
+  h3{
+    font-size: $head3;
+    line-height: 29px;
+  }
+
+  p{
+    font-weight: $font-medium;
+    font-size: $text-small;
+    line-height: 31px;
+    color: $text;
+  }
+
+  .big-text{
+    p{
+      font-weight: $font-semibold;
+      font-size: $text-big;
+      line-height: 30px;
+    }
+  }
+
+  ul{
+    padding: 0;
+    margin: 0;
+    li{
+      list-style-type: none;
+    }
+  }
+}
+
+section{
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.button{
+  display: inline-block;
+  background-color: $accent;
+  height: 20px;
+  min-width: 225px;
+  color: white;
+  padding: 15px;
+  border-radius: 26px;
+  font-size: 17px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: $font-bold;
+  svg, img{
+    fill: white;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: top;
+    // margin-top: -2px;
+  }
+  &.circle{
+    min-width: auto;
+  }
+}

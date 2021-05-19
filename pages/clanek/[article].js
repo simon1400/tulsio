@@ -2,11 +2,12 @@ import Page from '../../layout/Page'
 import Link from 'next/link'
 import Image from '../../components/image'
 import ReactMarkdown from "react-markdown";
-import axios from 'axios'
+import AxiosAPI from '../../restClient'
+import formatDatePublic from '../../helpers/formatDate'
 
 export async function getServerSideProps({params}) {
 
-  const res = await axios.get('http://localhost:1337/posts?slug='+params.article);
+  const res = await AxiosAPI.get('/claneks?slug='+params.article);
 
   return {
     props: {
@@ -16,25 +17,33 @@ export async function getServerSideProps({params}) {
 }
 
 const Article = ({data}) => {
-  console.log(data);
+
   return (
     <Page>
-      <section className="full-img">
-        <Image image={data.Obrazek} />
-      </section>
+      {data.image && <section className="full-img">
+        <Image image={data.image} />
+      </section>}
 
       <section className="content">
         <div className="uk-container uk-container-xsmall">
-          <h1>{data.title}</h1>
-          <div className="big-text">
-            <ReactMarkdown>{data.Popis}</ReactMarkdown>
-          </div>
-          <div className="uk-text-center uk-margin-bottom">
-            <a href="/" className="button">Do obchodu SuperShop</a>
-          </div>
-          <ReactMarkdown>{data.content}</ReactMarkdown>
+          {!!data.title.length && <h1>{data.title}</h1>}
+          {!!data.perex.length && <div className="big-text">
+            <ReactMarkdown>{data.perex}</ReactMarkdown>
+          </div>}
 
-          <div className="verdict">
+          {!!data.capitoly.length && data.capitoly.map((item, index) => <div key={index}>
+            <h2>{item.title}</h2>
+            <ReactMarkdown>{item.text}</ReactMarkdown>
+            {item.galery.map((img, indexImg) => <figure key={indexImg}>
+              <div><Image image={img} alt={img.alternativeText || ''}/></div>
+              {!!img.caption.length && <figurecaption>{img.caption}</figurecaption>}
+            </figure>)}
+            <div className="uk-text-center uk-margin-bottom">
+              <a href={item.button.link} className="button">{item.button.text}</a>
+            </div>
+          </div>)}
+
+          {/*<div className="verdict">
             <div>
               <h2>Verdict</h2>
             </div>
@@ -50,14 +59,13 @@ const Article = ({data}) => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div>*/}
 
-          <div className="labels">
+          {data.labels.length && <div className="labels">
             <ul>
-              <li><a href="">cbd kapky</a></li>
-              <li><a href="">cbd kapky</a></li>
+              {data.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
             </ul>
-          </div>
+          </div>}
 
           <div className="author-block">
             <div className="author">
@@ -65,17 +73,18 @@ const Article = ({data}) => {
                 <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
               </div>
               <div className="name-author">
-                <h5>Vítek Nikolič</h5>
-                <span>PROFI RECENZENT TULSIO</span>
+                <h5>{data.author.name}</h5>
+                <span>{data.author.description}</span>
               </div>
             </div>
             <div className="post-date">
-              <span>Publikováno 12.2. 2020</span>
+              <span>Publikováno {formatDatePublic(data.published_at)}</span>
             </div>
           </div>
         </div>
       </section>
-      <section className="gray-sec comments">
+
+      {/*<section className="gray-sec comments">
         <div className="uk-container uk-container-xsmall">
           <div className="coment-control">
             <div>
@@ -95,29 +104,11 @@ const Article = ({data}) => {
                 <p>One of the most painful steps in the product workflow is the designer and developer handoff. Today’s design files and tools aren’t developer friendly. Transitioning files, context.</p>
               </div>
             </div>
-            <div className="comments-item">
-              <div className="comment-img">
-                <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-              </div>
-              <div className="comment-content">
-                <h4>Vítek N.</h4>
-                <p>One of the most painful steps in the product workflow is the designer and developer handoff. Today’s design files and tools aren’t developer friendly. Transitioning files, context.</p>
-              </div>
-            </div>
-            <div className="comments-item">
-              <div className="comment-img">
-                <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-              </div>
-              <div className="comment-content">
-                <h4>Vítek N.</h4>
-                <p>One of the most painful steps in the product workflow is the designer and developer handoff. Today’s design files and tools aren’t developer friendly. Transitioning files, context.</p>
-              </div>
-            </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
-      <section className="blog-short">
+      {/*<section className="blog-short">
         <div className="uk-container">
           <div className="uk-grid uk-grid-stack uk-child-width-1-3" uk-grid="">
             <div>
@@ -131,31 +122,9 @@ const Article = ({data}) => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="blog-short-item">
-                <div className="blog-short-img-wrap">
-                  <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-                </div>
-                <div className="blog-short-info-wrap">
-                  <label>Recenze</label>
-                  <h3>Superskunk also hear from designers all the time.</h3>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="blog-short-item">
-                <div className="blog-short-img-wrap">
-                  <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-                </div>
-                <div className="blog-short-info-wrap">
-                  <label>Recenze</label>
-                  <h3>Superskunk also hear from designers all the time.</h3>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
     </Page>
   )

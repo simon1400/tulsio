@@ -15,7 +15,6 @@ $font-bold: 700;
 
 $box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
-
 body{
   svg{
     fill: $accent;
@@ -27,6 +26,16 @@ body{
     font-weight: $font-bold;
     font-size: 16px;
     letter-spacing: 1.52px;
+    transition: all .5s ease;
+    padding: 3px 9px;
+    transform: translateX(-9px);
+    border-radius: 26px;
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+    &:hover{
+      background-color: $gray;
+    }
   }
 
   h1, h2, h3, h4{
@@ -94,6 +103,8 @@ section{
   vertical-align: middle;
   text-align: center;
   font-weight: $font-bold;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.16);
+  transition: all .5s ease;
   svg, img{
     fill: white;
     color: white;
@@ -102,6 +113,11 @@ section{
     display: inline-block;
     vertical-align: top;
     // margin-top: -2px;
+  }
+  &:hover{
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.36);
+    text-decoration: none;
+    color: white;
   }
   &.circle{
     min-width: auto;

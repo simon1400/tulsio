@@ -1,14 +1,34 @@
 import Page from '../layout/Page'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import Image from '../components/image'
 import ReactMarkdown from "react-markdown";
 
-import axios from 'axios'
+import AxiosAPI from '../restClient'
 
-const Home = ({ data, categories, related, error }) => {
+export async function getServerSideProps() {
 
-  if(error){
-    return error
+  const res = await AxiosAPI.get('/claneks');
+  const data = res.data;
+
+  return {
+    props: {
+      topArticle: data[0],
+      seccondArticles: data.slice(1, 3),
+      lastArticles: data.slice(3, 5)
+    }
+  }
+}
+
+const Home = ({ topArticle, seccondArticles, lastArticles }) => {
+
+  const router = useRouter()
+
+  const handleCategory = (e, link) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    router.push(`/kategorie/${link}`)
   }
 
   return (
@@ -17,18 +37,16 @@ const Home = ({ data, categories, related, error }) => {
         <div className="uk-grid uk-grid-collapse uk-child-width-1-2 uk-grid-stack" uk-grid="">
           <div>
             <div className="img">
-              <Image image={data.image} />
+              <Image image={topArticle.image} />
             </div>
           </div>
           <div>
             <div className="info">
               <div className="info-top big-text">
-                {/*<label>Recenze</label>*/}
-                <h1>{data.title}</h1>
-                <ReactMarkdown>
-                  {data.content}
-                </ReactMarkdown>
-                <Link href={data.tkacitkoMore.link}>
+                <label>{topArticle.categories[0].title}</label>
+                <h1>{topArticle.title}</h1>
+                <ReactMarkdown>{topArticle.perex}</ReactMarkdown>
+                <Link href={`/clanek/${topArticle.slug}`}>
                   <a className="button circle">
                     <img className="uk-svg" src="/assets/right.svg" uk-svg="" />
                   </a>
@@ -39,41 +57,41 @@ const Home = ({ data, categories, related, error }) => {
         </div>
       </section>
 
-      <section className="blog-one-col-short">
+      {seccondArticles.length && <section className="blog-one-col-short">
         <div className="uk-container uk-contaner-xsmall">
 
-          {categories[0].posts.map((item, index) => <Link key={index} href={`/${categories[0].slug}/${item.slug}`}>
+          {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item.slug}`}>
             <a className="uk-grid uk-grid-stack uk-grid-collapse uk-child-width-1-2" uk-grid="">
               <div>
                 <div className="blog-short-img-wrap">
-                  <Image image={item.Obrazek} />
+                  <Image image={item.image} />
                 </div>
               </div>
               <div>
                 <div className="blog-short-info-wrap">
-                  <label>{categories[0].title}</label>
-                  <h2>{item.title}</h2>
+                  <label onClick={e => handleCategory(e, item.categories[0].slug)}>{item.categories[0].title}</label>
+                  <h2><span>{item.title}</span></h2>
                 </div>
               </div>
             </a>
           </Link>)}
 
         </div>
-      </section>
+      </section>}
 
-      <section className="blog-short">
+      {lastArticles.length && <section className="blog-short">
         <div className="uk-container">
           <div className="uk-grid uk-grid-stack uk-child-width-1-3" uk-grid="">
 
-            {related[0].posts.map((item, index) => <div key={index}>
-              <Link href={`/${related[0].slug}/${item.slug}`}>
+            {lastArticles.map((item, index) => <div key={index}>
+              <Link href={`/clanek/${item.slug}`}>
                 <a className="blog-short-item">
                   <div className="blog-short-img-wrap">
-                    <Image image={item.Obrazek} />
+                    <Image image={item.image} />
                   </div>
                   <div className="blog-short-info-wrap">
-                    <label>{related[0].title}</label>
-                    <h3>{item.title}</h3>
+                    <label onClick={e => handleCategory(e, item.categories[0].slug)}>{item.categories[0].title}</label>
+                    <h3><span>{item.title}</span></h3>
                   </div>
                 </a>
               </Link>
@@ -81,37 +99,12 @@ const Home = ({ data, categories, related, error }) => {
 
 
           </div>
-          <Link href="/"><a className="button">starší články</a></Link>
+          {/*<Link href="/"><a className="button">starší články</a></Link>*/}
         </div>
-      </section>
+      </section>}
 
     </Page>
   )
 }
-
-
-Home.getInitialProps = async ctx => {
-  try {
-    const res = await axios.get('http://localhost:1337/homepage');
-    const data = res.data;
-    const categories = []
-    if(data.categories){
-      for(var i = 0; i < data.categories.length; i++){
-        let categoriesRes = await axios.get('http://localhost:1337/categories/'+data.categories[i].id)
-        categories.push(categoriesRes.data)
-      }
-    }
-    const related = []
-    if(data.related){
-      for(var i = 0; i < data.related.length; i++){
-        let relatedRes = await axios.get('http://localhost:1337/categories/'+data.related[i].id)
-        related.push(relatedRes.data)
-      }
-    }
-    return { data, categories, related };
-  } catch (error) {
-    return { error };
-  }
-};
 
 export default Home

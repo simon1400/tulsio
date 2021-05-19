@@ -1,6 +1,19 @@
+import {useEffect, useState} from 'react'
 import Link from 'next/link'
+import AxiosAPI from '../../restClient'
 
 const Header = () => {
+
+  const [menuItems, setMenuItems] = useState([])
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = async () => {
+    const res = await AxiosAPI.get('/navigace-nova')
+    setMenuItems(res.data.item)
+  }
 
   return (
     <header>
@@ -8,18 +21,12 @@ const Header = () => {
         <div className="header-wrap">
           <div className="logo">
             <Link href="/">
-              <a>
-                <img className="uk-svg" src="/assets/logo.svg" uk-svg="" />
-              </a>
+              <a><img className="uk-svg" src="/assets/logo.svg" uk-svg="" alt="Tulsio" /></a>
             </Link>
           </div>
           <nav className="menu">
             <ul>
-              <li><Link href="/"><a>Recenze</a></Link></li>
-              <li><Link href="/"><a>Blog</a></Link></li>
-              <li><Link href="/"><a>Poradce</a></Link></li>
-              <li><Link href="/"><a>FAQ</a></Link></li>
-              <li><Link href="/"><a>O nás</a></Link></li>
+              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><Link href={item.link}><a>{item.text}</a></Link></li>)}
             </ul>
           </nav>
           <div className="control">

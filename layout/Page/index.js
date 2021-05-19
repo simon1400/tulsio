@@ -25,11 +25,11 @@ const Page = ({
 
   const router = useRouter()
   const [global, setGlobal] = useState({
-    site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://authentica.cz',
+    site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tulsio.cz',
     facebook_app_id: '',
-    defaultTitle: 'AUTHENTICA',
-    defaultDescription: 'Authentica',
-    defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://authentica.cz'}`,
+    defaultTitle: 'TULSIO',
+    defaultDescription: 'Tulsio',
+    defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tulsio.cz'}`,
     defaultTwitter: '@cereallarceny',
     defaultSep: ' ',
     gtm: ''
@@ -76,7 +76,7 @@ const Page = ({
         <meta itemProp="image" content={theImage} />
         <meta name="description" content={theDescription} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="AUTHENTICA GROUP" />
+        <meta name="twitter:site" content="TULSIO" />
         <meta name="twitter:title" content={ogTitle || theTitle} />
         <meta name="twitter:description" content={ogDescription || theDescription} />
         {/*<meta name="twitter:creator" content={twitter || global.defaultTwitter} />*/}
@@ -86,8 +86,9 @@ const Page = ({
         <meta property="og:url" content={global.site_url+router.asPath} />
         <meta property="og:image" content={theImage} />
         <meta property="og:description" content={ogDescription || theDescription} />
-        <meta property="og:site_name" content="AUTHENTICA GROUP" />
+        <meta property="og:site_name" content="TULSIO" />
         <meta property="fb:app_id" content={global.facebook_app_id} />
+        <meta name="robots" content="noindex, nofollow" />
 
         {published && <meta name="article:published_time" content={published} />}
         {category && <meta name="article:section" content={category} />}

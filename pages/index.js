@@ -57,7 +57,7 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
         </div>
       </section>
 
-      {seccondArticles.length && <section className="blog-one-col-short">
+      {!!seccondArticles.length && <section className="blog-one-col-short">
         <div className="uk-container uk-contaner-xsmall">
 
           {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item.slug}`}>
@@ -79,7 +79,7 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
         </div>
       </section>}
 
-      {lastArticles.length && <section className="blog-short">
+      {!!lastArticles.length && <section className="blog-short">
         <div className="uk-container">
           <div className="uk-grid uk-grid-stack uk-child-width-1-3" uk-grid="">
 

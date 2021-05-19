@@ -37,16 +37,16 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
         <div className="uk-grid uk-grid-collapse uk-child-width-1-2 uk-grid-stack" uk-grid="">
           <div>
             <div className="img">
-              <Image image={topArticle.image} />
+              <Image image={topArticle?.image} />
             </div>
           </div>
           <div>
             <div className="info">
               <div className="info-top big-text">
-                <label>{topArticle.categories[0].title}</label>
-                <h1>{topArticle.title}</h1>
-                <ReactMarkdown>{topArticle.perex}</ReactMarkdown>
-                <Link href={`/clanek/${topArticle.slug}`}>
+                <label>{topArticle.categories[0]?.title}</label>
+                <h1>{topArticle?.title}</h1>
+                <ReactMarkdown>{topArticle?.perex}</ReactMarkdown>
+                <Link href={`/clanek/${topArticle?.slug}`}>
                   <a className="button circle">
                     <img className="uk-svg" src="/assets/right.svg" uk-svg="" />
                   </a>

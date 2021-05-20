@@ -64,10 +64,6 @@ const Page = ({
         <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
 
-        {/* FONTY */}
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{theTitle}</title>
         <link rel="canonical" href={global.site_url+router.route} />
@@ -95,6 +91,7 @@ const Page = ({
         {updated && <meta name="article:modified_time" content={updated} />}
         {noCrawl && <meta name="robots" content="noindex, nofollow" />}
         {tags && <meta name="article:tag" content={tags} />}
+
       </Head>
 
       {/*<!-- Google Tag Manager (noscript) -->*/}

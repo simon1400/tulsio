@@ -1,8 +1,11 @@
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
 import AxiosAPI from '../../restClient'
+import {useRouter} from 'next/router'
 
 const Header = () => {
+
+  const router = useRouter()
 
   const [menuItems, setMenuItems] = useState([])
 
@@ -26,7 +29,7 @@ const Header = () => {
           </div>
           <nav className="menu">
             <ul>
-              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><Link href={item.link}><a>{item.text}</a></Link></li>)}
+              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.text}</a></li>)}
             </ul>
           </nav>
           <div className="control">

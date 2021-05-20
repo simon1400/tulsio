@@ -1,3 +1,11 @@
+$ffn: 'Manrope';
+
+@font-face {
+  font-family: $ffn;
+  src: url('./fonts/Manrope-VariableFont_wght.ttf') format("truetype-variations");
+  font-weight: 1 999;
+}
+
 $accent: #0000ff;
 $gray: #f1f1f1;
 $text: rgba(0, 0, 0, .8);
@@ -16,6 +24,13 @@ $font-bold: 700;
 $box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
 body{
+  p a{
+    color: $accent;
+    text-decoration: underline;
+    &:hover{
+      color: $accent;
+    }
+  }
   svg{
     fill: $accent;
     color: $accent;
@@ -24,7 +39,7 @@ body{
   label{
     color: $accent;
     font-weight: $font-bold;
-    font-size: 16px;
+    font-size: 12px;
     letter-spacing: 1.52px;
     transition: all .5s ease;
     padding: 3px 9px;
@@ -33,6 +48,7 @@ body{
     background-color: transparent;
     display: inline-block;
     cursor: pointer;
+    text-transform: uppercase;
     &:hover{
       background-color: $gray;
     }

@@ -32,15 +32,15 @@ const Article = ({data}) => {
           </div>}
 
           {!!data.capitoly.length && data.capitoly.map((item, index) => <div key={index}>
-            <h2>{item.title}</h2>
+            {!!item.title && <h2>{item.title}</h2>}
             <ReactMarkdown>{item.text}</ReactMarkdown>
-            {item.galery.map((img, indexImg) => <figure key={indexImg}>
+            {!!item.galery?.length && item.galery.map((img, indexImg) => <figure key={indexImg}>
               <div><Image image={img} alt={img.alternativeText || ''}/></div>
               {!!img.caption.length && <figurecaption>{img.caption}</figurecaption>}
             </figure>)}
-            <div className="uk-text-center uk-margin-bottom">
-              <a href={item.button.link} className="button">{item.button.text}</a>
-            </div>
+            {!!item.button && <div className="uk-text-center uk-margin-bottom">
+              <a href={item.button?.link} className="button">{item.button?.text}</a>
+            </div>}
           </div>)}
 
           {/*<div className="verdict">
@@ -61,7 +61,7 @@ const Article = ({data}) => {
             </div>
           </div>*/}
 
-          {data.labels.length && <div className="labels">
+          {data.labels?.length && <div className="labels">
             <ul>
               {data.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
             </ul>
@@ -73,8 +73,8 @@ const Article = ({data}) => {
                 <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
               </div>
               <div className="name-author">
-                <h5>{data.author.name}</h5>
-                <span>{data.author.description}</span>
+                <h5>{data.author?.name}</h5>
+                <span>{data.author?.description}</span>
               </div>
             </div>
             <div className="post-date">

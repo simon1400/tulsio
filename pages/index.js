@@ -36,15 +36,23 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
       <section className="top">
         <div className="uk-grid uk-grid-collapse uk-child-width-1-2 uk-grid-stack" uk-grid="">
           <div>
-            <div className="img">
-              <Image image={topArticle?.image} />
-            </div>
+            <Link href={`/clanek/${topArticle?.slug}`}>
+              <a>
+                <div className="img">
+                  <Image image={topArticle?.image} />
+                </div>
+              </a>
+            </Link>
           </div>
           <div>
             <div className="info">
               <div className="info-top big-text">
-                <label>{topArticle.categories[0]?.title}</label>
-                <h1>{topArticle?.title}</h1>
+                <label onClick={e => handleCategory(e, topArticle.categories[0]?.slug)}>{topArticle.categories[0]?.title}</label>
+                <Link href={`/clanek/${topArticle?.slug}`}>
+                  <a>
+                    <h1><span>{topArticle?.title}</span></h1>
+                  </a>
+                </Link>
                 <ReactMarkdown>{topArticle?.perex}</ReactMarkdown>
                 <Link href={`/clanek/${topArticle?.slug}`}>
                   <a className="button circle">
@@ -60,17 +68,17 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
       {!!seccondArticles.length && <section className="blog-one-col-short">
         <div className="uk-container uk-contaner-xsmall">
 
-          {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item.slug}`}>
+          {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.slug}`}>
             <a className="uk-grid uk-grid-stack uk-grid-collapse uk-child-width-1-2" uk-grid="">
               <div>
                 <div className="blog-short-img-wrap">
-                  <Image image={item.image} />
+                  <Image image={item?.image} />
                 </div>
               </div>
               <div>
                 <div className="blog-short-info-wrap">
-                  <label onClick={e => handleCategory(e, item.categories[0].slug)}>{item.categories[0].title}</label>
-                  <h2><span>{item.title}</span></h2>
+                  <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label>
+                  <h2><span>{item?.title}</span></h2>
                 </div>
               </div>
             </a>
@@ -84,14 +92,14 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
           <div className="uk-grid uk-grid-stack uk-child-width-1-3" uk-grid="">
 
             {lastArticles.map((item, index) => <div key={index}>
-              <Link href={`/clanek/${item.slug}`}>
+              <Link href={`/clanek/${item?.slug}`}>
                 <a className="blog-short-item">
                   <div className="blog-short-img-wrap">
-                    <Image image={item.image} />
+                    <Image image={item?.image} />
                   </div>
                   <div className="blog-short-info-wrap">
-                    <label onClick={e => handleCategory(e, item.categories[0].slug)}>{item.categories[0].title}</label>
-                    <h3><span>{item.title}</span></h3>
+                    <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label>
+                    <h3><span>{item?.title}</span></h3>
                   </div>
                 </a>
               </Link>

@@ -1,7 +1,6 @@
 import Page from '../../layout/Page'
 import Link from 'next/link'
 import Image from '../../components/image'
-import ReactMarkdown from "react-markdown";
 import AxiosAPI from '../../restClient'
 import formatDatePublic from '../../helpers/formatDate'
 import ShareButtons from '../../components/ShareButtons'
@@ -31,13 +30,11 @@ const Article = ({data}) => {
           <ShareButtons data={data} />
 
           {!!data.title.length && <h1>{data.title}</h1>}
-          {!!data.perex.length && <div className="big-text">
-            <ReactMarkdown>{data.perex}</ReactMarkdown>
-          </div>}
+          {!!data.perex.length && <div className="big-text" dangerouslySetInnerHTML={{__html: data.perex}}></div>}
 
           {!!data.capitoly.length && data.capitoly.map((item, index) => <div key={index}>
             {!!item.title && <h2>{item.title}</h2>}
-            <ReactMarkdown>{item.text}</ReactMarkdown>
+            <div dangerouslySetInnerHTML={{__html: item.text}}></div>
             {!!item.galery?.length && item.galery.map((img, indexImg) => <figure key={indexImg}>
               <div><Image image={img} alt={img.alternativeText || ''}/></div>
               {!!img.caption.length && <figurecaption>{img.caption}</figurecaption>}

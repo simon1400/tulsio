@@ -2,7 +2,6 @@ import Page from '../layout/Page'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import Image from '../components/image'
-import ReactMarkdown from "react-markdown";
 
 import AxiosAPI from '../restClient'
 
@@ -53,7 +52,7 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
                     <h1><span>{topArticle?.title}</span></h1>
                   </a>
                 </Link>
-                <ReactMarkdown>{topArticle?.perex}</ReactMarkdown>
+                <div  dangerouslySetInnerHTML={{__html: topArticle?.perex}}></div>
                 <Link href={`/clanek/${topArticle?.slug}`}>
                   <a className="button circle">
                     <img className="uk-svg" src="/assets/right.svg" uk-svg="" />

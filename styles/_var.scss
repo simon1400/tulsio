@@ -58,13 +58,13 @@ body{
     font-weight: 700;
     color: $text;
     margin-top: 0;
+    letter-spacing: -0.75px;
   }
 
   h1{
     line-height: 60px;
     font-size: $head1;
     margin-bottom: 40px;
-
   }
 
   h2{
@@ -88,7 +88,7 @@ body{
     p{
       font-weight: $font-semibold;
       font-size: $text-big;
-      line-height: 30px;
+      line-height: 33px;
     }
   }
 

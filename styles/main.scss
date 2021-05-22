@@ -385,7 +385,34 @@ footer{
   }
 }
 
+.share-buttons{
+  position: sticky;
+  top: 76px;
+  ul{
+    position: absolute;
+    top: -66px;
+    left: -132px;
+    li{
+      a{
+        display: flex;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.16);
+        background-color: #fff;
+        margin-bottom: 10px;
+        img, svg{
+          height: 22px;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+}
+
 .content{
+  position: relative;
   p{
     margin-bottom: 40px;
   }
@@ -462,7 +489,6 @@ footer{
 }
 
 .labels{
-  margin-bottom: 40px;
   ul{
     li{
       display: inline-block;
@@ -501,6 +527,7 @@ footer{
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding-top: 30px;
   padding-bottom: 30px;
+  margin-bottom: 40px;
   .author{
     display: -webkit-flex;
     display: -ms-flex;

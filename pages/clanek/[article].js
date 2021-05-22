@@ -4,6 +4,7 @@ import Image from '../../components/image'
 import ReactMarkdown from "react-markdown";
 import AxiosAPI from '../../restClient'
 import formatDatePublic from '../../helpers/formatDate'
+import ShareButtons from '../../components/ShareButtons'
 
 export async function getServerSideProps({params}) {
 
@@ -26,6 +27,9 @@ const Article = ({data}) => {
 
       <section className="content">
         <div className="uk-container uk-container-xsmall">
+
+          <ShareButtons data={data} />
+
           {!!data.title.length && <h1>{data.title}</h1>}
           {!!data.perex.length && <div className="big-text">
             <ReactMarkdown>{data.perex}</ReactMarkdown>
@@ -61,12 +65,6 @@ const Article = ({data}) => {
             </div>
           </div>*/}
 
-          {data.labels?.length && <div className="labels">
-            <ul>
-              {data.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
-            </ul>
-          </div>}
-
           <div className="author-block">
             <div className="author">
               <div className="img-author">
@@ -81,6 +79,14 @@ const Article = ({data}) => {
               <span>Publikováno {formatDatePublic(data.published_at)}</span>
             </div>
           </div>
+
+          {data.labels?.length && <div className="labels">
+            <ul>
+              {data.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
+            </ul>
+          </div>}
+
+
         </div>
       </section>
 

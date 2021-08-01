@@ -25,11 +25,11 @@ const Page = ({
 
   const router = useRouter()
   const [global, setGlobal] = useState({
-    site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tulsio.cz',
+    site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz',
     facebook_app_id: '',
     defaultTitle: 'TULSIO',
     defaultDescription: 'Tulsio',
-    defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tulsio.cz'}`,
+    defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz'}`,
     defaultTwitter: '@cereallarceny',
     defaultSep: ' ',
     gtm: ''
@@ -45,10 +45,10 @@ const Page = ({
 
         {/*<!-- Google Tag Manager -->*/}
         {global.gtm && <script dangerouslySetInnerHTML={{__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${global.gtm}');`}} />}
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-PQFGK4R');`}} />}
         {/*<!-- End Google Tag Manager -->*/}
 
         <meta charSet="utf-8" />
@@ -60,9 +60,9 @@ const Page = ({
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileColor" content="#0000ff" />
         <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#0000ff" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{theTitle}</title>

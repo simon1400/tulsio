@@ -7,6 +7,9 @@
   font-family: $ffn, sans-serif!important;
 }
 
+::-moz-selection { background: $accent; }
+::selection { background: $accent; }
+
 header{
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08);
   position: relative;
@@ -633,6 +636,13 @@ footer{
       }
     }
   }
+}
+
+
+.hamburger{
+  height: 22px;
+  margin-top: 3px;
+  margin-left: 20px;
 }
 
 

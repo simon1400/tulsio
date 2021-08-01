@@ -24,6 +24,9 @@ $font-bold: 700;
 $box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
 body{
+  p:last-child{
+    margin-bottom: 0;
+  }
   p a{
     color: $accent;
     text-decoration: underline;
@@ -128,7 +131,6 @@ section{
     height: 20px;
     display: inline-block;
     vertical-align: top;
-    // margin-top: -2px;
   }
   &:hover{
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.36);
@@ -139,3 +141,12 @@ section{
     min-width: auto;
   }
 }
+
+$hamburger-padding-x           : 0;
+$hamburger-padding-y           : 0;
+$hamburger-layer-width         : 30px;
+$hamburger-layer-height        : 2px;
+$hamburger-layer-spacing       : 8px;
+$hamburger-layer-color         : $accent;
+$hamburger-layer-border-radius : 0;
+$hamburger-hover-opacity       : 1;

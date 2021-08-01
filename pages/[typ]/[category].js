@@ -4,6 +4,9 @@ import Link from 'next/link'
 import AxiosAPI from '../../restClient'
 import Image from '../../components/image'
 import {useRouter} from 'next/router'
+import Head from 'next/head'
+
+const DOMAIN = process.env.APP_API;
 
 export async function getServerSideProps({params}) {
 
@@ -45,18 +48,19 @@ const Category = ({category, firstArticles, lastArticles}) => {
     router.push(`/kategorie/${link}`)
   }
 
-  console.log(router);
-
   const handleFilterLabel = async (e, id) => {
     e.preventDefault()
     const filteredArticles = category.articles.filter(item => item.labels.indexOf(id) >= 0)
     setFirstArticlesState(filteredArticles.slice(0, 4))
     setLastArticlesState(filteredArticles.slice(4))
-    // console.log(filteredArticles);
   }
 
   return (
     <Page>
+      <Head>
+        <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
+        {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
+      </Head>
       <section className="category-top">
         <div className="uk-container">
           <h1>{category.title}</h1>
@@ -73,7 +77,7 @@ const Category = ({category, firstArticles, lastArticles}) => {
       <section className="blog-one-col-short">
         <div className="uk-container uk-contaner-xsmall">
           {!!firstArticlesState.length && firstArticlesState.map((item, index) => <Link key={index} href={`/clanek/${item.slug}`}>
-            <a key={index} className="uk-grid uk-grid-stack uk-grid-collapse uk-child-width-1-2" uk-grid="">
+            <a key={index} className="uk-grid uk-grid-stack uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@s" uk-grid="">
               <div>
                 <div className="blog-short-img-wrap">
                   <Image image={item.image} />

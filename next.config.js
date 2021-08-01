@@ -19,6 +19,11 @@ module.exports = (phase) => {
       if (isDev) return 'http://localhost:1337'
       if (isProd) return 'http://admin.tulsio.cz'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
+    })(),
+    APP_DOMAIN: (() => {
+      if (isDev) return 'http://localhost:3004'
+      if (isProd) return 'https://tulsio.hardart.cz'
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })()
   }
 

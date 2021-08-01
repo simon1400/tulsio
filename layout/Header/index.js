@@ -27,18 +27,25 @@ const Header = () => {
               <a><img className="uk-svg" src="/assets/logo.svg" uk-svg="" alt="Tulsio" /></a>
             </Link>
           </div>
-          <nav className="menu">
+          <nav className="menu uk-visible@m">
             <ul>
               {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.text}</a></li>)}
             </ul>
           </nav>
           <div className="control">
-            <div className="lang">
+            <div className="lang uk-visible@m">
               <span>Čeština</span>
               <img className="uk-svg" src="/assets/down.svg" uk-svg="" />
             </div>
             <div className="search">
               <img className="uk-svg" src="/assets/search.svg" uk-svg="" />
+            </div>
+            <div className="uk-hidden@m">
+              <button className="hamburger hamburger--collapse" type="button">
+                <span className="hamburger-box">
+                  <span className="hamburger-inner"></span>
+                </span>
+              </button>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="footer-top"></div>
+      {/*<div className="footer-top"></div>*/}
       <div className="footer-bottom">
         <div className="uk-container">
           <div className="footer-bottom-wrap">

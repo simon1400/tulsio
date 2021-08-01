@@ -4,6 +4,10 @@ import Image from '../../components/image'
 import AxiosAPI from '../../restClient'
 import formatDatePublic from '../../helpers/formatDate'
 import ShareButtons from '../../components/ShareButtons'
+import Head from 'next/head'
+import {useRouter} from 'next/router'
+
+const DOMAIN = process.env.APP_API;
 
 export async function getServerSideProps({params}) {
 
@@ -18,8 +22,14 @@ export async function getServerSideProps({params}) {
 
 const Article = ({data}) => {
 
+  const router = useRouter()
+
   return (
     <Page>
+      <Head>
+        <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
+        {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
+      </Head>
       {data.image && <section className="full-img">
         <Image image={data.image} />
       </section>}
@@ -30,7 +40,7 @@ const Article = ({data}) => {
           <ShareButtons data={data} />
 
           {!!data.title.length && <h1>{data.title}</h1>}
-          {!!data.perex.length && <div className="big-text" dangerouslySetInnerHTML={{__html: data.perex}}></div>}
+          {!!data.perex.length && <div className="big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: data.perex}}></div>}
 
           {!!data.capitoly.length && data.capitoly.map((item, index) => <div key={index}>
             {!!item.title && <h2>{item.title}</h2>}

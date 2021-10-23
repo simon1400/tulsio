@@ -43,7 +43,7 @@ const Container = styled.div`
   const ratingMax = 5;
   let ratingRest = rating + 1;
   const formatedRating = (Math.round(rating * 100) / 100).toFixed(1);
-  const RatingList = [];
+  const RatingList = []; 
 
   for(let i = 0; i < ratingMax; i++ ) {
     ratingRest--;

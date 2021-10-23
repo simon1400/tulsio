@@ -141,6 +141,12 @@ section{
   &.circle{
     min-width: auto;
   }
+  &.bare{
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    color: $accent;
+  }
 }
 
 $hamburger-padding-x           : 0;

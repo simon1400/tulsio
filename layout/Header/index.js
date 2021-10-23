@@ -1,35 +1,23 @@
-import {useEffect, useState} from 'react'
+// import {useEffect, useState} from 'react'
 import Link from 'next/link'
-import AxiosAPI from '../../restClient'
 import {useRouter} from 'next/router'
 import { useQuery } from '@apollo/client'
-import navigationItemsQuery from '../../queris/navigation'
+import navigationQuery from '../../queris/navigation'
 
 const Header = () => {
 
   const router = useRouter()
 
-  // const [menuItems, setMenuItems] = useState([])
-
-  // useEffect(() => {
-  //   getData()
-  // }, [])
-
-  // const getData = async () => {
-  //   const res = await AxiosAPI.get('/navigace-nova')
-  //   setMenuItems(res.data.item)
-  // }
-
-  const { loading, error, data } = useQuery(navigationItemsQuery);
+  const { loading, error, data } = useQuery(navigationQuery);
   if(loading) {
     return ''
   }
 
-  const menuItems = data.navigaceNovum.item ?? [];
+  const menuItems = data.navigaceNovum.top_nav.navigation_item ?? [];
 
   return (
     <header>
-      <div className="uk-container">
+      <div className="uk-container uk-container-large">
         <div className="header-wrap">
           <div className="logo">
             <Link href="/">
@@ -38,7 +26,7 @@ const Header = () => {
           </div>
           <nav className="menu uk-visible@m">
             <ul>
-              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.text}</a></li>)}
+              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
             </ul>
           </nav>
           <div className="control">

@@ -2,18 +2,43 @@ import { gql } from "@apollo/client";
 
 const homepageQuery = gql`
   query {
-    claneks{
-      id
-      title
-      slug
-      perex
-      image {
-        name,
-        url
+    homepage{
+      title,
+      cta{
+        text
+        link
+      }
+      cta_sec{
+        text
+        link
+      }
+      article_top {
+        id
+        title
+        slug
+        perex
+        image{
+          name
+          url
         }
-      categories {
-        title,
-       slug
+        categories{
+          title,
+          slug
+        }
+      }
+      articles {
+        id
+        title
+        slug
+        perex
+        image{
+          name
+          url
+        }
+        categories{
+          title,
+          slug
+        }
       }
     }
   }

@@ -1,15 +1,38 @@
 import { gql } from "@apollo/client";
 
-const navigationItemsQuery = gql`
+const navigationQuery = gql`
   query {
     navigaceNovum {
-      item {
-        id
-        text
-        link
+      top_nav{
+        title
+        navigation_item {
+          name
+          link
+        }
+      }
+      footer_nav_1 {
+        title
+        navigation_item {
+          name
+          link
+        }
+      }
+      footer_nav_2 {
+        title
+        navigation_item {
+          name
+          link
+        }
+      }
+      footer_nav_3 {
+        title
+        navigation_item {
+          name
+          link
+        }
       }
     }
   }
 `
 
-export default navigationItemsQuery
+export default navigationQuery

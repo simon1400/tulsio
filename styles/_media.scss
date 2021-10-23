@@ -41,6 +41,14 @@
   .full-img {
     max-height: 400px;
   }
+
+  .bottom-section {
+    .title { 
+      h2 {
+        font-size: 42px;
+      }
+    }
+  }
 }
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
@@ -183,6 +191,14 @@
         svg, img{
           height: 18px;
         }
+      }
+    }
+  }
+
+  .bottom-section {
+    .title { 
+      h2 {
+        font-size: 38px;
       }
     }
   }

@@ -6,6 +6,10 @@ import formatDatePublic from '../../helpers/formatDate'
 import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
+import {useQuery} from '@apollo/client'
+import getArticleQuery from '../../queris/get-article';
+import Rating from '../../components/Rating';
+ 
 
 const DOMAIN = process.env.APP_API;
 
@@ -20,9 +24,23 @@ export async function getServerSideProps({params}) {
   }
 }
 
-const Article = ({data}) => {
+const Article = () => {
+  const router = useRouter();
+  
+  const { loading, error, data} = useQuery(getArticleQuery, { 
+    variables: { slug: router.query.article } 
+  });
 
-  const router = useRouter()
+  // const { loading, error, data } = useQuery(getLiga,
+  //   { variables: { id: query.liga}
+  // });
+ 
+  if(loading) {
+    return ''
+  }
+  let parsedData = data.claneks[0];
+
+   
 
   return (
     <Page>
@@ -30,19 +48,35 @@ const Article = ({data}) => {
         <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
         {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
       </Head>
-      {data.image && <section className="full-img">
-        <Image image={data.image} />
-      </section>}
+
+      
+
+      {/* {parsedData.image &&
+      <section className="full-img">
+        <Image image={parsedData.image} />
+      </section>} */}
+
+      <section className="full-img">
+        <div className="uk-container">
+          <Image image={parsedData.image} /> 
+        </div>
+        {/* <div className="uk-grid">
+          <h1>Váš průvodce světem konopí.</h1>
+          
+        </div> */}
+       
+      </section>
+
 
       <section className="content">
         <div className="uk-container uk-container-xsmall">
 
-          <ShareButtons data={data} />
+          <ShareButtons data={parsedData} />
 
-          {!!data.title.length && <h1>{data.title}</h1>}
-          {!!data.perex.length && <div className="big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: data.perex}}></div>}
+          {!!parsedData.title.length && <h1>{parsedData.title}</h1>}
+          {!!parsedData.perex.length && <div className="big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: data.perex}}></div>}
 
-          {!!data.capitoly.length && data.capitoly.map((item, index) => <div key={index}>
+          {!!parsedData.capitoly.length && parsedData.capitoly.map((item, index) => <div key={index}>
             {!!item.title && <h2>{item.title}</h2>}
             <div dangerouslySetInnerHTML={{__html: item.text}}></div>
             {!!item.galery?.length && item.galery.map((img, indexImg) => <figure key={indexImg}>
@@ -53,6 +87,10 @@ const Article = ({data}) => {
               <a href={item.button?.link} className="button">{item.button?.text}</a>
             </div>}
           </div>)}
+
+          <Rating rating={3}/>
+          <Rating rating={1}></Rating>
+          <Rating rating={2.5}></Rating>
 
           {/*<div className="verdict">
             <div>
@@ -78,25 +116,27 @@ const Article = ({data}) => {
                 <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
               </div>
               <div className="name-author">
-                <h5>{data.author?.name}</h5>
-                <span>{data.author?.description}</span>
+                <h5>{parsedData.author?.name}</h5>
+                <span>{parsedData.author?.description}</span>
               </div>
             </div>
             <div className="post-date">
-              <span>Publikováno {formatDatePublic(data.published_at)}</span>
+              <span>Publikováno {formatDatePublic(parsedData.published_at)}</span>
             </div>
           </div>
 
-          {data.labels?.length && <div className="labels">
+          {parsedData.labels?.length && <div className="labels">
             <ul>
-              {data.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
+              {parsedData.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
             </ul>
           </div>}
 
 
         </div>
+
       </section>
 
+      
       {/*<section className="gray-sec comments">
         <div className="uk-container uk-container-xsmall">
           <div className="coment-control">

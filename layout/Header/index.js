@@ -2,21 +2,30 @@ import {useEffect, useState} from 'react'
 import Link from 'next/link'
 import AxiosAPI from '../../restClient'
 import {useRouter} from 'next/router'
+import { useQuery } from '@apollo/client'
+import navigationItemsQuery from '../../queris/navigation'
 
 const Header = () => {
 
   const router = useRouter()
 
-  const [menuItems, setMenuItems] = useState([])
+  // const [menuItems, setMenuItems] = useState([])
 
-  useEffect(() => {
-    getData()
-  }, [])
+  // useEffect(() => {
+  //   getData()
+  // }, [])
 
-  const getData = async () => {
-    const res = await AxiosAPI.get('/navigace-nova')
-    setMenuItems(res.data.item)
+  // const getData = async () => {
+  //   const res = await AxiosAPI.get('/navigace-nova')
+  //   setMenuItems(res.data.item)
+  // }
+
+  const { loading, error, data } = useQuery(navigationItemsQuery);
+  if(loading) {
+    return ''
   }
+
+  const menuItems = data.navigaceNovum.item ?? [];
 
   return (
     <header>
@@ -24,7 +33,7 @@ const Header = () => {
         <div className="header-wrap">
           <div className="logo">
             <Link href="/">
-              <a><img className="uk-svg" src="/assets/logo.svg" uk-svg="" alt="Tulsio" /></a>
+              <a><img className="uk-svg" src="/assets/logo-tulsio.svg" uk-svg="" alt="Tulsio" /></a>
             </Link>
           </div>
           <nav className="menu uk-visible@m">

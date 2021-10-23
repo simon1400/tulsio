@@ -9,6 +9,7 @@ $ffn: 'Manrope';
 $accent: #0000ff;
 $gray: #f1f1f1;
 $text: rgba(0, 0, 0, .8);
+$footer-color:rgba(0, 0, 0, 0.8);
 
 $head1: 50px;
 $head2: 34px;
@@ -139,6 +140,12 @@ section{
   }
   &.circle{
     min-width: auto;
+  }
+  &.bare{
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    color: $accent;
   }
 }
 

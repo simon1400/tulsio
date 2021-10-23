@@ -1,31 +1,29 @@
+
 import Page from '../layout/Page'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import Image from '../components/image'
 import Head from 'next/head'
+import homepageQuery from '../queris/homepage'
+import { useQuery } from '@apollo/client';
 
-import AxiosAPI from '../restClient'
 
 const DOMAIN = process.env.APP_API;
 
-export async function getServerSideProps() {
+const Home = () => {
 
-  const res = await AxiosAPI.get('/claneks');
-  const data = res.data;
+  const router = useRouter();
+  const {loading, data} = useQuery(homepageQuery);
 
-  return {
-    props: {
-      topArticle: data[0],
-      seccondArticles: data.slice(1, 4),
-      lastArticles: data.slice(3, 6)
-    }
+  console.log(data);
+
+  if(loading) {
+    return ''
   }
-}
-
-const Home = ({ topArticle, seccondArticles, lastArticles }) => {
-
-  const router = useRouter()
-
+  const mainArticle = data.homepage.article_top;
+  const seccondArticles = data.homepage.articles;
+  // const lastArticles = data.claneks.slice(4, 6);
+  
   const handleCategory = (e, link) => {
     e.preventDefault()
     e.stopPropagation()
@@ -34,94 +32,65 @@ const Home = ({ topArticle, seccondArticles, lastArticles }) => {
   }
 
   return (
-    <Page>
+    <Page className="homepage">
       <Head>
         <link rel="alternate" hrefLang="x-default" href={DOMAIN} />
         {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
       </Head>
+
       <section className="top">
-        <div className="uk-grid uk-grid-collapse uk-child-width-1-2@m uk-child-width-1-1 uk-grid-stack" uk-grid="">
+        <div className="uk-container uk-container-small">
+          <h1>Váš průvodce světem konopí</h1>
           <div>
-            <Link href={`/clanek/${topArticle.slug}`}>
-              <a>
-                <div className="img">
-                  <Image image={topArticle.image} />
-                </div>
-              </a>
-            </Link>
-          </div>
-          <div>
-            <div className="info">
-              <div className="info-top big-text">
-                <Link href={`/clanek/${topArticle?.slug}`}>
-                  <a className="button circle uk-hidden@m">
-                    <img className="uk-svg" src="/assets/right.svg" uk-svg="" />
-                  </a>
-                </Link>
-                <label onClick={e => handleCategory(e, topArticle.categories[0]?.slug)}>{topArticle.categories[0]?.title}</label>
-                <Link href={`/clanek/${topArticle.slug}`}>
-                  <a>
-                    <h1><span>{topArticle.title}</span></h1>
-                  </a>
-                </Link>
-                <div  dangerouslySetInnerHTML={{__html: topArticle?.perex}}></div>
-                <Link href={`/clanek/${topArticle?.slug}`}>
-                  <a className="button circle uk-visible@m">
-                    <img className="uk-svg" src="/assets/right.svg" uk-svg="" />
-                  </a>
-                </Link>
-              </div>
-            </div>
+            <a href="/" className="button">Přihlást k novinkám</a>
+            <a href="/" className="button bare">Co je to CBD?</a>
           </div>
         </div>
       </section>
 
-      {!!seccondArticles.length && <section className="blog-one-col-short">
-        <div className="uk-container uk-contaner-xsmall">
-
-          {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.slug}`}>
-            <a className="uk-grid uk-grid-stack uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@s" uk-grid="">
-              <div>
-                <div className="blog-short-img-wrap">
-                  <Image image={item?.image} />
-                </div>
+      <section className="uk-padding-remove">
+        <div className="uk-container uk-container-large">
+          <div className="uk-grid uk-grid-stack" uk-grid="">
+            <div className="uk-width-1-2@m">
+              <div className="blog-short">
+                <Link href={`/clanek/${mainArticle?.slug}`}>
+                  <a className="blog-short-item">
+                    <div className="blog-short-img-wrap">
+                      <Image image={mainArticle.image} />
+                    </div>
+                    <div className="blog-short-info-wrap">
+                      <label onClick={e => handleCategory(e, mainArticle.categories[0]?.slug)}>{mainArticle.categories[0]?.title}</label>
+                      <h2><span>{mainArticle?.title}</span></h2>
+                      <div dangerouslySetInnerHTML={{__html: mainArticle?.perex}}></div>
+                    </div>
+                  </a>
+                </Link>
               </div>
-              <div>
-                <div className="blog-short-info-wrap">
-                  <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label>
-                  <h2><span>{item?.title}</span></h2>
-                </div>
+              <div className="banner">
+                <span className="title">inzerujte na tulsiu</span>
               </div>
-            </a>
-          </Link>)}
-
-        </div>
-      </section>}
-
-      {!!lastArticles.length && <section className="blog-short">
-        <div className="uk-container">
-          <div className="uk-grid uk-grid-stack uk-child-width-1-2 uk-child-width-1-3@s" uk-grid="">
-
-            {lastArticles.map((item, index) => <div key={index}>
-              <Link href={`/clanek/${item?.slug}`}>
-                <a className="blog-short-item">
-                  <div className="blog-short-img-wrap">
-                    <Image image={item?.image} />
-                  </div>
-                  <div className="blog-short-info-wrap">
-                    <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label>
-                    <h3><span>{item?.title}</span></h3>
-                  </div>
-                </a>
-              </Link>
-            </div>)}
+            </div>
 
 
+            <div className="uk-width-1-2@m">
+              {!!seccondArticles.length && <div className="blog-one-col-short">
+                {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.slug}`}>
+                  <a>
+                    <div className="blog-short-img-wrap">
+                      <Image image={item?.image} />
+                    </div>
+                    <div className="blog-short-info-wrap">
+                      <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label>
+                      <h2><span>{item?.title}</span></h2>
+                      <div dangerouslySetInnerHTML={{__html: item?.perex}}></div>
+                    </div>
+                  </a>
+                </Link>)}
+              </div>}
+            </div>
           </div>
-          {/*<Link href="/"><a className="button">starší články</a></Link>*/}
         </div>
-      </section>}
-
+      </section>
     </Page>
   )
 }

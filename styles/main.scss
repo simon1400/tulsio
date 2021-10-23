@@ -10,10 +10,16 @@
 ::-moz-selection { background: $accent; }
 ::selection { background: $accent; }
 
-header{
+header {
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1000;
+}
+
+.big-text{
+  font-size: 21px;
+  line-height: 1.57;
+  color: $text;
 }
 
 .header-wrap{
@@ -102,21 +108,103 @@ header{
   }
 }
 
-.top{
-  padding-top: 0;
-  padding-bottom: 0;
-  .img{
-    max-height: 100vh;
-    min-height: 700px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    img{
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
+.background-top-left {
+  height: 981px;
+  opacity: 0.85;
+  background-blend-mode: hue;
+  position: absolute;
+
+  img {
+    height: 900px;
   }
+}
+
+.background-top-right {
+  height: 981px;
+  opacity: 0.85;
+  background-blend-mode: hue;
+  position: absolute;
+  right: 0;
+
+  img {
+    height: 900px;
+  }
+}
+
+.banner {
+  height: 240px;
+  background-color: rgba(0, 0, 255, 0.05);
+  margin-top: 30px;
+  position: relative;
+
+  .title {
+    object-fit: contain;
+    font-family: Manrope;
+    font-size: 11px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: 1.05px;
+    text-align: left;
+    color: #00f;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+  }
+}
+
+.main-article {
+  padding: 0;
+  padding-bottom: 30px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+
+  .faq {
+    margin-left:30px;
+    margin-top:30px;
+    object-fit: contain;
+    font-family: Manrope;
+    font-size: 13px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: 1.24px;
+    text-align: left;
+    color: #00f;
+  }
+
+  .title {
+    margin-left: 30px;
+    object-fit: contain;
+    font-family: Manrope;
+    font-size: 38px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -0.57px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .text {
+    padding: 12px 30px;
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.94;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.top {
+  padding: 160px 0;
   .info{
     background-color: $gray;
     .info-top{
@@ -137,8 +225,7 @@ header{
 
 .blog-short-img-wrap{
   overflow: hidden;
-  height: 210px;
-  width: 100%;
+  height: 510px;
   img{
     object-fit: cover;
     width: 100%;
@@ -163,14 +250,24 @@ header{
         transition-delay: 0s;
       }
     }
-
   }
 }
 
+.homepage{
+  background-image: url("/assets/photo6019458277106104093.jpg"), url("/assets/photo6019458277106104095.jpg");
+  background-repeat: no-repeat;
+  background-position: left top, right top;
+}
+
 .blog-short-info-wrap{
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 30px 30px;
+  height: 210px;
+  div{
+    color: $text;
+  }
   h2, h3{
+    margin-bottom: 0;
+    font-size: 26px;
     span{
       display: inline;
       background-image: linear-gradient(to bottom, transparent 20%, $accent 21%);
@@ -180,13 +277,19 @@ header{
       transition: background-size 0.5s ease-in-out 0.2s;
     }
   }
+  p{
+    font-size: 16px;
+    line-height: 1.94;
+  }
 }
 
-
-
 .blog-one-col-short{
+  background-color: #fff;
   a{
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    height: 240px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
+    display: flex;
     &:hover{
       text-decoration: none;
       h2 span{
@@ -202,14 +305,16 @@ header{
     font-size: 14px;
   }
   .blog-short-img-wrap{
-    height: 235px;
-    max-width: 420px;
+    max-height: 100%;
+    width: 240px;
+    min-width: 240px;
     margin-left: auto;
   }
   .blog-short-info-wrap{
     height: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
+    width: calc(100% - 60px);
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 0;
     padding-bottom: 0;
     display: -webkit-flex;
@@ -218,6 +323,9 @@ header{
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
+    p{
+      margin-top: 0;
+    }
   }
 }
 
@@ -225,7 +333,7 @@ header{
   text-align: left;
   &:hover{
     text-decoration: none;
-    h3 span{
+    h2 span{
       background-size: 100% 2px;
       transition-delay: 0s;
     }
@@ -234,10 +342,17 @@ header{
 
 .blog-short{
   text-align: center;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
   .button{
     margin-left: auto;
     margin-right: auto;
     margin-top: 40px;
+  }
+  p{
+    margin-top: 0;
+  }
+  h2{
+    font-size: 36px;
   }
 }
 
@@ -245,23 +360,43 @@ header{
 footer{
   margin-top: 80px;
   .footer-top{
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background-color: $gray;
+    margin-bottom: -160px;
+    position: relative;
+    .newsleter {
+      height: 220px;
+      background-color: #fff;
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+      background-image: url("/assets/photo6019458277106104094.jpg");
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      background-position: top right;
+      display: flex;
+      align-items: center;
+      padding: 50px 60px;
+      .title{
+        width: 50%;
+      }
+      h2{
+        font-size: 50px;
+        line-height: 50px;
+        margin-bottom: 40px;
+      }
+    }
   }
   .footer-bottom{
-    background-color: $accent;
+    background-color: $footer-color;
   }
   .footer-bottom-wrap{
-    padding-top: 60px;
+    padding-top: 255px;
     padding-bottom: 60px;
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
-    align-items: center;
+    align-items: top;
     .logo{
       width: 122px;
       min-width: 122px;
+      padding-right: 50px;
       img, svg{
         color: white;
         width: 122px;
@@ -270,17 +405,42 @@ footer{
         }
       }
     }
+
     nav{
       width: 100%;
       text-align: center;
+
+      .title {
+        font-family: Manrope;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+    
+        letter-spacing: normal;
+        text-align: left;
+      }
       ul{
         li{
-          display: inline-block;
+          display: block;
           padding-left: 15px;
           padding-right: 15px;
-          a{
-            color: white;
+          font-family: Manrope;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          letter-spacing: normal;
+          text-align: left;
+
+          &.title {
+            margin-bottom: 12px;
             font-size: 17px;
+            color: #fff;
+          }
+         
+          a{
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+
           }
         }
       }
@@ -294,22 +454,22 @@ footer{
         li{
           display: block;
           &:not(:first-child){
-            margin-left: 10px;
+            margin-left: 4px;
           }
           &:not(:last-child){
-            margin-right: 10px;
+            margin-right: 4px;
           }
           a{
-            width: 52px;
-            min-width: 52px;
-            max-width: 52px;
-            height: 52px;
+            width: 40px;
+            min-width: 40px;
+            max-width: 40px;
+            height: 40px;
             display: flex;
             border-radius: 50%;
             box-shadow: $box-shadow;
             background-color: white;
             svg, img{
-              height: 23px;
+              height: 17px;
               margin: auto;
             }
           }
@@ -377,12 +537,12 @@ footer{
 
 
 .full-img{
-  height: 790px;
+  height: 528px;
   overflow: hidden;
   padding-top: 0;
   padding-bottom: 0;
   img{
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
   }
@@ -438,7 +598,7 @@ footer{
       img{
         object-fit: cover;
         width: 100%;
-        height: 100%;
+        height: 360px;
       }
     }
     figcaption{
@@ -643,6 +803,11 @@ footer{
   height: 22px;
   margin-top: 3px;
   margin-left: 20px;
+}
+
+.rating-star {
+  width: 28px;
+  height: 26px;
 }
 
 

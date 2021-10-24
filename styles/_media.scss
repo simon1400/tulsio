@@ -7,10 +7,6 @@
 }
 @media(max-width: $breakpoint-medium) {
   // $breakpoint-medium: 960px
-  
-  .homepage{
-    background-image: none;
-  }
   .header-wrap{
     justify-content: space-between;
   }
@@ -60,29 +56,32 @@
 }
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
+  .homepage{
+    background-size: 60% auto, 60% auto;
+    background-position: -50px 70px, 135% 70px;
+  }
   .full-img {
     max-height: 270px;
   }
   .top{
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-  .top .info .info-top{
-    label{
-      font-size: 12px;
-    }
-    h1{
-      margin-bottom: 0;
-      margin-top: -10px;
-    }
-    p{
-      margin-bottom: 0;
+    padding-top: 40px;
+    padding-bottom: 120px;
+    text-align: center;
+    a{
+      display: inline-block;
+      font-size: 14px;
+      &.button.bare{
+        margin-left: 0;
+        margin-top: 20px;
+        display: block;
+      }
     }
   }
   body{
     h1{
-      font-size: 27px;
-      line-height: 32px;
+      font-size: 31px;
+      line-height: 36px;
+      text-align: center;
     }
     h2{
       font-size: 24px;
@@ -93,7 +92,7 @@
       line-height: 20px;
     }
     label{
-      font-size: 8px;
+      font-size: 14px;
     }
     .big-text p{
       font-size: 15px;
@@ -113,8 +112,15 @@
       margin-left: -15px;
     }
   }
-  .blog-short h2{
-    font-size: 26px;
+  .blog-short{
+    h2{
+      font-size: 23px;
+      margin-bottom: 15px;
+    }
+   
+  } 
+  .banner{
+    height: 116px;
   }
   .blog-one-col-short{
     a{
@@ -123,15 +129,12 @@
     }
     .blog-short-img-wrap{
       max-width: 100%;
-      height: 200px;
-      min-height: 200px;
+      height: 170px;
+      min-height: 170px;
       width: 100%;
     }
     .blog-short-info-wrap{
-      padding-left: 15px;
-      padding-right: 15px;
-      padding-top: 15px;
-      padding-bottom: 15px;
+      padding: 20px 20px;
       h2{
         margin-bottom: 0;
       }
@@ -141,30 +144,55 @@
     }
   }
   .blog-short-img-wrap{
-    height: 200px;
+    height: 250px;
   }
   .blog-short-info-wrap{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 20px 20px;
+    label{
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    h3{
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
   }
   footer{
     .footer-top{
       .newsleter{
-        height: auto;
+        height: 370px;
         padding: 30px 40px;
+        text-align: center;
+        background-size: 140% 50%;
+        background-position: -150px 100%;
         .title{
           width: 100%;
+          h2{
+            font-size: 31px;
+            line-height: 1.16;
+          }
         }
       }
     }
     .footer-bottom-wrap{
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
       .logo{
         margin-bottom: 30px;
+        padding-right: 0;
       }
       nav{
         margin-bottom: 30px;
+        text-align: center;
+        ul{
+          text-align: center;
+          li{
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+          }
+        }
       }
     }
   }
@@ -198,8 +226,8 @@
     }
   }
   .button{
-    font-size: 10px;
-    min-width: 160px;
+    font-size: 14px;
+    // min-width: 160px;
     padding: 10px;
   }
   .labels ul li a{

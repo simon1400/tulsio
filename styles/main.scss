@@ -205,6 +205,12 @@ header {
 
 .top {
   padding: 160px 0;
+  h1{
+    margin-bottom: 35px;
+  }
+  .button.bare{
+    margin-left: 30px;
+  }
   .info{
     background-color: $gray;
     .info-top{
@@ -259,6 +265,33 @@ header {
   background-position: left top, right top;
 }
 
+.header-wrap nav.menu-responsive{
+  position: fixed;
+  height: 0;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  text-align: right;
+  transition: all .5s ease;
+  overflow: hidden;
+  &.active{
+    height: 100vh;
+  }
+  ul{
+    li{
+      display: block;
+      margin-bottom: 20px;
+      a{
+        font-size: 26px;
+      }
+    }
+  }
+}
+
 .blog-short-info-wrap{
   padding: 30px 30px;
   height: 210px;
@@ -266,8 +299,7 @@ header {
     color: $text;
   }
   h2, h3{
-    margin-bottom: 0;
-    font-size: 26px;
+    margin-bottom: 13px;
     span{
       display: inline;
       background-image: linear-gradient(to bottom, transparent 20%, $accent 21%);
@@ -351,8 +383,31 @@ header {
   p{
     margin-top: 0;
   }
-  h2{
-    font-size: 36px;
+  // h2{
+  //   font-size: 36px;
+  // }
+}
+
+.text-content{
+  ul{
+    li{
+      font-weight: 500;
+      font-size: 19px;
+      line-height: 31px;
+      color: $text;
+      padding-left: 28px;
+      position: relative;
+      &:before{
+        content: '';
+        display: block;
+        width: 15px;
+        height: 1.5px;
+        background-color: $accent;
+        position: absolute;
+        left: 0;
+        top: 15px;
+      }
+    }
   }
 }
 
@@ -392,7 +447,8 @@ footer{
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
-    align-items: top;
+    justify-content: space-between;
+    align-items: start;
     .logo{
       width: 122px;
       min-width: 122px;
@@ -407,9 +463,8 @@ footer{
     }
 
     nav{
-      width: 100%;
+      // width: 100%;
       text-align: center;
-
       .title {
         font-family: Manrope;
         font-weight: 500;
@@ -471,6 +526,8 @@ footer{
             svg, img{
               height: 17px;
               margin: auto;
+              color: $accent;
+              fill: $accent;
             }
           }
         }
@@ -803,6 +860,11 @@ footer{
   height: 22px;
   margin-top: 3px;
   margin-left: 20px;
+  &.is-active{
+    position: fixed;
+    top: 18px;
+    right: 15px;
+  }
 }
 
 .rating-star {

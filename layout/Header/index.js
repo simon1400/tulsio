@@ -1,5 +1,6 @@
 // import {useEffect, useState} from 'react'
 import Link from 'next/link'
+import {useState} from 'react'
 import {useRouter} from 'next/router'
 import { useQuery } from '@apollo/client'
 import navigationQuery from '../../queris/navigation'
@@ -7,6 +8,8 @@ import navigationQuery from '../../queris/navigation'
 const Header = () => {
 
   const router = useRouter()
+
+  const [menu, setMenu] = useState(false)
 
   const { loading, error, data } = useQuery(navigationQuery);
   if(loading) {
@@ -29,16 +32,21 @@ const Header = () => {
               {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
             </ul>
           </nav>
+          <nav className={`menu menu-responsive uk-hidden@m ${menu ? "active" : ''}`}>
+            <ul>
+              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
+            </ul>
+          </nav>
           <div className="control">
-            <div className="lang uk-visible@m">
+            {/* <div className="lang uk-visible@m">
               <span>Čeština</span>
               <img className="uk-svg" src="/assets/down.svg" uk-svg="" />
-            </div>
-            <div className="search">
+            </div> */}
+            {/* <div className="search">
               <img className="uk-svg" src="/assets/search.svg" uk-svg="" />
-            </div>
+            </div> */}
             <div className="uk-hidden@m">
-              <button className="hamburger hamburger--collapse" type="button">
+              <button className={`hamburger hamburger--collapse ${menu ? "is-active" : ''}`} type="button" onClick={() => setMenu(!menu)}>
                 <span className="hamburger-box">
                   <span className="hamburger-inner"></span>
                 </span>

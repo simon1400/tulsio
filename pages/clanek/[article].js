@@ -9,20 +9,8 @@ import {useRouter} from 'next/router'
 import {useQuery} from '@apollo/client'
 import getArticleQuery from '../../queris/get-article';
 import Rating from '../../components/Rating';
- 
 
-const DOMAIN = process.env.APP_API;
-
-export async function getServerSideProps({params}) {
-
-  const res = await AxiosAPI.get('/claneks?slug='+params.article);
-
-  return {
-    props: {
-      data: res.data[0]
-    }
-  }
-}
+const DOMAIN = process.env.APP_DOMAIN;
 
 const Article = () => {
   const router = useRouter();
@@ -30,17 +18,11 @@ const Article = () => {
   const { loading, error, data} = useQuery(getArticleQuery, { 
     variables: { slug: router.query.article } 
   });
-
-  // const { loading, error, data } = useQuery(getLiga,
-  //   { variables: { id: query.liga}
-  // });
  
   if(loading) {
     return ''
   }
   let parsedData = data.claneks[0];
-
-  console.log(parsedData);
 
   return (
     <Page>
@@ -61,11 +43,11 @@ const Article = () => {
           <ShareButtons data={parsedData} />
 
           {!!parsedData.title.length && <h1>{parsedData.title}</h1>}
-          {!!parsedData.perex.length && <div className="big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: parsedData.perex}}></div>}
+          {!!parsedData.perex.length && <div className="text-content big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: parsedData.perex}}></div>}
 
           {!!parsedData.capitoly.length && parsedData.capitoly.map((item, index) => <div key={index}>
             {!!item.title && <h2>{item.title}</h2>}
-            <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+            <div className="text-content" dangerouslySetInnerHTML={{__html: item.text}}></div>
             {!!item.galery?.length && item.galery.map((img, indexImg) => <figure key={indexImg}>
               <div><Image image={img} alt={img.alternativeText || ''}/></div>
               {!!img.caption.length && <figurecaption>{img.caption}</figurecaption>}
@@ -75,9 +57,9 @@ const Article = () => {
             </div>}
           </div>)}
 
-          <Rating rating={2.5}/>
+          {/* <Rating rating={2.5}/> */}
 
-          <div className="author-block">
+          {/* <div className="author-block">
             <div className="author">
               <div className="img-author">
                 <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
@@ -90,13 +72,13 @@ const Article = () => {
             <div className="post-date">
               <span>Publikováno {formatDatePublic(parsedData.published_at)}</span>
             </div>
-          </div>
+          </div> */}
 
-          {parsedData.labels?.length && <div className="labels">
+          {/* {parsedData.labels?.length && <div className="labels">
             <ul>
               {parsedData.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
             </ul>
-          </div>}
+          </div>} */}
         </div>
       </section>
 

@@ -4,16 +4,15 @@ import Link from 'next/link'
 import globalQuery from '../../queris/global'
 import navigationQuery from '../../queris/navigation'
 import { useQuery } from '@apollo/client'
+import Image from '../../components/image'
 
 const Footer = () => {
 
   const {loading, data} = useQuery(globalQuery)
 
-  const { data: nav } = useQuery(navigationQuery);
+  const { loading: navLoad, data: nav } = useQuery(navigationQuery);
 
-  console.log(nav);
-
-  if(loading) {
+  if(loading || navLoad) {
     return ''
   }
 
@@ -61,10 +60,11 @@ const Footer = () => {
             </nav>
             <div className="social">
               <ul>
-                <li><a href="/"><img className="uk-svg" src="/assets/instagram.svg" uk-svg="" /></a></li>
-                <li><a href="/"><img className="uk-svg" src="/assets/facebook.svg" uk-svg="" /></a></li>
-                <li><a href="/"><img className="uk-svg" src="/assets/youtube.svg" uk-svg="" /></a></li>
-                <li><a href="/"><img className="uk-svg" src="/assets/twitter.svg" uk-svg="" /></a></li>
+                {nav.navigaceNovum.soc_nav.navigation_item.map((item, index) => <li key={index}>
+                  <a href={item.link}>
+                    <Image image={item.icon} svg />
+                  </a>
+                </li>)}
               </ul>
             </div>
           </div>

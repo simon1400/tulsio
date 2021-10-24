@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 
 import Header from '../Header'
 import Footer from '../Footer'
+// import Search from '../Search'
 
 const Page = ({
   children,
@@ -102,6 +103,7 @@ const Page = ({
       <Header />
       <main id={id} className={className}>{children}</main>
       <Footer />
+      {/* <Search /> */}
 
     </div>
   );

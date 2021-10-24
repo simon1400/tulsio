@@ -12,8 +12,8 @@ $text: rgba(0, 0, 0, .8);
 $footer-color:rgba(0, 0, 0, 0.8);
 
 $head1: 50px;
-$head2: 34px;
-$head3: 24px;
+$head2: 38px;
+$head3: 26px;
 
 $text-big: 21px;
 $text-small: 19px;
@@ -146,6 +146,7 @@ section{
     padding: 0;
     box-shadow: none;
     color: $accent;
+    min-width: 0;
   }
 }
 

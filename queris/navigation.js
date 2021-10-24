@@ -4,7 +4,6 @@ const navigationQuery = gql`
   query {
     navigaceNovum {
       top_nav{
-        title
         navigation_item {
           name
           link
@@ -29,6 +28,14 @@ const navigationQuery = gql`
         navigation_item {
           name
           link
+        }
+      }
+      soc_nav {
+        navigation_item {
+          link
+          icon{
+            url
+          }
         }
       }
     }

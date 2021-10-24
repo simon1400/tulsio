@@ -40,10 +40,10 @@ const Home = () => {
 
       <section className="top">
         <div className="uk-container uk-container-small">
-          <h1>Váš průvodce světem konopí</h1>
+          <h1>{data.homepage.title}</h1>
           <div>
-            <a href="/" className="button">Přihlást k novinkám</a>
-            <a href="/" className="button bare">Co je to CBD?</a>
+            <a href={data.homepage.cta.link} className="button">{data.homepage.cta.text}</a>
+            <a href={data.homepage.cta_sec.link} className="button bare">{data.homepage.cta_sec.text}</a>
           </div>
         </div>
       </section>
@@ -59,7 +59,8 @@ const Home = () => {
                       <Image image={mainArticle.image} />
                     </div>
                     <div className="blog-short-info-wrap">
-                      <label onClick={e => handleCategory(e, mainArticle.categories[0]?.slug)}>{mainArticle.categories[0]?.title}</label>
+                      {/* <label onClick={e => handleCategory(e, mainArticle.categories[0]?.slug)}>{mainArticle.categories[0]?.title}</label> */}
+                      <label>{mainArticle.categories[0]?.title}</label>
                       <h2><span>{mainArticle?.title}</span></h2>
                       <div dangerouslySetInnerHTML={{__html: mainArticle?.perex}}></div>
                     </div>
@@ -80,8 +81,9 @@ const Home = () => {
                       <Image image={item?.image} />
                     </div>
                     <div className="blog-short-info-wrap">
-                      <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label>
-                      <h2><span>{item?.title}</span></h2>
+                      {/* <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label> */}
+                      <label>{item.categories[0]?.title}</label>
+                      <h3><span>{item?.title}</span></h3>
                       <div dangerouslySetInnerHTML={{__html: item?.perex}}></div>
                     </div>
                   </a>

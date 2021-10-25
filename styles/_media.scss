@@ -56,6 +56,12 @@
 }
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
+  .full-img{
+    .uk-container{
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
   .homepage{
     background-size: 60% auto, 60% auto;
     background-position: -50px 70px, 135% 70px;
@@ -156,14 +162,18 @@
       font-size: 18px;
       margin-bottom: 15px;
     }
+    p{
+      font-size: 14px;
+      line-height: 23px;
+    }
   }
   footer{
     .footer-top{
       .newsleter{
-        height: 370px;
-        padding: 30px 40px;
+        height: 330px;
+        padding: 20px 20px;
         text-align: center;
-        background-size: 140% 50%;
+        background-size: 150% auto;
         background-position: -150px 100%;
         .title{
           width: 100%;
@@ -197,7 +207,7 @@
     }
   }
   .header-wrap{
-    padding: 15px 0;
+    padding: 10px 0 15px;
   }
   .post-date{
     font-size: 11px;
@@ -227,7 +237,7 @@
   }
   .button{
     font-size: 14px;
-    // min-width: 160px;
+    min-width: 200px;
     padding: 10px;
   }
   .labels ul li a{
@@ -250,6 +260,16 @@
           height: 18px;
         }
       }
+    }
+  }
+  .text-content ul li{
+    font-size: 11px;
+    line-height: 18px;
+    padding-left: 15px;
+    &:before{
+      width: 7px;
+      height: 1px;
+      top: 10px;
     }
   }
 

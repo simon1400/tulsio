@@ -263,6 +263,7 @@ header {
   background-image: url("/assets/photo6019458277106104093.jpg"), url("/assets/photo6019458277106104095.jpg");
   background-repeat: no-repeat;
   background-position: left top, right top;
+  background-size: 30% auto;
 }
 
 .header-wrap nav.menu-responsive{
@@ -322,8 +323,10 @@ header {
     height: 240px;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
     display: flex;
+    transition: all .5s ease;
     &:hover{
       text-decoration: none;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.28);
       h2 span{
         background-size: 100% 2px;
         transition-delay: 0s;
@@ -375,6 +378,10 @@ header {
 .blog-short{
   text-align: center;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
+  transition: all .5s ease;
+    &:hover{
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.28);
+    }
   .button{
     margin-left: auto;
     margin-right: auto;
@@ -383,12 +390,10 @@ header {
   p{
     margin-top: 0;
   }
-  // h2{
-  //   font-size: 36px;
-  // }
 }
 
 .text-content{
+  margin-bottom: 40px;
   ul{
     li{
       font-weight: 500;
@@ -421,10 +426,10 @@ footer{
       height: 220px;
       background-color: #fff;
       box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-      background-image: url("/assets/photo6019458277106104094.jpg");
-      background-size: auto 100%;
+      background-image: url("/assets/newsletter-grafika.jpg");
+      background-size: auto 150%;
       background-repeat: no-repeat;
-      background-position: top right;
+      background-position: bottom right;
       display: flex;
       align-items: center;
       padding: 50px 60px;
@@ -634,7 +639,8 @@ footer{
 .content{
   position: relative;
   p{
-    margin-bottom: 40px;
+    margin-bottom: 0;
+    margin-top: 0;
   }
   .button{
     margin-bottom: 40px;
@@ -855,10 +861,9 @@ footer{
   }
 }
 
-
 .hamburger{
   height: 22px;
-  margin-top: 3px;
+  margin-top: 8px;
   margin-left: 20px;
   &.is-active{
     position: fixed;

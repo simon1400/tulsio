@@ -15,21 +15,20 @@ const Home = () => {
   const router = useRouter();
   const {loading, data} = useQuery(homepageQuery);
 
-  console.log(data);
-
   if(loading) {
     return ''
   }
-  const mainArticle = data.homepage.article_top;
-  const seccondArticles = data.homepage.articles;
+  const mainArticle = data.homepage.Short_article[0];
+  const seccondArticles = data.homepage.Short_article.slice(1, 5);
+
   // const lastArticles = data.claneks.slice(4, 6);
   
-  const handleCategory = (e, link) => {
-    e.preventDefault()
-    e.stopPropagation()
+  // const handleCategory = (e, link) => {
+  //   e.preventDefault()
+  //   e.stopPropagation()
 
-    router.push(`/kategorie/${link}`)
-  }
+  //   router.push(`/kategorie/${link}`)
+  // }
 
   return (
     <Page className="homepage">
@@ -53,16 +52,16 @@ const Home = () => {
           <div className="uk-grid uk-grid-stack" uk-grid="">
             <div className="uk-width-1-2@m">
               <div className="blog-short">
-                <Link href={`/clanek/${mainArticle?.slug}`}>
+                <Link href={`/clanek/${mainArticle?.article.slug}`}>
                   <a className="blog-short-item">
                     <div className="blog-short-img-wrap">
                       <Image image={mainArticle.image} />
                     </div>
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, mainArticle.categories[0]?.slug)}>{mainArticle.categories[0]?.title}</label> */}
-                      <label>{mainArticle.categories[0]?.title}</label>
+                      <label>{mainArticle.article.categories[0]?.title}</label>
                       <h2><span>{mainArticle?.title}</span></h2>
-                      <div dangerouslySetInnerHTML={{__html: mainArticle?.perex}}></div>
+                      <div dangerouslySetInnerHTML={{__html: mainArticle?.short_text}}></div>
                     </div>
                   </a>
                 </Link>
@@ -72,19 +71,18 @@ const Home = () => {
               </div>
             </div>
 
-
             <div className="uk-width-1-2@m">
               {!!seccondArticles.length && <div className="blog-one-col-short">
-                {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.slug}`}>
+                {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.article.slug}`}>
                   <a>
                     <div className="blog-short-img-wrap">
                       <Image image={item?.image} />
                     </div>
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label> */}
-                      <label>{item.categories[0]?.title}</label>
+                      <label>{item.article.categories[0]?.title}</label>
                       <h3><span>{item?.title}</span></h3>
-                      <div dangerouslySetInnerHTML={{__html: item?.perex}}></div>
+                      <div dangerouslySetInnerHTML={{__html: item?.short_text}}></div>
                     </div>
                   </a>
                 </Link>)}

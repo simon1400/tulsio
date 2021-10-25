@@ -12,32 +12,17 @@ const homepageQuery = gql`
         text
         link
       }
-      article_top {
-        id
+      Short_article{
         title
-        slug
-        perex
         image{
-          name
           url
         }
-        categories{
-          title,
+        short_text
+        article{
           slug
-        }
-      }
-      articles {
-        id
-        title
-        slug
-        perex
-        image{
-          name
-          url
-        }
-        categories{
-          title,
-          slug
+          categories{
+            title
+          }
         }
       }
     }

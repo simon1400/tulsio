@@ -31,11 +31,11 @@ const Article = () => {
         {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
       </Head>
 
-      <section className="full-img">
-        <div className="uk-container uk-container-large">
-          <Image image={parsedData.image} /> 
-        </div>       
-      </section>
+      <div className="uk-container uk-container-large">
+        <div className="full-img">
+          <Image image={parsedData.image} />  
+        </div>
+      </div> 
 
       <section className="content">
         <div className="uk-container uk-container-xsmall">

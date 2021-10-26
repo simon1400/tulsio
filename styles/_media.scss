@@ -2,8 +2,10 @@
   // $breakpoint-xlarge: 1600px
 }
 @media(max-width: $breakpoint-large) {
-  // $breakpoint-large: 1200px
-  
+  // $breakpoint-large: 1100px
+  .homepage{
+    background-position: -10% 150px, 110% 150px;
+  }
 }
 @media(max-width: $breakpoint-medium) {
   // $breakpoint-medium: 960px
@@ -57,10 +59,8 @@
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
   .full-img{
-    .uk-container{
-      padding-left: 0;
-      padding-right: 0;
-    }
+    margin-left: -15px;
+    width: calc(100% + 30px);
   }
   .homepage{
     background-size: 60% auto, 60% auto;
@@ -87,7 +87,7 @@
     h1{
       font-size: 31px;
       line-height: 36px;
-      text-align: center;
+      // text-align: center;
     }
     h2{
       font-size: 24px;
@@ -105,7 +105,7 @@
       line-height: 24px;
     }
     p{
-      font-size: 11px;
+      font-size: 14px;
       line-height: 18px;
     }
   }
@@ -166,6 +166,10 @@
       font-size: 14px;
       line-height: 23px;
     }
+    div{
+      font-size: 14px;
+      line-height: 23px;
+    }
   }
   footer{
     .footer-top{
@@ -201,6 +205,9 @@
             padding-left: 0;
             padding-right: 0;
             text-align: center;
+            &.title{
+              text-align: center;
+            }
           }
         }
       }

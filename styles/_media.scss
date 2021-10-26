@@ -91,7 +91,7 @@
     }
     h2{
       font-size: 24px;
-      line-height: 29px;
+      line-height: 28px;
     }
     h3{
       font-size: 17px;
@@ -101,12 +101,12 @@
       font-size: 14px;
     }
     .big-text p{
-      font-size: 15px;
-      line-height: 24px;
+      font-size: 17px;
+      line-height: 27px;
     }
     p{
-      font-size: 14px;
-      line-height: 18px;
+      font-size: 16px;
+      line-height: 26px;
     }
   }
   .content {
@@ -123,7 +123,10 @@
       font-size: 23px;
       margin-bottom: 15px;
     }
-   
+    // div, p{
+    //   font-size: 14px;
+    //   line-height: 18;
+    // }
   } 
   .banner{
     height: 116px;
@@ -143,6 +146,10 @@
       padding: 20px 20px;
       h2{
         margin-bottom: 0;
+      }
+      div, p{
+        font-size: 14px;
+        line-height: 18;
       }
     }
     label{
@@ -270,13 +277,13 @@
     }
   }
   .text-content ul li{
-    font-size: 11px;
-    line-height: 18px;
-    padding-left: 15px;
+    font-size: 16px;
+    line-height: 26px;
+    padding-left: 20px;
     &:before{
-      width: 7px;
-      height: 1px;
-      top: 10px;
+      width: 10px;
+      height: 1.5px;
+      top: 14px;
     }
   }
 

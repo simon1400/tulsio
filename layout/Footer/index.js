@@ -16,6 +16,8 @@ const Footer = () => {
     return ''
   }
 
+  console.log(nav.navigaceNovum);
+
   return (
     <footer>
       <div className="footer-top">
@@ -34,30 +36,30 @@ const Footer = () => {
             <div className="logo">
               <img className="uk-svg" src="/assets/logo-tulsio.svg" uk-svg="" />
             </div>
-            <nav className="menu">
+            {!!nav.navigaceNovum.footer_nav_1.navigation_item.length && <nav className="menu">
               <ul>
                 <li className="title">{nav.navigaceNovum.footer_nav_1.title}</li>
                 {nav.navigaceNovum.footer_nav_1.navigation_item.map((item, index) => <li key={index}>
                   <Link href={item.link}><a>{item.name}</a></Link>
                 </li>)}
               </ul>
-            </nav>
-            <nav className="menu">
+            </nav>}
+            {!!nav.navigaceNovum.footer_nav_2.navigation_item.length && <nav className="menu">
               <ul>
                 <li className="title">{nav.navigaceNovum.footer_nav_2.title}</li>
                 {nav.navigaceNovum.footer_nav_2.navigation_item.map((item, index) => <li key={index}>
                   <Link href={item.link}><a>{item.name}</a></Link>
                 </li>)}
               </ul>
-            </nav>
-            <nav className="menu">
+            </nav>}
+            {!!nav.navigaceNovum.footer_nav_3.navigation_item.length && <nav className="menu">
               <ul>
                 <li className="title">{nav.navigaceNovum.footer_nav_3.title}</li>
                 {nav.navigaceNovum.footer_nav_3.navigation_item.map((item, index) => <li key={index}>
                   <Link href={item.link}><a>{item.name}</a></Link>
                 </li>)}
               </ul>
-            </nav>
+            </nav>}
             <div className="social">
               <ul>
                 {nav.navigaceNovum.soc_nav.navigation_item.map((item, index) => <li key={index}>

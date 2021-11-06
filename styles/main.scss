@@ -57,7 +57,7 @@ header {
             content: '';
             display: block;
             position: absolute;
-            bottom: 0;
+            bottom: -1.5px;
             left: 0;
             width: 0;
             height: 1.5px;
@@ -307,7 +307,7 @@ header {
     span{
       display: inline;
       background-image: linear-gradient(to bottom, transparent 20%, $accent 21%);
-      background-position: 0 1.2em;
+      background-position: 0 1.3em;
       background-repeat: no-repeat;
       background-size: 0% 2px;
       transition: background-size 0.5s ease-in-out 0.2s;
@@ -330,7 +330,7 @@ header {
     &:hover{
       text-decoration: none;
       box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.28);
-      h2 span{
+      h2 span, h3 span{
         background-size: 100% 2px;
         transition-delay: 0s;
       }
@@ -338,9 +338,6 @@ header {
         text-decoration: none;
       }
     }
-  }
-  label{
-    font-size: 14px;
   }
   .blog-short-img-wrap{
     max-height: 100%;
@@ -367,7 +364,7 @@ header {
   }
 }
 
-.blog-short-item{
+.blog-short-item {
   text-align: left;
   &:hover{
     text-decoration: none;
@@ -471,7 +468,6 @@ footer{
     }
 
     nav{
-      // width: 100%;
       text-align: center;
       .title {
         font-family: Manrope;
@@ -493,17 +489,18 @@ footer{
           font-style: normal;
           letter-spacing: normal;
           text-align: left;
-
           &.title {
             margin-bottom: 12px;
             font-size: 17px;
             color: #fff;
           }
-         
           a{
             color: rgba(255, 255, 255, 0.7);
             font-size: 16px;
-
+            &:hover{
+              text-decoration: none;
+              color: white;
+            }
           }
         }
       }
@@ -629,9 +626,13 @@ footer{
         box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.16);
         background-color: #fff;
         margin-bottom: 10px;
+        transition: all .5s ease;
         img, svg{
           height: 22px;
           margin: auto;
+        }
+        &:hover{
+          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.36);
         }
       }
     }
@@ -664,7 +665,7 @@ footer{
       img{
         object-fit: cover;
         width: 100%;
-        height: 360px;
+        // height: 360px;
       }
     }
     figcaption{

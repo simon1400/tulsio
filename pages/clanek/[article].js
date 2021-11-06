@@ -50,7 +50,7 @@ const Article = () => {
             <div className="text-content" dangerouslySetInnerHTML={{__html: item.text}}></div>
             {!!item.galery?.length && item.galery.map((img, indexImg) => <figure key={indexImg}>
               <div><Image image={img} alt={img.alternativeText || ''}/></div>
-              {!!img.caption.length && <figurecaption>{img.caption}</figurecaption>}
+              {!!img.caption.length && <figcaption>{img.caption}</figcaption>}
             </figure>)}
             {!!item.button && <div className="uk-text-center uk-margin-bottom">
               <a href={item.button?.link} className="button">{item.button?.text}</a>

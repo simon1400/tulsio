@@ -54,9 +54,9 @@ const Home = () => {
               <div className="blog-short">
                 <Link href={`/clanek/${mainArticle?.article.slug}`}>
                   <a className="blog-short-item">
-                    <div className="blog-short-img-wrap">
+                    {mainArticle?.image && <div className="blog-short-img-wrap">
                       <Image image={mainArticle.image} />
-                    </div>
+                    </div>}
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, mainArticle.categories[0]?.slug)}>{mainArticle.categories[0]?.title}</label> */}
                       <label>{mainArticle.article.categories[0]?.title}</label>
@@ -75,9 +75,9 @@ const Home = () => {
               {!!seccondArticles.length && <div className="blog-one-col-short">
                 {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.article.slug}`}>
                   <a>
-                    <div className="blog-short-img-wrap">
+                    {item?.image && <div className="blog-short-img-wrap">
                       <Image image={item?.image} />
-                    </div>
+                    </div>}
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label> */}
                       <label>{item.article.categories[0]?.title}</label>

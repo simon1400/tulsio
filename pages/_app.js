@@ -1,13 +1,13 @@
 import '../styles/main.scss'
-import { GraphQLProvider } from '../lib/api';
+import { WithGraphQL } from '../lib/api';
 import UIkit from 'uikit';
 
-function MyApp({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   return (
-    <GraphQLProvider>
+    <WithGraphQL>
       <Component {...pageProps} />
-    </GraphQLProvider>
+    </WithGraphQL>
   );
 }
 
-export default MyApp
+export default App

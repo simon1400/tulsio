@@ -1,34 +1,25 @@
 
 import Page from '../layout/Page'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
 import Image from '../components/image'
 import Head from 'next/head'
-import homepageQuery from '../queris/homepage'
-import { useQuery } from '@apollo/client';
-
+import homepageQuery from '../queries/homepage'
+import { useQuery } from '@apollo/client'
 
 const DOMAIN = process.env.APP_API;
 
 const Home = () => {
 
-  const router = useRouter();
   const {loading, data} = useQuery(homepageQuery);
 
   if(loading) {
     return ''
   }
-  const mainArticle = data.homepage.Short_article[0];
-  const seccondArticles = data.homepage.Short_article.slice(1, 5);
+  const homepage = data.homepage.data.attributes
+  const mainArticle = homepage.articles[0];
+  const seccondArticles = homepage.articles.slice(1, 5);
 
-  // const lastArticles = data.claneks.slice(4, 6);
-  
-  // const handleCategory = (e, link) => {
-  //   e.preventDefault()
-  //   e.stopPropagation()
-
-  //   router.push(`/kategorie/${link}`)
-  // }
+  console.log(mainArticle);
 
   return (
     <Page className="homepage">
@@ -39,10 +30,10 @@ const Home = () => {
 
       <section className="top">
         <div className="uk-container uk-container-small">
-          <h1>{data.homepage.title}</h1>
+          <h1>{homepage.title}</h1>
           <div>
-            <a href={data.homepage.cta.link} className="button">{data.homepage.cta.text}</a>
-            <a href={data.homepage.cta_sec.link} className="button bare">{data.homepage.cta_sec.text}</a>
+            <a href={homepage.cta.link} className="button">{homepage.cta.text}</a>
+            <a href={homepage.secCta.link} className="button bare">{homepage.secCta.text}</a>
           </div>
         </div>
       </section>
@@ -52,16 +43,16 @@ const Home = () => {
           <div className="uk-grid uk-grid-stack" uk-grid="">
             <div className="uk-width-1-2@m">
               <div className="blog-short">
-                <Link href={`/clanek/${mainArticle?.article.slug}`}>
+                <Link href={`/${mainArticle?.article.data.attributes.categories.data[0].attributes.slug}/${mainArticle?.article.data.attributes.slug}`}>
                   <a className="blog-short-item">
                     {mainArticle?.image && <div className="blog-short-img-wrap">
-                      <Image image={mainArticle.image} />
+                      <Image image={mainArticle.image.data} />
                     </div>}
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, mainArticle.categories[0]?.slug)}>{mainArticle.categories[0]?.title}</label> */}
-                      <label>{mainArticle.article.categories[0]?.title}</label>
-                      <h2><span>{mainArticle?.title}</span></h2>
-                      <div dangerouslySetInnerHTML={{__html: mainArticle?.short_text}}></div>
+                      <label>{mainArticle.article.data.attributes.categories.data[0].attributes.title}</label>
+                      <h2><span>{mainArticle.title}</span></h2>
+                      <div dangerouslySetInnerHTML={{__html: mainArticle.text}}></div>
                     </div>
                   </a>
                 </Link>
@@ -73,14 +64,14 @@ const Home = () => {
 
             <div className="uk-width-1-2@m">
               {!!seccondArticles.length && <div className="blog-one-col-short">
-                {seccondArticles.map((item, index) => <Link key={index} href={`/clanek/${item?.article.slug}`}>
+                {seccondArticles.map((item, index) => <Link key={index} href={`/${item?.article.data.attributes.categories.data[0].attributes.slug}/${item?.article.data.attributes.slug}`}>
                   <a>
                     {item?.image && <div className="blog-short-img-wrap">
-                      <Image image={item?.image} />
+                      <Image image={item.image.data} />
                     </div>}
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label> */}
-                      <label>{item.article.categories[0]?.title}</label>
+                      <label>{item.article.data.attributes.categories.data[0].attributes.title}</label>
                       <h3><span>{item?.title}</span></h3>
                       <div dangerouslySetInnerHTML={{__html: item?.short_text}}></div>
                     </div>

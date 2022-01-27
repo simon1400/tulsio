@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {useState} from 'react'
 import {useRouter} from 'next/router'
 import { useQuery } from '@apollo/client'
-import navigationQuery from '../../queris/navigation'
+import navHeader from '../../queries/navHeader'
 
 const Header = () => {
 
@@ -11,12 +11,13 @@ const Header = () => {
 
   const [menu, setMenu] = useState(false)
 
-  const { loading, error, data } = useQuery(navigationQuery);
+  const { loading, data } = useQuery(navHeader);
+
   if(loading) {
     return ''
   }
 
-  const menuItems = data.navigaceNovum.top_nav.navigation_item ?? [];
+  const navItems = data.navigation.data.attributes.topNav.item;
 
   return (
     <header>
@@ -29,12 +30,16 @@ const Header = () => {
           </div>
           <nav className="menu uk-visible@m">
             <ul>
-              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
+              {navItems.map((item, index) => <li key={index}>
+                <a className={item.link === router.asPath ? 'active' : ''} href={item.link}>
+                  {item.name}
+                </a>
+              </li>)}
             </ul>
           </nav>
           <nav className={`menu menu-responsive uk-hidden@m ${menu ? "active" : ''}`}>
             <ul>
-              {!!menuItems.length && menuItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
+              {navItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
             </ul>
           </nav>
           <div className="control">

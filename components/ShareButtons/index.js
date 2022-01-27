@@ -5,6 +5,8 @@ const ShareButton = ({data}) => {
 
   const router = useRouter()
 
+  console.log(data);
+
   return (
     <div className="share-buttons">
       <ul>
@@ -14,7 +16,7 @@ const ShareButton = ({data}) => {
           </a>
         </li>
         <li>
-          <a href={`https://twitter.com/share?url=${DOMAIN}${router.asPath}&amp;text=${data.title}&amp;hashtags=${data.labels[0].title}`} target="_blank">
+          <a href={`https://twitter.com/share?url=${DOMAIN}${router.asPath}&amp;text=${data.title}&amp;hashtags=${data.labels?.data?.[0]?.attributes?.title || ""}`} target="_blank">
             <img className="uk-svg" src="/assets/twitter.svg" uk-svg="" alt="Facebook" />
           </a>
         </li>

@@ -1,22 +1,23 @@
 // import {useState, useEffect} from 'react'
 // import { useRouter } from 'next/router'
 import Link from 'next/link'
-import globalQuery from '../../queris/global'
-import navigationQuery from '../../queris/navigation'
+import globalQuery from '../../queries/global'
 import { useQuery } from '@apollo/client'
 import Image from '../../components/image'
+import navFooter from '../../queries/navFooter'
 
 const Footer = () => {
 
   const {loading, data} = useQuery(globalQuery)
 
-  const { loading: navLoad, data: nav } = useQuery(navigationQuery);
+  const { loading: navLoad, data: navData } = useQuery(navFooter);
 
   if(loading || navLoad) {
     return ''
   }
 
-  console.log(nav.navigaceNovum);
+  const nav = navData.navigation.data.attributes
+  const newsletter = data.global.data.attributes.newsletter
 
   return (
     <footer>
@@ -24,8 +25,8 @@ const Footer = () => {
         <div className="uk-container uk-container-large">
           <div className="newsleter">
             <div className="title">
-              <h2>{data.global.newsletter.title}</h2>
-              <a href={data.global.newsletter.cta.link} className="button">{data.global.newsletter.cta.text}</a>
+              <h2>{newsletter.title}</h2>
+              <a href={newsletter.cta.link} className="button">{newsletter.cta.text}</a>
             </div>
           </div>
         </div>
@@ -36,39 +37,39 @@ const Footer = () => {
             <div className="logo">
               <img className="uk-svg" src="/assets/logo-tulsio.svg" uk-svg="" />
             </div>
-            {!!nav.navigaceNovum.footer_nav_1.navigation_item.length && <nav className="menu">
+            {!!nav.footerNav_1 && <nav className="menu">
               <ul>
-                <li className="title">{nav.navigaceNovum.footer_nav_1.title}</li>
-                {nav.navigaceNovum.footer_nav_1.navigation_item.map((item, index) => <li key={index}>
+                <li className="title">{nav.footerNav_1.title}</li>
+                {nav.footerNav_1.item.map((item, index) => <li key={index}>
                   <Link href={item.link}><a>{item.name}</a></Link>
                 </li>)}
               </ul>
             </nav>}
-            {!!nav.navigaceNovum.footer_nav_2.navigation_item.length && <nav className="menu">
+            {!!nav.footerNav_2 && <nav className="menu">
               <ul>
-                <li className="title">{nav.navigaceNovum.footer_nav_2.title}</li>
-                {nav.navigaceNovum.footer_nav_2.navigation_item.map((item, index) => <li key={index}>
+                <li className="title">{nav.footerNav_2.title}</li>
+                {nav.footerNav_2.item.map((item, index) => <li key={index}>
                   <Link href={item.link}><a>{item.name}</a></Link>
                 </li>)}
               </ul>
             </nav>}
-            {!!nav.navigaceNovum.footer_nav_3.navigation_item.length && <nav className="menu">
+            {!!nav.footerNav_3 && <nav className="menu">
               <ul>
-                <li className="title">{nav.navigaceNovum.footer_nav_3.title}</li>
-                {nav.navigaceNovum.footer_nav_3.navigation_item.map((item, index) => <li key={index}>
+                <li className="title">{nav.footerNav_3.title}</li>
+                {nav.footerNav_3.item.map((item, index) => <li key={index}>
                   <Link href={item.link}><a>{item.name}</a></Link>
                 </li>)}
               </ul>
             </nav>}
-            <div className="social">
+            {!!nav.socNav.item.length && <div className="social">
               <ul>
-                {nav.navigaceNovum.soc_nav.navigation_item.map((item, index) => <li key={index}>
+                {nav.socNav.item.map((item, index) => <li key={index}>
                   <a href={item.link}>
-                    <Image image={item.icon} svg />
+                    <Image image={item.icon.data} svg />
                   </a>
                 </li>)}
               </ul>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

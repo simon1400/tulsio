@@ -36,8 +36,8 @@ const Page = ({
     gtm: ''
   })
 
-  const theTitle = title ? (title + global.defaultSep + global.defaultTitle).substring(0, 60) : global.defaultTitle;
-  const theDescription = description ? description.substring(0, 155) : global.defaultDescription;
+  const theTitle = title ? (title + global.defaultSep + global.defaultTitle) : global.defaultTitle;
+  const theDescription = description ? description : global.defaultDescription;
   const theImage = image ? image : global.defaultImage;
 
   return (

@@ -7,50 +7,58 @@ import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import {useQuery} from '@apollo/client'
-import getArticleQuery from '../../queris/get-article';
-import Rating from '../../components/Rating';
+import getArticle from '../../queries/article';
+import { getStrapiURL } from '../../lib/api'
+// import Rating from '../../components/Rating';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
 const Article = () => {
   const router = useRouter();
   
-  const { loading, error, data} = useQuery(getArticleQuery, { 
+  const { loading, error, data} = useQuery(getArticle, { 
     variables: { slug: router.query.article } 
   });
  
   if(loading) {
     return ''
   }
-  let parsedData = data.claneks[0];
+
+
+  const article = data.articles.data[0].attributes
+  console.log(article);
 
   return (
-    <Page>
+    <Page 
+      title={article.meta?.title || article?.title}
+      description={article.meta?.description}
+      image={getStrapiURL(article.meta?.image?.data?.attributes?.url)}
+    >
       <Head>
         <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
         {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
       </Head>
 
-      {parsedData.image && <div className="uk-container uk-container-large">
+      {!!article.image && <div className="uk-container uk-container-large">
         <div className="full-img">
-          <Image image={parsedData.image} />
+          <Image image={article.image.data} />
         </div>
       </div>}
 
       <section className="content">
         <div className="uk-container uk-container-xsmall">
 
-          <ShareButtons data={parsedData} />
+          <ShareButtons data={article} />
 
-          {!!parsedData.title.length && <h1>{parsedData.title}</h1>}
-          {!!parsedData.perex.length && <div className="text-content big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: parsedData.perex}}></div>}
+          <h1>{article?.title}</h1>
+          {!!article.perex.length && <div className="text-content big-text uk-margin-medium-bottom" dangerouslySetInnerHTML={{__html: article.perex}}></div>}
 
-          {!!parsedData.capitoly.length && parsedData.capitoly.map((item, index) => <div key={index}>
+          {!!article.chapters?.length && article.chapters.map((item, index) => <div key={index}>
             {!!item.title && <h2>{item.title}</h2>}
             <div className="text-content" dangerouslySetInnerHTML={{__html: item.text}}></div>
-            {!!item.galery?.length && item.galery.map((img, indexImg) => <figure key={indexImg}>
+            {!!item.galery?.data?.length && item.galery.data.map((img, indexImg) => <figure key={indexImg}>
               <div><Image image={img} alt={img.alternativeText || ''}/></div>
-              {!!img.caption.length && <figcaption>{img.caption}</figcaption>}
+              {!!img.caption?.length && <figcaption>{img.caption}</figcaption>}
             </figure>)}
             {!!item.button && <div className="uk-text-center uk-margin-bottom">
               <a href={item.button?.link} className="button">{item.button?.text}</a>

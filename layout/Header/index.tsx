@@ -14,7 +14,7 @@ const Header = () => {
   const { loading, data } = useQuery(navHeader);
 
   if(loading) {
-    return ''
+    return <></>
   }
 
   const navItems = data.navigation.data.attributes.topNav.item;
@@ -47,9 +47,9 @@ const Header = () => {
               <span>Čeština</span>
               <img className="uk-svg" src="/assets/down.svg" uk-svg="" />
             </div> */}
-            {/* <div className="search">
+            <a href="#search" uk-toggle="" className="search uk-visible@m">
               <img className="uk-svg" src="/assets/search.svg" uk-svg="" />
-            </div> */}
+            </a>
             <div className="uk-hidden@m">
               <button className={`hamburger hamburger--collapse ${menu ? "is-active" : ''}`} type="button" onClick={() => setMenu(!menu)}>
                 <span className="hamburger-box">

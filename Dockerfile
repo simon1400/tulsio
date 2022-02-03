@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:12-alpine
 
 RUN mkdir -p /var/www/tulsio/client/node_modules && chown -R node:node /var/www/tulsio/client
 

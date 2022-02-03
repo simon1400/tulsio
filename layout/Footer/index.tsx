@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import globalQuery from '../../queries/global'
 import { useQuery } from '@apollo/client'
-import Image from '../../components/image'
+import Image from '../../components/Image'
 import navFooter from '../../queries/navFooter'
 
 const Footer = () => {
@@ -13,7 +13,7 @@ const Footer = () => {
   const { loading: navLoad, data: navData } = useQuery(navFooter);
 
   if(loading || navLoad) {
-    return ''
+    return <></>
   }
 
   const nav = navData.navigation.data.attributes

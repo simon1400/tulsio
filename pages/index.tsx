@@ -19,8 +19,6 @@ const Home = () => {
   const mainArticle = homepage.articles[0];
   const seccondArticles = homepage.articles.slice(1, 5);
 
-  console.log(mainArticle);
-
   return (
     <Page className="homepage">
       <Head>
@@ -43,7 +41,7 @@ const Home = () => {
           <div className="uk-grid uk-grid-stack" uk-grid="">
             <div className="uk-width-1-2@m">
               <div className="blog-short">
-                <Link href={`/${mainArticle?.article.data.attributes.categories.data[0].attributes.slug}/${mainArticle?.article.data.attributes.slug}`}>
+                <Link href={`/${mainArticle?.article?.data?.attributes?.categories?.data?.[0]?.attributes?.slug}/${mainArticle?.article?.data?.attributes?.slug}`}>
                   <a className="blog-short-item">
                     {mainArticle?.image && <div className="blog-short-img-wrap">
                       <Image image={mainArticle.image.data} />
@@ -64,16 +62,16 @@ const Home = () => {
 
             <div className="uk-width-1-2@m">
               {!!seccondArticles.length && <div className="blog-one-col-short">
-                {seccondArticles.map((item, index) => <Link key={index} href={`/${item?.article.data.attributes.categories.data[0].attributes.slug}/${item?.article.data.attributes.slug}`}>
+                {seccondArticles.map((item, index) => <Link key={index} href={`/${item.article.data.attributes.categories.data[0].attributes.slug}/${item.article.data.attributes.slug}`}>
                   <a>
                     {item?.image && <div className="blog-short-img-wrap">
                       <Image image={item.image.data} />
                     </div>}
                     <div className="blog-short-info-wrap">
                       {/* <label onClick={e => handleCategory(e, item.categories[0]?.slug)}>{item.categories[0]?.title}</label> */}
-                      <label>{item.article.data.attributes.categories.data[0].attributes.title}</label>
+                      <label>{item.article.data.attributes.categories.data[0]?.attributes.title}</label>
                       <h3><span>{item?.title}</span></h3>
-                      <div dangerouslySetInnerHTML={{__html: item?.short_text}}></div>
+                      <div dangerouslySetInnerHTML={{__html: item?.text}}></div>
                     </div>
                   </a>
                 </Link>)}
@@ -87,3 +85,5 @@ const Home = () => {
 }
 
 export default Home
+
+

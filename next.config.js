@@ -24,7 +24,11 @@ module.exports = (phase) => {
       if (isDev) return 'http://localhost:3004'
       if (isProd) return 'https://tulsio.hardart.cz'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
-    })()
+    })(),
+    TYPESENSE_SEARCH_ONLY_API_KEY: 'xyz',
+    TYPESENSE_HOST: 'localhost',
+    TYPESENSE_PORT: '8108',
+    TYPESENSE_PROTOCOL: 'http',
   }
 
   // next.config.js object

@@ -5,8 +5,6 @@ const ShareButton = ({data}) => {
 
   const router = useRouter()
 
-  console.log(data);
-
   return (
     <div className="share-buttons">
       <ul>

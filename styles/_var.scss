@@ -111,61 +111,6 @@ section{
   padding-bottom: 40px;
 }
 
-.button{
-  display: inline-block;
-  background-color: $accent;
-  height: 20px;
-  min-width: 225px;
-  color: white;
-  padding: 15px;
-  border-radius: 26px;
-  font-size: 17px;
-  line-height: 20px;
-  vertical-align: middle;
-  text-align: center;
-  font-weight: $font-bold;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.16);
-  transition: all .5s ease;
-  svg, img{
-    fill: white;
-    color: white;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: top;
-  }
-  &:hover{
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.36);
-    text-decoration: none;
-    color: white;
-  }
-  &.circle{
-    min-width: auto;
-  }
-  &.bare{
-    background-color: transparent;
-    padding: 0;
-    box-shadow: none;
-    color: $accent;
-    min-width: 0;
-    position: relative;
-    &:after{
-      content: '';
-      display: block;
-      position: absolute;
-      width: 0;
-      height: 1.5px;
-      background-color: $accent;
-      bottom: -1.5px;
-      left: 0;
-      transition: all .5s ease;
-    }
-    &:hover:after{
-      width: 100%;
-    }
-  }
-}
-
 $hamburger-padding-x           : 0;
 $hamburger-padding-y           : 0;
 $hamburger-layer-width         : 30px;

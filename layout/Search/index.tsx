@@ -1,12 +1,14 @@
 import { offcanvas, util } from 'uikit'
 
 import {
-  InstantSearch
+  InstantSearch,
+  Index
 } from "react-instantsearch-dom";
 import { searchClient } from "../../lib/typesenseAdapter";
 import "instantsearch.css/themes/satellite.css";
-import SearchItems from '../../components/SearchItems'
+import SearchItems from './SearchItems'
 import SearchBox from './SearchBox';
+import HasResult from './HasResult';
 
 const Search = () => {
 
@@ -22,27 +24,28 @@ const Search = () => {
   // })
 
   return (
-    <div id="search" className="uk-offcanvas" uk-offcanvas="flip: true; overlay: true">
+    <div id="search" className="uk-offcanvas canvas" uk-offcanvas="flip: true; overlay: true">
       <div className="uk-offcanvas-bar">
-        <div className="canvas-head uk-flex uk-flex-between">
-          <h3>Vyhledávání</h3>
+        <div className="canvas-head">
+          <h3>Hledat</h3>
           <a href="/" onClick={e => closeCanvas(e)}>
             <img className="uk-svg" src="/assets/times.svg" uk-svg="" />
           </a>
         </div>
-        <hr />
         <InstantSearch indexName="articles" searchClient={searchClient}>
-          <div className="input-search-wrap">
-            <SearchBox />
-            {/* <img className="uk-svg" src="/assets/search.svg" uk-svg="" />
-            <input onChange={e => handleSearch(e.target.value)} ref={searchInput} value={searchValue} className="uk-input" type="text" /> */}
-          </div>
-          {/* {!data && !!searchValue.length && 'Nic jsme nenašli, zkuste jiné slovo.'}
-          {!data && !searchValue.length && 'Zadejte hledaný text.'}
-          {loading && 'Loading...'} */}
-          <div className="results">
-            <SearchItems />
-          </div>
+
+          <SearchBox />
+
+          <Index indexName="categories">
+            <SearchItems title="Kategorie" />
+          </Index>
+
+          <Index indexName="articles">
+            <SearchItems title="Clanky" />
+          </Index>
+
+          <HasResult />
+
         </InstantSearch>
       </div>
     </div>

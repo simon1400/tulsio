@@ -1,10 +1,11 @@
 
 import Page from '../layout/Page'
 import Link from 'next/link'
-import Image from '../components/image'
+import Image from '../components/Image'
 import Head from 'next/head'
 import homepageQuery from '../queries/homepage'
 import { useQuery } from '@apollo/client'
+import Button from '../components/Button'
 
 const DOMAIN = process.env.APP_API;
 
@@ -30,8 +31,8 @@ const Home = () => {
         <div className="uk-container uk-container-small">
           <h1>{homepage.title}</h1>
           <div>
-            <a href={homepage.cta.link} className="button">{homepage.cta.text}</a>
-            <a href={homepage.secCta.link} className="button bare">{homepage.secCta.text}</a>
+            <Button text={homepage.cta.text} link={homepage.cta.link} native />
+            <Button text={homepage.secCta.text} link={homepage.secCta.link} native bare />
           </div>
         </div>
       </section>

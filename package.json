@@ -8,7 +8,8 @@
     "start": "next start -p 3004",
     "testReq": "node functions/testRequest.js",
     "typesense": "node functions/startTypesenseServer.js",
-    "populate": "node functions/populateTypesenseIndex.js"
+    "populateArticles": "node typesenseIndex/articles.js",
+    "populateCategories": "node typesenseIndex/categories.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",

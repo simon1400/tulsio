@@ -1,0 +1,29 @@
+.search-box{
+  position: relative;
+  display: block;
+  margin-bottom: 25px;
+  input{
+    width: 100%;
+    border-radius: 73px;
+    background-color: #fafafa;
+    border: 1px solid rgba(black, .1);
+    height: 52px;
+    line-height: 52px;
+    font-size: 15px;
+    padding: 0 25px;
+    color: rgba(black, .9);
+  }
+  button{
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    position: absolute;
+    right: 17px;
+    top: 15px;
+    img, svg{
+      width: 22px;
+      height: 22px;
+      color: rgba(black, .9);
+    }
+  }
+}

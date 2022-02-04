@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Page from '../../layout/Page'
 import Link from 'next/link'
-import Image from '../../components/image'
+import Image from '../../components/Image'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import { useQuery } from '@apollo/client'
@@ -86,7 +86,7 @@ const Category = () => {
           <h1>{category.title}</h1>
           {!!category.labels?.length && <div className="sub-menu">
             <ul>
-              {category.labels.map((item, index) => <li key={index}><a href="/" onClick={e => handleFilterLabel(e, item.id)}>{item.title}</a></li>)}
+              {/* {category.labels.map((item, index) => <li key={index}><a href="/" onClick={e => handleFilterLabel(e, item.id)}>{item.title}</a></li>)} */}
               {/*<li className="sub-more"><a href="/"><img className="uk-svg" src="/assets/ellipsis.svg" uk-svg="" /></a></li>*/}
             </ul>
           </div>}
@@ -97,7 +97,7 @@ const Category = () => {
         <div className="uk-container uk-container-xsmall">
           {!!articles.length && articles.map((item, index) => <Link key={index} href={`/${item.categories.data[0].attributes.slug}/${item.slug}`}>
             <a>
-              {item?.image && <div className="blog-short-img-wrap">
+              {item?.image.data?.attributes && <div className="blog-short-img-wrap">
                 <Image image={item.image.data} />
               </div>}
               <div className="blog-short-info-wrap">

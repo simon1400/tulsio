@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Header from '../Header'
 import Footer from '../Footer'
 import Search from '../Search'
+import PageProps from '../../interfaces/page';
 
-const Page = ({
+
+const Page: FC<PageProps> = ({
   children,
   id,
   className,

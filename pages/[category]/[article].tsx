@@ -1,14 +1,15 @@
 import Page from '../../layout/Page'
-import Link from 'next/link'
-import Image from '../../components/image'
-import AxiosAPI from '../../restClient'
-import formatDatePublic from '../../helpers/formatDate'
+// import Link from 'next/link'
+import Image from '../../components/Image'
+// import AxiosAPI from '../../restClient'
+// import formatDatePublic from '../../helpers/formatDate'
 import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import {useQuery} from '@apollo/client'
 import getArticle from '../../queries/article';
 import { getStrapiURL } from '../../lib/api'
+import Button from '../../components/Button'
 // import Rating from '../../components/Rating';
 
 const DOMAIN = process.env.APP_DOMAIN;
@@ -24,9 +25,7 @@ const Article = () => {
     return ''
   }
 
-
   const article = data.articles.data[0].attributes
-  console.log(article);
 
   return (
     <Page 
@@ -39,7 +38,7 @@ const Article = () => {
         {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
       </Head>
 
-      {!!article.image && <div className="uk-container uk-container-large">
+      {!!article.image.data?.attributes && <div className="uk-container uk-container-large">
         <div className="full-img">
           <Image image={article.image.data} />
         </div>
@@ -57,11 +56,11 @@ const Article = () => {
             {!!item.title && <h2>{item.title}</h2>}
             <div className="text-content" dangerouslySetInnerHTML={{__html: item.text}}></div>
             {!!item.galery?.data?.length && item.galery.data.map((img, indexImg) => <figure key={indexImg}>
-              <div><Image image={img} alt={img.alternativeText || ''}/></div>
+              <div><Image image={img} /></div>
               {!!img.caption?.length && <figcaption>{img.caption}</figcaption>}
             </figure>)}
             {!!item.button && <div className="uk-text-center uk-margin-bottom">
-              <a href={item.button?.link} className="button">{item.button?.text}</a>
+              <Button link={item.button.link} text={item.button.text}/>
             </div>}
           </div>)}
 
@@ -98,7 +97,7 @@ const Article = () => {
               <h3>Komentáře</h3>
             </div>
             <div>
-              <a href="/" className="button">přidat komentář</a>
+              <Button link="/" text="přidat komentář" />
             </div>
           </div>
           <div className="comments-wrap">

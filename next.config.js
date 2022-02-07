@@ -25,10 +25,26 @@ module.exports = (phase) => {
       if (isProd) return 'https://tulsio.hardart.cz'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
-    TYPESENSE_SEARCH_ONLY_API_KEY: 'xyz',
-    TYPESENSE_HOST: 'localhost',
-    TYPESENSE_PORT: '8108',
-    TYPESENSE_PROTOCOL: 'http',
+    TYPESENSE_SEARCH_ONLY_API_KEY: (() => {
+      if (isDev) return 'xyz'
+      if (isProd) return 'asdfsadgfdsgsdfg'
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
+    })(),
+    TYPESENSE_HOST: (() => {
+      if (isDev) return 'localhost'
+      if (isProd) return 'search-tulsio.hardart.cz'
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
+    })(),
+    TYPESENSE_PORT: (() => {
+      if (isDev) return '8108'
+      if (isProd) return '80'
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
+    })(),
+    TYPESENSE_PROTOCOL: (() => {
+      if (isDev) return 'http'
+      if (isProd) return 'http'
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
+    })()
   }
 
   // next.config.js object

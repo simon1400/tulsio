@@ -39,11 +39,11 @@ const Article: NextPage = () => {
     if(article){
       dispatch({ state: [
         {
-          title: article.categories.data[0].attributes.title,
-          link: article.categories.data[0].attributes.slug
+          title: article?.categories?.data[0]?.attributes?.title,
+          link: article?.categories?.data[0]?.attributes?.slug
         },
         {
-          title: article.title
+          title: article?.title
         }
       ], type: 'breadcrumbs' })
     }

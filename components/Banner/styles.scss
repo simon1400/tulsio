@@ -1,0 +1,14 @@
+.banner {
+  height: 240px;
+  background-color: rgba(0, 0, 255, 0.05);
+  margin-top: 30px;
+  position: relative;
+
+  .title {
+    font-size: 11px;
+    color: #00f;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+  }
+}

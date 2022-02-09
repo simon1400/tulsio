@@ -27,7 +27,7 @@ module.exports = (phase) => {
     })(),
     TYPESENSE_SEARCH_ONLY_API_KEY: (() => {
       if (isDev) return 'xyz'
-      if (isProd) return 'asdfsadgfdsgsdfg'
+      if (isProd) return 'asdfasdfasdf'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_HOST: (() => {

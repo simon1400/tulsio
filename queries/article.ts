@@ -30,6 +30,7 @@ const getArticle = gql`
             data {
               attributes {
                 slug
+                title
               }
             }
           }

@@ -41,24 +41,6 @@ body{
     color: $accent;
   }
 
-  label{
-    color: $accent;
-    font-weight: $font-bold;
-    font-size: 12px;
-    letter-spacing: 1.52px;
-    transition: all .5s ease;
-    padding: 3px 9px;
-    transform: translateX(-9px);
-    border-radius: 26px;
-    background-color: transparent;
-    display: inline-block;
-    cursor: pointer;
-    text-transform: uppercase;
-    &:hover{
-      background-color: $gray;
-    }
-  }
-
   h1, h2, h3, h4{
     font-weight: 700;
     color: $text;
@@ -121,3 +103,5 @@ $hamburger-layer-border-radius : 0;
 $hamburger-hover-opacity       : 1;
 
 $breakpoint-large: 1100px;
+
+$container-xlarge-max-width: 1900px;

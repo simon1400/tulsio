@@ -1,0 +1,24 @@
+.breadcrumb{
+  left: 0;
+  top: 0;
+  padding: 20px 0;
+  ul{
+    li{
+      display: inline-block;
+      a{
+        font-size: 14px;
+        color: rgba(black, .9);
+      }
+      span{
+        color: rgba(black, .4);
+        pointer-events:none;
+        font-size: 14px;
+      }
+      img, svg{
+        width: 6px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

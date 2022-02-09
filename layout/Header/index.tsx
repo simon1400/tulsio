@@ -1,23 +1,15 @@
 // import {useEffect, useState} from 'react'
 import Link from 'next/link'
-import {useState} from 'react'
-import {useRouter} from 'next/router'
-import { useQuery } from '@apollo/client'
+import {useEffect, useState} from 'react'
+import { useLazyQuery } from '@apollo/client'
 import navHeader from '../../queries/navHeader'
+import TopNav from '../../components/TopNav'
+import {InstantSearch} from "react-instantsearch-dom";
+import { searchClient } from "../../lib/typesenseAdapter"
 
 const Header = () => {
 
-  const router = useRouter()
-
   const [menu, setMenu] = useState(false)
-
-  const { loading, data } = useQuery(navHeader);
-
-  if(loading) {
-    return <></>
-  }
-
-  const navItems = data.navigation.data.attributes.topNav.item;
 
   return (
     <header>
@@ -28,20 +20,10 @@ const Header = () => {
               <a><img className="uk-svg" src="/assets/logo-tulsio.svg" uk-svg="" alt="Tulsio" /></a>
             </Link>
           </div>
-          <nav className="menu uk-visible@m">
-            <ul>
-              {navItems.map((item, index) => <li key={index}>
-                <a className={item.link === router.asPath ? 'active' : ''} href={item.link}>
-                  {item.name}
-                </a>
-              </li>)}
-            </ul>
-          </nav>
-          <nav className={`menu menu-responsive uk-hidden@m ${menu ? "active" : ''}`}>
-            <ul>
-              {navItems.map((item, index) => <li key={index}><a className={item.link === router.asPath ? 'active' : ''} href={item.link}>{item.name}</a></li>)}
-            </ul>
-          </nav>
+          <InstantSearch indexName="navigation" searchClient={searchClient}>
+            <TopNav />
+            <TopNav mobile menu={menu} />
+          </InstantSearch>
           <div className="control">
             {/* <div className="lang uk-visible@m">
               <span>Čeština</span>

@@ -8,13 +8,15 @@ interface ImageProps {
 }
 
 const Image: FC<ImageProps> = ({ image, svg = false }) => {
-  const imageUrl = getStrapiURL(image.attributes.url);
+  let imageUrl = '/assets/placeholder.svg'
+  if(image?.attributes?.url) {
+    imageUrl = getStrapiURL(image.attributes.url);
+  }
   if(svg){
     return (
       <img
         uk-svg=""
         src={imageUrl}
-        alt={image.attributes.alternativeText || image.attributes.name}
       />
     );
   }else{
@@ -22,7 +24,6 @@ const Image: FC<ImageProps> = ({ image, svg = false }) => {
       <img
         uk-img=""
         src={imageUrl}
-        alt={image.attributes.alternativeText || image.attributes.name}
       />
     );
   }

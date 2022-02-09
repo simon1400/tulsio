@@ -35,6 +35,7 @@ const getCategory = gql`
                   data{
                     attributes{
                       slug
+                      title
                     }
                   }
                 }

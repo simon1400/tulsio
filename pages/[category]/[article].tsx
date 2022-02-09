@@ -32,15 +32,15 @@ const Article: NextPage = () => {
   let article = undefined;
  
   if(!loading && data) {
-    article = data.articles.data[0].attributes
+    article = data.articles.data?.[0].attributes
   }
 
   useEffect(() => {
     if(article){
       dispatch({ state: [
         {
-          title: article?.categories?.data[0]?.attributes?.title,
-          link: article?.categories?.data[0]?.attributes?.slug
+          title: article?.categories?.data?.[0]?.attributes?.title,
+          link: article?.categories?.data?.[0]?.attributes?.slug
         },
         {
           title: article?.title

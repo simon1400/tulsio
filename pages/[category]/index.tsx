@@ -25,10 +25,10 @@ const Category = () => {
   let category, mainArticle, articles
 
   if(!loading){
-    category = data.categories?.data[0]?.attributes
+    category = data.categories?.data?.[0]?.attributes
     articles = category?.articles?.data.map(item => item.attributes)
 
-    mainArticle = articles[0]
+    mainArticle = articles?.[0]
     articles = articles.splice(1)
   }
 
@@ -64,7 +64,7 @@ const Category = () => {
             title={mainArticle.title}
             link={`/${mainArticle?.article?.data?.attributes?.categories?.data?.[0]?.attributes?.slug}/${mainArticle?.article?.data?.attributes?.slug}`}
             image={mainArticle.image.data}
-            label={mainArticle?.categories?.data[0]?.attributes?.title}
+            label={mainArticle?.categories?.data?.[0]?.attributes?.title}
             text={mainArticle.perex}
           />}
         </div>
@@ -73,9 +73,9 @@ const Category = () => {
             {!loading && !!articles.length && articles.map((item, index) => <ArticleShort 
               key={index}
               title={item.title}
-              link={`/${item?.categories?.data[0]?.attributes.slug}/${item.slug}`}
+              link={`/${item?.categories?.data?.[0]?.attributes.slug}/${item.slug}`}
               image={item.image.data}
-              label={item?.categories?.data[0]?.attributes.title}
+              label={item?.categories?.data?.[0]?.attributes.title}
             />)}
           </div>
         </div>

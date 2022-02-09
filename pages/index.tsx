@@ -18,7 +18,7 @@ const Home = () => {
 
   if(!loading) {
     const homepage = data.homepage.data.attributes
-    mainArticle = homepage.articles[0];
+    mainArticle = homepage.articles?.[0];
     seccondArticles = homepage.articles.slice(1, 5);
   }
   
@@ -39,7 +39,7 @@ const Home = () => {
                   title={mainArticle.title}
                   link={`/${mainArticle?.article?.data?.attributes?.categories?.data?.[0]?.attributes?.slug}/${mainArticle?.article?.data?.attributes?.slug}`}
                   image={mainArticle.image.data}
-                  label={mainArticle?.article?.data?.attributes?.categories?.data[0]?.attributes?.title}
+                  label={mainArticle?.article?.data?.attributes?.categories?.data?.[0]?.attributes?.title}
                   text={mainArticle.text}
                   sticky="top"
                 />
@@ -53,9 +53,9 @@ const Home = () => {
                 {seccondArticles.map((item, index) => <ArticleShort 
                   key={index}
                   title={item.title}
-                  link={`/${item.article?.data?.attributes?.categories?.data[0]?.attributes?.slug}/${item.article?.data?.attributes?.slug}`}
+                  link={`/${item.article?.data?.attributes?.categories?.data?.[0]?.attributes?.slug}/${item.article?.data?.attributes?.slug}`}
                   image={item.image.data} 
-                  label={item.article?.data?.attributes?.categories?.data[0]?.attributes?.title}
+                  label={item.article?.data?.attributes?.categories?.data?.[0]?.attributes?.title}
                   horizontal
                 />)}
               </div>

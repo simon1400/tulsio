@@ -1,11 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
 import Page from '../../layout/Page'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import { useQuery } from '@apollo/client'
-import getCategory from '../../queries/categories'
-import { getStrapiURL } from '../../lib/api'
-import ArticleShort from '../../components/ArticleShort'
 import PageHead from '../../components/PageHead'
 
 import { NextPage } from 'next'

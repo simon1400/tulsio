@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { DataStateContext } from '../../context/dataStateContext'
 import Link from 'next/link'
 import slugify from 'slugify'
-import {unslugify} from 'unslugify'
 
 interface SubMenuItemProps {
   id: string

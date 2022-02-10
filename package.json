@@ -31,8 +31,7 @@
     "styled-components": "5.3.1",
     "typesense": "^1.1.2",
     "typesense-instantsearch-adapter": "^2.2.0",
-    "uikit": "^3.6.21",
-    "unslugify": "^1.0.2"
+    "uikit": "^3.6.21"
   },
   "devDependencies": {
     "@types/react": "^17.0.38",

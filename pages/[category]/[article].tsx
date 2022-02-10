@@ -1,7 +1,5 @@
 import Page from '../../layout/Page'
-// import Link from 'next/link'
 import Image from '../../components/Image'
-// import AxiosAPI from '../../restClient'
 // import formatDatePublic from '../../helpers/formatDate'
 import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'

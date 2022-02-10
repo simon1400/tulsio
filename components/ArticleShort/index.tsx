@@ -1,9 +1,7 @@
 import { FC } from "react"
 import Link from "next/link"
 import Image from "../Image"
-import IImage from "../../interfaces/image"
 import Label from "../Label"
-import { connectHits } from "react-instantsearch-core";
 
 interface ArticleShortProps {
   link: string,

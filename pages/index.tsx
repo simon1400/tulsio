@@ -1,11 +1,8 @@
 
 import Page from '../layout/Page'
-import Link from 'next/link'
-import Image from '../components/Image'
 import Head from 'next/head'
 import homepageQuery from '../queries/homepage'
 import { useQuery } from '@apollo/client'
-import Button from '../components/Button'
 import ArticleShort from '../components/ArticleShort'
 
 const DOMAIN = process.env.APP_API;
@@ -26,7 +23,6 @@ const Home = () => {
     <Page className="homepage">
       <Head>
         <link rel="alternate" hrefLang="x-default" href={DOMAIN} />
-        {/*<link rel="alternate" hreflang="en-gb" href="http://en-gb.example.com/page.html" />*/}
       </Head>
 
       {!loading && <section className="uk-padding-remove">

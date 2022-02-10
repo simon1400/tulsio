@@ -3643,11 +3643,6 @@ unpipe@1.0.0:
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
-unslugify@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/unslugify/-/unslugify-1.0.2.tgz#47fe432ad6dad6de1a1cc94c62fb7f4bf52afbf3"
-  integrity sha512-BgxXV5mZCqydTEQzNqUPilmwvFW2v/CIHqcl7xLVNjLPpR0lOs0yuHbQs76JT2v/7M88rWG5Jn7CKNCQBd00uA==
-
 uri-js@^4.2.2:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.4.1.tgz#9b1a52595225859e55f669d928f88c6c57f2a77e"

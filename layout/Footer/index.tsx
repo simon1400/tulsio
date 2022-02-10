@@ -5,6 +5,7 @@ import globalQuery from '../../queries/global'
 import { useQuery } from '@apollo/client'
 import Image from '../../components/Image'
 import navFooter from '../../queries/navFooter'
+import Newsletter from '../../components/Newsletter'
 
 const Footer = () => {
 
@@ -21,16 +22,11 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="footer-top">
-        <div className="uk-container uk-container-large">
-          <div className="newsleter">
-            <div className="title">
-              <h2>{newsletter.title}</h2>
-              <a href={newsletter.cta.link} className="button">{newsletter.cta.text}</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Newsletter 
+        title={newsletter.title}
+        link={newsletter.cta.link}
+        text={newsletter.cta.text}
+      />
       <div className="footer-bottom">
         <div className="uk-container uk-container-large">
           <div className="footer-bottom-wrap">

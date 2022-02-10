@@ -9,7 +9,7 @@ $ffn: 'Manrope';
 $accent: #0000ff;
 $gray: #f1f1f1;
 $text: rgba(0, 0, 0, .8);
-$footer-color:rgba(0, 0, 0, 0.8);
+$footer-color:rgba(0, 0, 0, 0.9);
 
 $head1: 50px;
 $head2: 38px;
@@ -18,14 +18,15 @@ $head3: 26px;
 $text-big: 21px;
 $text-small: 19px;
 
-$font-medium: 500;
-$font-semibold: 600;
-$font-bold: 700;
+$font-light: 400;
+$font-bold: 600;
 
 $box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
 body{
   overflow-x: hidden;
+  background-color: #fafafa;
+  font-weight: $font-light;
   p:last-child{
     margin-bottom: 0;
   }
@@ -42,10 +43,9 @@ body{
   }
 
   h1, h2, h3, h4{
-    font-weight: 700;
+    font-weight: $font-bold;
     color: $text;
     margin-top: 0;
-    letter-spacing: -0.75px;
   }
 
   h1{
@@ -65,7 +65,7 @@ body{
   }
 
   p{
-    font-weight: $font-medium;
+    font-weight: $font-light;
     font-size: $text-small;
     line-height: 31px;
     color: $text;
@@ -73,7 +73,7 @@ body{
 
   .big-text{
     p{
-      font-weight: $font-semibold;
+      font-weight: $font-bold;
       font-size: $text-big;
       line-height: 33px;
     }

@@ -10,13 +10,17 @@ const DOMAIN = process.env.APP_API;
 const Home = () => {
 
   const {loading, data} = useQuery(homepageQuery);
-
+  
   let mainArticle, seccondArticles;
 
   if(!loading) {
     const homepage = data.homepage.data.attributes
-    mainArticle = homepage.articles?.[0];
-    seccondArticles = homepage.articles.slice(1, 5);
+    mainArticle = homepage.articles[0].article.data.attributes;
+    seccondArticles = homepage.articles.slice(1);
+    seccondArticles = seccondArticles.map(item => item.article.data.attributes)
+
+    console.log(seccondArticles);
+    
   }
   
   return (
@@ -33,10 +37,10 @@ const Home = () => {
               <div className="hp-short">
                 <ArticleShort 
                   title={mainArticle.title}
-                  link={`/${mainArticle?.article?.data?.attributes?.categories?.data?.[0]?.attributes?.slug}/${mainArticle?.article?.data?.attributes?.slug}`}
+                  link={`/${mainArticle?.categories?.data?.[0]?.attributes?.slug}/${mainArticle?.slug}`}
                   image={mainArticle.image.data}
-                  label={mainArticle?.article?.data?.attributes?.categories?.data?.[0]?.attributes?.title}
-                  text={mainArticle.text}
+                  label={mainArticle?.labels?.data?.[0]?.attributes}
+                  text={mainArticle.perex}
                   sticky="top"
                 />
               </div>
@@ -49,9 +53,9 @@ const Home = () => {
                 {seccondArticles.map((item, index) => <ArticleShort 
                   key={index}
                   title={item.title}
-                  link={`/${item.article?.data?.attributes?.categories?.data?.[0]?.attributes?.slug}/${item.article?.data?.attributes?.slug}`}
+                  link={`/${item.categories?.data?.[0]?.attributes?.slug}/${item.slug}`}
                   image={item.image.data} 
-                  label={item.article?.data?.attributes?.categories?.data?.[0]?.attributes?.title}
+                  label={item.labels?.data?.[0]?.attributes}
                   horizontal
                 />)}
               </div>

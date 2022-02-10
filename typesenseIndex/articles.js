@@ -44,7 +44,9 @@ module.exports = (async () => {
       perex: item.perex,
       image: undefined,
       chapters: [],
-      label: [],
+      titleLabels: [],
+      slugLabels: [],
+      colorLabels: [],
       category: []
     };
 
@@ -56,7 +58,9 @@ module.exports = (async () => {
       transformData[index].category[idx] = category.attributes.title;
     });
     item.labels.data.forEach((label, idx) => {
-      transformData[index].label[idx] = label.attributes.title+' - '+label.attributes.slug;
+      transformData[index].titleLabels[idx] = label.attributes.title;
+      transformData[index].slugLabels[idx] = label.attributes.slug;
+      transformData[index].colorLabels[idx] = label.attributes.color;
     });
     item.chapters.forEach((chapter) => {
       transformData[index].chapters.push(chapter.title)

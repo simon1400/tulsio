@@ -1,12 +1,9 @@
 import ArticleShort from "../ArticleShort"
 import { connectInfiniteHits } from "react-instantsearch-core";
+import { useEffect } from "react";
 
 const InfiniteArticle = ({
-  hits,
-  hasPrevious,
-  hasMore,
-  refinePrevious,
-  refineNext,
+  hits
 }) => {
 
   return (
@@ -17,7 +14,11 @@ const InfiniteArticle = ({
           title={hits[0].title}
           link={`/blog/${hits[0].slug}`}
           image={hits[0].image}
-          label={hits[0].label[0]?.title}
+          label={hits.length && hits[0].titleLabels.map((item, index) => ({
+            title: item,
+            slug: hits[0].slugLabels[index],
+            color: hits[0].colorLabels[index],
+          }))}
           text={hits[0].perex}
         />}
       
@@ -29,7 +30,11 @@ const InfiniteArticle = ({
             title={item?.title}
             link={`/blog/${item.slug}`}
             image={item?.image}
-            label={hits[0].label[0]?.title}
+            label={item.titleLabels[0] ? {
+              title: item.titleLabels[0],
+              slug: item.slugLabels[0],
+              color: item.colorLabels[0]
+            } : undefined}
           />)}
         </div>
       </div>

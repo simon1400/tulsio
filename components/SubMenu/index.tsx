@@ -40,11 +40,19 @@ const SubMenu = ({
   }, [items.length, router])
 
   useEffect(() => {
-    dispatch({ state: [
+    const state = [
       {
-        title: currentRefinement || 'Blog'
+        title: 'Blog',
+        slug: 'blog'
       }
-    ], type: 'breadcrumbs' })
+    ]
+    if(currentRefinement) {
+      state.push({
+        title: currentRefinement,
+        slug: ''
+      })
+    }
+    dispatch({ state: state, type: 'breadcrumbs' })
   }, [currentRefinement])
   
   

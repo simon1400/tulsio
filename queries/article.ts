@@ -23,6 +23,8 @@ const getArticle = gql`
             data{
               attributes{
                 title
+                slug
+                color
               }
             }
           }

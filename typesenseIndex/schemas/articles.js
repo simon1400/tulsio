@@ -30,13 +30,19 @@ module.exports = {
       optional: true,
     },
     {
+      name: "titleLabels",
+      type: "string[]",
+      facet: true,
+      optional: true,
+    },
+    {
       name: "colorLabels",
       type: "string[]",
       facet: true,
       optional: true,
     },
     {
-      name: "label",
+      name: "slugLabels",
       type: "string[]",
       facet: true,
       optional: true,

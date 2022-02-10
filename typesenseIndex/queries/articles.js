@@ -13,7 +13,7 @@ const query = qs.stringify({
       fields: ['title', 'slug']
     },
     labels: {
-      fields: ['title', 'slug']
+      fields: ['title', 'slug', 'color']
     }
   },
 }, {

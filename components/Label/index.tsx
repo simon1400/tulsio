@@ -1,14 +1,21 @@
 import { FC } from "react"
-
-interface LabelProps {
-  text: string
+import LabelProps from "../../interfaces/label"
+import Link from 'next/link'
+interface LabelDataProps {
+  data: LabelProps
 }
 
-const Label: FC<LabelProps> = ({
-  text
+const Label: FC<LabelDataProps> = ({
+  data
 }) => {
   return (
-    <label className="label">{text}</label>
+    <Link href={data.slug}>
+      <a>
+        <label className={`label ${data.color}`}>
+          {data.title}
+        </label>
+      </a>
+    </Link>
   )
 }
 

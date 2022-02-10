@@ -15,24 +15,33 @@ const homepageQuery = gql`
             link
           }
           articles {
-            title
-            text
-            image {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
             article {
               data {
                 attributes {
+                  title
+                  perex
                   slug
+                  image {
+                    data {
+                      attributes {
+                        url
+                      }
+                    }
+                  }
                   categories {
                     data {
                       attributes {
                         title
                         slug
+                      }
+                    }
+                  }
+                  labels {
+                    data {
+                      attributes {
+                        title
+                        slug
+                        color
                       }
                     }
                   }

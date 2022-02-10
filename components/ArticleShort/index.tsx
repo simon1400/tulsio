@@ -2,11 +2,12 @@ import { FC } from "react"
 import Link from "next/link"
 import Image from "../Image"
 import Label from "../Label"
+import LabelProps from "../../interfaces/label"
 
 interface ArticleShortProps {
   link: string,
   image: string,
-  label?: string,
+  label?: LabelProps | LabelProps[],
   title: string
   horizontal?: boolean,
   text?: string,
@@ -18,7 +19,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   image,
   title,
   text = '',
-  label = '',
+  label = undefined,
   horizontal = false,
   sticky = ''
 }) => {
@@ -38,7 +39,8 @@ const ArticleShort: FC<ArticleShortProps> = ({
         <div className="info-wrap">
           <div>
             <h2><span>{title}</span></h2>
-            {!!label.length && <Label text={label}/>}
+            {!!label && !Array.isArray(label) && <Label data={label}/>}
+            {!!label && Array.isArray(label) && label.map((item) => <Label data={item}/>)}
             {!!text.length && <div className="article-short-content" dangerouslySetInnerHTML={{__html: text}}></div>}
           </div>
         </div>

@@ -1,12 +1,22 @@
 .label{
   padding: 5px 13px;
-  background-color: rgba(238, 0, 255, 0.15);
   color: rgba(black, .9);
   font-size: 12px;
-  // line-height: 25px;
+  margin-right: 10px;
   font-weight: $font-bold;
   text-transform: none;
   border-radius: 26px;
   margin-bottom: 20px;
   display: inline-block;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  &.green{
+    background-color: #D9FFDE;
+  }
+  &.blue{
+    background-color: #D9E9FF;
+  }
+  &.pink{
+    background-color: #FDD9FF;
+  }
 }

@@ -35,10 +35,16 @@ const Article: NextPage = () => {
 
   useEffect(() => {
     if(article){
+      console.log(article);
+      
       dispatch({ state: [
         {
           title: 'Blog',
           link: 'blog'
+        },
+        {
+          title: article.categories.data[0].attributes.title,
+          link: article.categories.data[0].attributes.slug
         },
         {
           title: article?.title
@@ -80,7 +86,11 @@ const Article: NextPage = () => {
                   </div>
                 </div>
                 <div className="perex-wrap">
-                  <Label text="výběr redakce" />
+                  {!!article?.labels?.data?.length && article.labels.data.map((item, index) => <Label key={index} data={{
+                    title: item.attributes.title,
+                    slug: item.attributes.slug,
+                    color: item.attributes.color
+                  }} />)}
                   {!!article.perex.length && <div className="text-content" dangerouslySetInnerHTML={{__html: article.perex}}></div>}
                 </div>
               </div>

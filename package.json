@@ -9,7 +9,8 @@
     "testReq": "node functions/testRequest.js",
     "typesense": "node functions/startTypesenseServer.js",
     "populateArticles": "node typesenseIndex/articles.js",
-    "populateCategories": "node typesenseIndex/categories.js"
+    "populateCategories": "node typesenseIndex/categories.js",
+    "populateNav": "node typesenseIndex/nav.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
@@ -26,10 +27,12 @@
     "react-dom": "17.0.2",
     "react-instantsearch-dom": "^6.22.0",
     "react-markdown": "^6.0.2",
+    "slugify": "^1.6.5",
     "styled-components": "5.3.1",
     "typesense": "^1.1.2",
     "typesense-instantsearch-adapter": "^2.2.0",
-    "uikit": "^3.6.21"
+    "uikit": "^3.6.21",
+    "unslugify": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.38",

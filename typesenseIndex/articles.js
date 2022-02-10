@@ -53,7 +53,7 @@ module.exports = (async () => {
     }
 
     item.categories.data.forEach((category, idx) => {
-      transformData[index].category[idx] = category.attributes.title+' - '+category.attributes.slug;
+      transformData[index].category[idx] = category.attributes.title;
     });
     item.labels.data.forEach((label, idx) => {
       transformData[index].label[idx] = label.attributes.title+' - '+label.attributes.slug;

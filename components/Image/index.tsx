@@ -1,17 +1,14 @@
-import { FC } from "react";
-import IImage from "../../interfaces/image";
-import { getStrapiURL } from "../../lib/api";
+const APP_API = process.env.APP_API
 
-interface ImageProps {
-  image: IImage
-  svg?: boolean
-}
-
-const Image: FC<ImageProps> = ({ image, svg = false }) => {
+const Image = ({ image, svg = false }) => {
+  
   let imageUrl = '/assets/placeholder.svg'
-  if(image?.attributes?.url) {
-    imageUrl = getStrapiURL(image.attributes.url);
+  if(new String(image).indexOf('http') >= 0 && new String(image).indexOf('undefined') < 0){
+    imageUrl = image
+  }else if(image?.attributes){
+    imageUrl = APP_API+image.attributes.url
   }
+  
   if(svg){
     return (
       <img

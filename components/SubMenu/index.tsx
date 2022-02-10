@@ -1,32 +1,76 @@
-import { FC } from "react"
-import { connectHits } from "react-instantsearch-core";
-import Link from 'next/link'
+import { FC, useContext, useEffect } from "react"
+import { connectMenu } from "react-instantsearch-core";
 import { useRouter } from "next/router";
+import { DataStateContext } from '../../context/dataStateContext'
+import Link from 'next/link'
+import slugify from 'slugify'
+import {unslugify} from 'unslugify'
 
 interface SubMenuItemProps {
   id: string
-  title: string
-  slug: string
+  label: string
+  isRefined: boolean
+  value: string,
 }
 
 interface SubMenuProps {
-  hits: SubMenuItemProps[]
+  items: SubMenuItemProps[]
+  refine: (value) => void
+  currentRefinement: string,
+  createURL: (value) => string
 }
 
-const SubMenu: FC<SubMenuProps> = ({hits}) => {
+const SubMenu = ({
+  items,
+  refine,
+  currentRefinement,
+}) => {
 
   const router = useRouter()
+
+  const { dispatch } = useContext(DataStateContext)
+
+  useEffect(() => {
+    if(items.length && router.query.category !== 'blog'){
+      items.map(item => {
+        if(slugify(item.value, {lower: true}) === router.query.category){
+          refine(item.value)
+        }
+      })
+    }
+  }, [items.length, router])
+
+  useEffect(() => {
+    dispatch({ state: [
+      {
+        title: currentRefinement || 'Blog'
+      }
+    ], type: 'breadcrumbs' })
+  }, [currentRefinement])
+  
+  
   return (
     <div className="sub-menu">
       <nav>
         <ul>
-          <li className={router.query.category === 'blog' ? 'active' : ''}><Link href="/blog"><a>Vsechni produkty</a></Link></li>
-          {hits.map(item => <li key={item.id} className={router.query.category === item.slug ? 'active' : ''}><Link href={`/${item.slug}`} shallow><a>{item.title}</a></Link></li>)}
-          {/* <li className="active"><Link href=""><a>Vsechni produkty</a></Link></li> */}
+          <li className={currentRefinement === null ? 'active' : ''}>
+            <Link href="/blog" shallow>
+              <a onClick={() => refine('')}>
+                Vsechni produkty
+              </a>
+            </Link>
+          </li>
+          {items.map((item, index) => <li key={index} className={item.isRefined ? 'active' : ''}>
+            <Link href={slugify(item.value, {lower: true})} shallow>
+              <a  onClick={() => refine(item.value)}>
+                {item.label}
+              </a>
+            </Link>
+          </li>)}
         </ul>
       </nav>
     </div>
   )
 }
 
-export default connectHits(SubMenu)
+export default connectMenu(SubMenu)

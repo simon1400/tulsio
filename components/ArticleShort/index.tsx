@@ -3,10 +3,11 @@ import Link from "next/link"
 import Image from "../Image"
 import IImage from "../../interfaces/image"
 import Label from "../Label"
+import { connectHits } from "react-instantsearch-core";
 
 interface ArticleShortProps {
   link: string,
-  image: IImage,
+  image: string,
   label?: string,
   title: string
   horizontal?: boolean,
@@ -23,7 +24,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   horizontal = false,
   sticky = ''
 }) => {
-
+  
   const className = ['article-short']
 
   if(horizontal) className.push('horizontal')

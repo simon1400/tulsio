@@ -39,8 +39,8 @@ const Article: NextPage = () => {
     if(article){
       dispatch({ state: [
         {
-          title: article?.categories?.data?.[0]?.attributes?.title,
-          link: article?.categories?.data?.[0]?.attributes?.slug
+          title: 'Blog',
+          link: 'blog'
         },
         {
           title: article?.title

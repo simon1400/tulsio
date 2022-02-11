@@ -2,7 +2,6 @@ var axios = require('axios');
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    console.log(req.body.email);
     const result = await axios({
       method: 'post',
       url: 'https://api2.ecomailapp.cz/lists/3/subscribe',
@@ -18,7 +17,7 @@ export default async function handler(req, res) {
       },
     })
 
-    res.status(200).json({ message: 'Success subscribe', data: JSON.stringify(result.data) })
+    res.status(200).json({ message: 'Success subscribe', data: JSON.stringify(result) })
   }else{
     res.status(200).send(res.method)
   }  

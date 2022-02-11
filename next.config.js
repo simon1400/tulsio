@@ -56,8 +56,5 @@ module.exports = (phase) => {
   // next.config.js object
   return {
     env,
-    images: {
-      domains: ['localhost'],
-    },
   }
 }

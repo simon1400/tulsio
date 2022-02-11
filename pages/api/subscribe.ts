@@ -16,10 +16,10 @@ export default async function handler(req, res) {
         'key': process.env.ECOMAIL
       },
     }).catch(err => {
-      res.status(500).json({ message: 'Error subscribe', data: JSON.stringify(err) })
+      res.status(500).json({ message: 'Error subscribe', data: JSON.stringify(err.data) })
     })
 
-    res.status(200).json({ message: 'Success subscribe', data: JSON.stringify(result) })
+    res.status(200).json({ message: 'Success subscribe', data: JSON.stringify(result.data) })
   }else{
     res.status(200).send(res.method)
   }  

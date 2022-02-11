@@ -15,6 +15,8 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         'key': process.env.ECOMAIL
       },
+    }).catch(err => {
+      res.status(500).json({ message: 'Error subscribe', data: JSON.stringify(err) })
     })
 
     res.status(200).json({ message: 'Success subscribe', data: JSON.stringify(result) })

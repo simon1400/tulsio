@@ -39,12 +39,12 @@ module.exports = (phase) => {
     })(),
     TYPESENSE_PORT: (() => {
       if (isDev) return '8108'
-      if (isProd) return '80'
+      if (isProd) return '443'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_PROTOCOL: (() => {
       if (isDev) return 'http'
-      if (isProd) return 'http'
+      if (isProd) return 'https'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     ECOMAIL: (() => {

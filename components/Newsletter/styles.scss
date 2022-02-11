@@ -111,3 +111,8 @@
     }
   }
 }
+@media(max-width: 640px) {
+  .footer-top .newsletter-button-wrap .button{
+    min-width: auto;
+  }
+}

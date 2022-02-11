@@ -41,10 +41,11 @@ const Newsletter: FC<NewsletterProps> = ({
     }
     if(!open && !send) {
       setOpen(true)
-    }else{
-      setOpen(false)
-      
-      axios.post(`${DOMAIN}/api/subscribe`).then(res => setSend(true))
+    }else if(!send){
+      axios.post(`${DOMAIN}/api/subscribe`, {email}).then(res => {
+        setOpen(false)
+        setSend(true)
+      })
     }
   }
 

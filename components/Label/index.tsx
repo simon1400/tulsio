@@ -1,6 +1,7 @@
 import { FC } from "react"
 import LabelProps from "../../interfaces/label"
 import Link from 'next/link'
+import { useRouter } from "next/router"
 interface LabelDataProps {
   data: LabelProps
 }
@@ -8,14 +9,18 @@ interface LabelDataProps {
 const Label: FC<LabelDataProps> = ({
   data
 }) => {
+
+  const router = useRouter()
+
+  const handleLink = (e) => {
+    e.preventDefault()
+    router.push(data.slug)
+  }
+
   return (
-    <Link href={data.slug}>
-      <a>
-        <label className={`label ${data.color}`}>
-          {data.title}
-        </label>
-      </a>
-    </Link>
+    <label className={`label ${data.color}`} onClick={e => handleLink(e)}>
+      {data.title}
+    </label>
   )
 }
 

@@ -29,7 +29,7 @@ const Header = () => {
               <span>Čeština</span>
               <img className="uk-svg" src="/assets/down.svg" uk-svg="" />
             </div> */}
-            <a href="#search" uk-toggle="" className="search uk-visible@m">
+            <a href="#search" uk-toggle="" aria-expanded="false" className="search uk-visible@m">
               <img className="uk-svg" src="/assets/search.svg" uk-svg="" />
             </a>
             <div className="uk-hidden@m">

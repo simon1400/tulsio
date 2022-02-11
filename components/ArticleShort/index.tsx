@@ -34,13 +34,14 @@ const ArticleShort: FC<ArticleShortProps> = ({
     <Link href={link}>
       <a className={className.join(' ')}>
         <div className="img-wrap">
-          <Image image={image} />
+          {typeof image === 'object' && <Image image={image} />}
+          {typeof image === 'string' && <Image url={image} />}
         </div>
         <div className="info-wrap">
           <div>
             <h2><span>{title}</span></h2>
             {!!label && !Array.isArray(label) && <Label data={label}/>}
-            {!!label && Array.isArray(label) && label.map((item) => <Label data={item}/>)}
+            {!!label && Array.isArray(label) && label.map((item, idx) => <Label key={idx} data={item}/>)}
             {!!text.length && <div className="article-short-content" dangerouslySetInnerHTML={{__html: text}}></div>}
           </div>
         </div>

@@ -1,30 +1,27 @@
+import { FC } from "react";
+import IImage from '../../interfaces/image'
+import Image from 'next/image'
+
 const APP_API = process.env.APP_API
 
-const Image = ({ image, svg = false }) => {
-  
-  let imageUrl = '/assets/placeholder.svg'
-  if(new String(image).indexOf('http') >= 0 && new String(image).indexOf('undefined') < 0){
-    imageUrl = image
-  }else if(image?.attributes){
-    imageUrl = APP_API+image.attributes.url
-  }
-  
-  if(svg){
-    return (
-      <img
-        uk-svg=""
-        src={imageUrl}
-      />
-    );
-  }else{
-    return (
-      <img
-        uk-img=""
-        src={imageUrl}
-      />
-    );
-  }
+interface ImageProps {
+  image?: IImage
+  svg?: boolean
+  url?: string
+}
 
+const ImageCompoennt: FC<ImageProps> = ({ image = undefined, url = '/assets/placeholder.svg', svg = false }) => {
+  
+  if(image){
+    url = APP_API+image.attributes.url
+  }
+  
+  if(svg) return <img uk-svg="" src={url} />
+  else{
+    return (
+      <img src={url} alt="" uk-img="" />
+    );
+  }
 };
 
-export default Image;
+export default ImageCompoennt;

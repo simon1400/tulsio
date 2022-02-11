@@ -10,6 +10,7 @@
   display: inline-block;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  cursor: pointer;
   &.green{
     background-color: #D9FFDE;
   }

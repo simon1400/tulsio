@@ -122,6 +122,12 @@
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
 
+  .resp-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+  }
+
   .cat-grid{
     grid-template-columns: 1fr;
   }

@@ -37,19 +37,23 @@ const SubMenu = ({
         }
       })
     }
+    if(router.query.category === 'blog') {
+      refine(null)
+    }
   }, [items.length, router])
 
   useEffect(() => {
     const state = [
       {
         title: 'Blog',
-        slug: 'blog'
+        link: 'blog'
       }
     ]
+    
     if(currentRefinement) {
       state.push({
         title: currentRefinement,
-        slug: ''
+        link: ''
       })
     }
     dispatch({ state: state, type: 'breadcrumbs' })
@@ -62,16 +66,12 @@ const SubMenu = ({
         <ul>
           <li className={currentRefinement === null ? 'active' : ''}>
             <Link href="/blog" shallow>
-              <a onClick={() => refine('')}>
-                Vsechni produkty
-              </a>
+              <a>Všechny</a>
             </Link>
           </li>
           {items.map((item, index) => <li key={index} className={item.isRefined ? 'active' : ''}>
             <Link href={slugify(item.value, {lower: true})} shallow>
-              <a  onClick={() => refine(item.value)}>
-                {item.label}
-              </a>
+              <a>{item.label}</a>
             </Link>
           </li>)}
         </ul>

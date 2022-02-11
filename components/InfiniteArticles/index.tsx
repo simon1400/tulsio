@@ -1,6 +1,5 @@
 import ArticleShort from "../ArticleShort"
 import { connectInfiniteHits } from "react-instantsearch-core";
-import { useEffect } from "react";
 
 const InfiniteArticle = ({
   hits
@@ -25,8 +24,8 @@ const InfiniteArticle = ({
       </div>
       <div className="uk-container">
         <div className="cat-grid">
-          {!!hits.length && hits.splice(1).map(item => <ArticleShort 
-            key={item.id}
+          {!!hits.length && hits.splice(1).map((item, index) => <ArticleShort 
+            key={index}
             title={item?.title}
             link={`/blog/${item.slug}`}
             image={item?.image}

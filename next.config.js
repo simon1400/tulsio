@@ -45,11 +45,19 @@ module.exports = (phase) => {
       if (isDev) return 'http'
       if (isProd) return 'http'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
+    })(),
+    ECOMAIL: (() => {
+      if (isDev) return '61fd558b1de2a61fd558b1de2b'
+      if (isProd) return '61fd558b1de2a61fd558b1de2b'
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })()
   }
 
   // next.config.js object
   return {
-    env
+    env,
+    images: {
+      domains: ['localhost'],
+    },
   }
 }

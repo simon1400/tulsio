@@ -91,7 +91,7 @@ const Article: NextPage = () => {
                     slug: item.attributes.slug,
                     color: item.attributes.color
                   }} />)}
-                  {!!article.perex.length && <div className="text-content" dangerouslySetInnerHTML={{__html: article.perex}}></div>}
+                  {!!article.perex.length && <div className="text-content text-big" dangerouslySetInnerHTML={{__html: article.perex}}></div>}
                 </div>
               </div>
             </div>

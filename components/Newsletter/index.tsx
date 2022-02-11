@@ -47,6 +47,9 @@ const Newsletter: FC<NewsletterProps> = ({
         
         setOpen(false)
         setSend(true)
+      }).catch(err => {
+        console.log(err);
+        
       })
     }
   }

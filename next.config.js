@@ -23,7 +23,7 @@ module.exports = (phase) => {
     })(),
     APP_DOMAIN: (() => {
       if (isDev) return 'http://localhost:3004'
-      if (isProd) return 'https://tulsio.hardart.cz'
+      if (isProd) return 'http://tulsio.hardart.cz'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_SEARCH_ONLY_API_KEY: (() => {

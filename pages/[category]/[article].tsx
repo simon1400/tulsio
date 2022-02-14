@@ -57,7 +57,7 @@ const Article: NextPage = () => {
     <Page 
       title={article?.meta?.title || article?.title}
       description={article?.meta?.description}
-      image={getStrapiURL(article?.meta?.image?.data?.attributes?.url)}
+      image={getStrapiURL(article?.meta?.image?.data?.attributes?.url) || getStrapiURL(article?.image?.data)}
     >
       <Head>
         <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />

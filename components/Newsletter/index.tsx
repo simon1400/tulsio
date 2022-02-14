@@ -43,24 +43,17 @@ const Newsletter: FC<NewsletterProps> = ({
       setOpen(true)
     }else if(!send){
       axios.post(`${DOMAIN}/api/subscribe`, {email}).then(res => {
-        console.log(res);
-        
         setOpen(false)
         setSend(true)
-      }).catch(err => {
-        console.log(err);
-        
-      })
+      }).catch(err => console.log(err))
     }
   }
-
-
 
   return(
     <div className="footer-top">
       <div className="uk-container uk-container-large">
         <div className="newsleter">
-          <div className="title">
+          <div className="newsletter-content">
             <h2>{title}</h2>
             <div className="newsletter-button-wrap">
               <button onClick={(e) => handleButt(e)} className={`button${open ? ' open' : ''}${send ? ' send' : ''}`}>
@@ -77,6 +70,7 @@ const Newsletter: FC<NewsletterProps> = ({
                 onBlur={() => onBlur('email')}
                 ref={ref} />
             </div>
+            <p>Vaše osobní údaje zpracováváme pro veden GDPR a práce s daty.</p>
           </div>
         </div>
       </div>

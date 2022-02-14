@@ -35,7 +35,7 @@ const Category: NextPage = () => {
   }, [router.query.category])
 
   useEffect(() => {
-    if(data?.categories && data.categories.data[0].attributes.meta) {
+    if(data?.categories && data.categories?.data[0]?.attributes?.meta) {
       setMeta({...data.categories.data[0].attributes.meta})
     }else{
       setMeta({
@@ -54,7 +54,7 @@ const Category: NextPage = () => {
       <Page
         title={meta.title}
         description={meta.description}
-        image={meta.image ? getStrapiURL(meta.image.data.attributes.url) : ''}
+        image={meta.image ? getStrapiURL(meta.image?.data?.attributes?.url) : ''}
       >
         <Head>
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />

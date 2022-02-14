@@ -261,6 +261,7 @@
     }
   }
   footer{
+    margin-top: 0;
     .footer-top{
       .newsleter{
         height: auto;
@@ -304,6 +305,9 @@
   }
   .header-wrap{
     padding: 10px 0 15px;
+    nav.menu{
+      padding-top: 0;
+    }
   }
   .post-date{
     font-size: 11px;
@@ -358,13 +362,15 @@
       }
     }
   }
+  .text-content{
+    margin-bottom: 20px;
+  }
+
   .text-content ul li{
-    font-size: 16px;
-    line-height: 26px;
+    font-size: 14px;
     padding-left: 20px;
     &:before{
       width: 10px;
-      height: 1.5px;
       top: 14px;
     }
   }

@@ -30,7 +30,7 @@ const Page: FC<PageProps> = ({
   const [global, setGlobal] = useState({
     site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz',
     facebook_app_id: '',
-    defaultTitle: 'TULSIO',
+    defaultTitle: ' | Tulsio',
     defaultDescription: 'Tulsio',
     defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz'}`,
     defaultTwitter: '@cereallarceny',

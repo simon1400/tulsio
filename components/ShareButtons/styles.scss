@@ -1,0 +1,29 @@
+.share-buttons{
+  position: sticky;
+  top: 76px;
+  ul{
+    position: absolute;
+    top: -66px;
+    left: -132px;
+    li{
+      a{
+        display: flex;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+        background-color: #fff;
+        margin-bottom: 10px;
+        transition: all .5s ease;
+        img, svg{
+          height: 22px;
+          margin: auto;
+        }
+        &:hover{
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.35);
+        }
+      }
+    }
+  }
+
+}

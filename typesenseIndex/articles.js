@@ -8,6 +8,8 @@ const query = require(`./queries/${nameCollection}`)
 
 module.exports = (async () => {
 
+  console.log(APP_API)
+
   const res = await axios.get(`${APP_API}/api/${nameCollection}?${query}`)
   const data = res.data.data 
 

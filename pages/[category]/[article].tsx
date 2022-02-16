@@ -35,8 +35,6 @@ const Article: NextPage = () => {
 
   useEffect(() => {
     if(article){
-      console.log(article);
-      
       dispatch({ state: [
         {
           title: 'Blog',

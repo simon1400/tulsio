@@ -4,7 +4,7 @@ import { connectInfiniteHits } from "react-instantsearch-core";
 const InfiniteArticle = ({
   hits
 }) => {
-
+  
   return (
     <section>
       <div className="uk-container uk-container-small">

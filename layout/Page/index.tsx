@@ -1,11 +1,13 @@
-import { useState, useEffect, FC } from 'react';
+import { useState, useEffect, FC, useContext } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-
+import qs from 'qs'
 import Header from '../Header'
 import Footer from '../Footer'
 import Search from '../Search'
 import PageProps from '../../interfaces/page';
+import { DataStateContext } from '../../context/dataStateContext';
+import axios from 'axios';
 
 
 const Page: FC<PageProps> = ({
@@ -26,20 +28,73 @@ const Page: FC<PageProps> = ({
   ogDescription = ''
 }) => {
 
+  const { state } = useContext(DataStateContext)
+
   const router = useRouter()
-  const [global, setGlobal] = useState({
+  const global = {
     site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz',
     facebook_app_id: '',
-    defaultTitle: ' | Tulsio',
+    defaultTitle: 'Tulsio',
     defaultDescription: 'Tulsio',
     defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz'}`,
     defaultTwitter: '@cereallarceny',
-    defaultSep: ' ',
+    defaultSep: ' | ',
     gtm: ''
+  }
+  
+  const [meta, setMeta] = useState({
+    title: title || null,
+    description: description || null,
+    image: {
+      data: null
+    }
   })
 
-  const theTitle = title ? (title + global.defaultSep + global.defaultTitle) : global.defaultTitle;
-  const theDescription = description ? description : global.defaultDescription;
+  useEffect(() => {
+    if(title || description){
+      setMeta({
+        ...meta,
+        title: title,
+        description: description
+      })
+    }
+  }, [title, description])
+
+  useEffect(() => {
+    if(state?.slug?.length) {
+      if(state.slug !== 'blog') {
+        axios.get(`https://admin.tulsio.cz/api/categories?${qs.stringify({
+          filters: {
+            slug: {
+              $eq: state.slug,
+            },
+          },
+          populate: {
+            meta: {
+              fields: ['title', 'description'],
+            },
+          },
+        })}`).then(resData => {
+          const resMeta = {...resData.data.data[0].attributes.meta}
+          if(!resMeta.image) {
+            resMeta.image = {
+              data: null
+            }
+          }
+          setMeta(resMeta)
+        })
+      }else{
+        setMeta({
+          ...meta,
+          title: 'Blog',
+          description: ''
+        })
+      }
+    }
+  }, [state])
+  
+  const theTitle = meta.title ? (meta.title + global.defaultSep + global.defaultTitle) : global.defaultTitle;
+  const theDescription = meta.description ? meta.description : global.defaultDescription;
   const theImage = image ? image : global.defaultImage;
 
   return (

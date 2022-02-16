@@ -6,6 +6,12 @@ let reducer = (state, action) => {
     case "breadcrumbs":
       Cookies.set('breadcrumbs', JSON.stringify([ ...action.state ]))
       return { ...state, breadcrumbs: action.state }
+    case "meta":
+      Cookies.set('meta', JSON.stringify({ ...action.state }))
+      return { ...state, meta: action.state }
+    case "slug":
+      Cookies.set('slug', action.state)
+      return { ...state, slug: action.state }
     default:
       console.error('action.type: "' + action.type + '" is not implemented')
       return state
@@ -13,7 +19,15 @@ let reducer = (state, action) => {
 };
 
 const initialState = {
-  breadcrumbs: Cookies.get('breadcrumbs') ? JSON.parse(Cookies.get('breadcrumbs')) : []
+  breadcrumbs: Cookies.get('breadcrumbs') ? JSON.parse(Cookies.get('breadcrumbs')) : [],
+  meta: Cookies.get('meta') ? JSON.parse(Cookies.get('meta')) : {
+    title: '',
+    description: '',
+    image: {
+      data: null
+    }
+  },
+  slug: ''
 }
 
 const DataStateContext = createContext(initialState);

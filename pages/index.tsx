@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client'
 import ArticleShort from '../components/ArticleShort'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { getStrapiURL } from '../lib/api'
 
 const DOMAIN = process.env.APP_API;
 
@@ -13,17 +14,23 @@ const Home = () => {
 
   const {loading, data} = useQuery(homepageQuery);
   
-  let mainArticle, seccondArticles;
+  let mainArticle, seccondArticles, homepage;
 
   if(!loading) {
-    const homepage = data.homepage.data.attributes
+    homepage = data.homepage.data.attributes
     mainArticle = homepage.articles[0].article.data.attributes;
     seccondArticles = homepage.articles.slice(1);
     seccondArticles = seccondArticles.map(item => item.article.data.attributes)
   }
   
   return (
-    <Page className="homepage">
+    <Page 
+      className="homepage" 
+      title={homepage?.meta?.title || 'Úvod'}
+      description={homepage?.meta?.description || ''}
+      image={homepage?.meta?.image ? getStrapiURL(homepage.meta.image) : null}
+    >
+
       <Head>
         <link rel="alternate" hrefLang="x-default" href={DOMAIN} />
       </Head>

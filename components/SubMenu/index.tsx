@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react"
+import { FC, useContext, useEffect, useState } from "react"
 import { connectMenu } from "react-instantsearch-core";
 import { useRouter } from "next/router";
 import { DataStateContext } from '../../context/dataStateContext'
@@ -51,10 +51,13 @@ const SubMenu = ({
     ]
     
     if(currentRefinement) {
+      dispatch({ state: slugify(currentRefinement, {lower: true}), type: 'slug'})
       state.push({
         title: currentRefinement,
         link: ''
       })
+    }else{
+      dispatch({ state: 'blog', type: 'slug'})
     }
     dispatch({ state: state, type: 'breadcrumbs' })
   }, [currentRefinement])

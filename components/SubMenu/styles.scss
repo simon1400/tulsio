@@ -1,11 +1,12 @@
 .sub-menu{
-  nav{
-    ul{
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      li{
-        display: inline-block;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  .wrap-sub-menu{
+    max-width: calc(100vw - 15px);
+    .scroll-container{
+      height: 65.5px;
+      .menu-item{
         a{
           color: rgba(black, .4);
           font-size: 17px;
@@ -13,6 +14,7 @@
           padding: 20px 15px;
           position: relative;
           display: inline-block;
+          transition: all .2s ease;
           &:after{
             content: '';
             display: none;

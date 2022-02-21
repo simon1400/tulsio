@@ -70,7 +70,7 @@ const Newsletter: FC<NewsletterProps> = ({
                 onBlur={() => onBlur('email')}
                 ref={ref} />
             </div>
-            <p>Vaše osobní údaje zpracováváme pro veden GDPR a práce s daty.</p>
+            <p>Beru na vědomí zpracování osobních údajů. Můžete se podívat <a href="https://www.simplo.cz/zpracovani-osobnich-udaju">jak pracujeme s vašimi daty</a>.</p>
           </div>
         </div>
       </div>

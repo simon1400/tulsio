@@ -1,5 +1,3 @@
-import { offcanvas, util } from 'uikit'
-
 import {
   InstantSearch,
   Index
@@ -10,14 +8,13 @@ import SearchItems from './SearchItems'
 import SearchBox from './SearchBox';
 import HasResult from './HasResult';
 
+import closeCanvas from "../../helpers/closeCanvas";
+
 const Search = () => {
 
   // const searchInput = useRef(null)
 
-  const closeCanvas = (e) => {
-    e.preventDefault()
-    offcanvas(util.find('#search')).hide();
-  }
+  
 
   // useEffect(() => {
   //   util.on('#search', 'beforeshow', () => searchInput.current.focus());
@@ -28,7 +25,7 @@ const Search = () => {
       <div className="uk-offcanvas-bar">
         <div className="canvas-head">
           <h3>Hledat</h3>
-          <a href="/" onClick={e => closeCanvas(e)}>
+          <a href="/" onClick={e => closeCanvas(e, '#search')}>
             <img className="uk-svg" src="/assets/times.svg" uk-svg="" />
           </a>
         </div>

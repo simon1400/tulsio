@@ -3,7 +3,7 @@
   position: relative;
   .newsleter {
     overflow: hidden;
-    height: 200px;
+    height: 222px;
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -11,7 +11,6 @@
     padding: 50px 60px;
     border-radius: 20px;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), inset 0px 0px 0px 1px rgba(black, .1);
-    // border: solid 1px rgba(0, 0, 0, 0.1);
     background-image: url('/assets/left.svg'), url('/assets/right-bg.svg');
     background-repeat: no-repeat;
     background-position: left center, right center;
@@ -27,8 +26,8 @@
       color: rgba(0, 0, 0, 0.4);
     }
     h2{
-      line-height: 1.25;
       margin-bottom: 40px;
+      font-size: $head1;
     }
   }
   .newsletter-button-wrap{
@@ -86,7 +85,7 @@
       &.send{
         border: solid 1px rgba(0, 0, 0, 0.1);
         background-color: #9ffaab;
-        color: rgba(0, 0, 0, 0.9);
+        color: $footer-color;
       }
     }
     input{
@@ -96,14 +95,14 @@
       border: solid 1px rgba(0, 0, 0, 0.1);
       background-color: #fafafa;
       font-size: 16px;
-      color:rgba(0, 0, 0, 0.9);
+      color:$footer-color;
       height: 52px;
       padding-left: 23px;
       padding-right: 23px;
       width: calc(100% - 46px);
       display: block;
       &::placeholder {
-        color:rgba(0, 0, 0, 0.9);
+        color:$footer-color;
         opacity: 1;
       }
       &:focus{
@@ -121,17 +120,28 @@
   }
 }
 
-@media(max-width: 640px) {
-  .footer-top .newsletter-button-wrap .button{
-    min-width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+@media(max-width: $breakpoint-small) {
   .footer-top{
-    .newsleter {
+    .newsleter{
+      height: auto;
+      padding: 60px 20px;
+      text-align: center;
       background-image: url('/assets/mobile-news.svg');
       background-position: center bottom;
-      background-size: auto 100%;
+      background-size: 100% auto;
+      .title{
+        width: 100%;
+      }
+      .newsletter-content{
+        h2{
+          font-size: 30px;
+        }
+      }
+    }
+    .newsletter-button-wrap .button{
+      min-width: auto;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 }

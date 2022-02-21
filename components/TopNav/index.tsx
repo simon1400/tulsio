@@ -2,18 +2,7 @@ import { useRouter } from "next/router"
 import { connectHits } from "react-instantsearch-core";
 import Link from 'next/link'
 import { FC } from "react";
-
-interface NavItemProps {
-  id: string
-  title: string
-  link: string
-}
-
-interface TopNavProps {
-  hits: NavItemProps[]
-  mobile?: boolean
-  menu?: boolean
-}
+import { TopNavProps } from "../../interfaces/nav";
 
 const TopNav: FC<TopNavProps> = ({hits, mobile, menu}) => {
 

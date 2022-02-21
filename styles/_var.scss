@@ -23,78 +23,6 @@ $font-bold: 600;
 
 $box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
-body{
-  overflow-x: hidden;
-  background-color: #fafafa;
-  font-weight: $font-light;
-  font-family: $ffn;
-  font-size: 16px;
-  p:last-child{
-    margin-bottom: 0;
-  }
-  p a{
-    color: $accent;
-    text-decoration: underline;
-    &:hover{
-      color: $accent;
-    }
-  }
-  svg{
-    fill: $accent;
-    color: $accent;
-  }
-
-  h1, h2, h3, h4{
-    font-weight: $font-bold;
-    color: $text;
-    margin-top: 0;
-  }
-
-  h1{
-    line-height: 60px;
-    font-size: $head1;
-    margin-bottom: 40px;
-  }
-
-  h2{
-    font-size: $head2;
-    line-height: 1.23;
-  }
-
-  h3{
-    font-size: $head3;
-    line-height: 29px;
-  }
-
-  p{
-    font-weight: $font-light;
-    font-size: $text-small;
-    line-height: 31px;
-    color: $text;
-  }
-
-  .big-text{
-    p{
-      font-weight: $font-bold;
-      font-size: $text-big;
-      line-height: 33px;
-    }
-  }
-
-  ul{
-    padding: 0;
-    margin: 0;
-    li{
-      list-style-type: none;
-    }
-  }
-}
-
-section{
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
 $hamburger-padding-x           : 0;
 $hamburger-padding-y           : 0;
 $hamburger-layer-width         : 30px;
@@ -105,5 +33,10 @@ $hamburger-layer-border-radius : 0;
 $hamburger-hover-opacity       : 1;
 
 $breakpoint-large: 1100px;
-
 $container-xlarge-max-width: 1900px;
+
+$offcanvas-bar-padding-vertical-m: 35px;
+$offcanvas-bar-padding-horizontal-m: 35px;
+$offcanvas-bar-background: white;
+$offcanvas-bar-width-m: 425px;
+$offcanvas-bar-width: 100%;

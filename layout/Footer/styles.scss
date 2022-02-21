@@ -1,5 +1,9 @@
 footer{
   margin-top: 80px;
+  .footer-top{
+    margin-bottom: -160px;
+    position: relative;
+  }
   .footer-bottom{
     background-color: $footer-color;
   }
@@ -76,6 +80,37 @@ footer{
               margin: auto;
               color: $accent;
               fill: $accent;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: $breakpoint-small) {
+  footer{
+    margin-top: 0;
+    .footer-bottom-wrap{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .logo{
+        margin-bottom: 30px;
+        padding-right: 0;
+      }
+      nav{
+        margin-bottom: 30px;
+        text-align: center;
+        ul{
+          text-align: center;
+          li{
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+            &.title{
+              text-align: center;
             }
           }
         }

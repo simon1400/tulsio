@@ -25,7 +25,8 @@ const Page: FC<PageProps> = ({
   noCrawl,
   tags,
   ogTitle = '',
-  ogDescription = ''
+  ogDescription = '',
+  notFound = false
 }) => {
 
   const { state } = useContext(DataStateContext)
@@ -82,7 +83,7 @@ const Page: FC<PageProps> = ({
             }
           }
           setMeta(resMeta)
-        })
+        }).catch(err => console.log('error', err))
       }else{
         setMeta({
           ...meta,
@@ -159,7 +160,7 @@ const Page: FC<PageProps> = ({
 
       <Header />
       <main id={id} className={className}>{children}</main>
-      <Footer />
+      {!notFound && <Footer />}
       <Search />
     </div>
   );

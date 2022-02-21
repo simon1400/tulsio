@@ -4,16 +4,12 @@ import validationForm from '../../helpers/validationForm'
 
 const DOMAIN = process.env.APP_DOMAIN
 
-interface NewsletterProps {
-  title: string
-  link: string
-  text: string
-}
+// interface NewsletterProps {
+//   title: string
+// }
 
-const Newsletter: FC<NewsletterProps> = ({
-  title,
-  link,
-  text,
+const Newsletter = ({
+  title
 }) => {
 
   const [open, setOpen] = useState(false)
@@ -26,9 +22,7 @@ const Newsletter: FC<NewsletterProps> = ({
   const ref = useRef(null)
 
   useEffect(() => {
-    if(open) {
-      ref.current.focus()
-    }
+    if(open) ref.current.focus()
   }, [open])
 
   const onBlur = (type) => {
@@ -36,6 +30,7 @@ const Newsletter: FC<NewsletterProps> = ({
   }
 
   const handleButt = (e) => {
+    e.preventDefault()
     if(error.email) {
       return
     }
@@ -50,29 +45,25 @@ const Newsletter: FC<NewsletterProps> = ({
   }
 
   return(
-    <div className="footer-top">
-      <div className="uk-container uk-container-large">
-        <div className="newsleter">
-          <div className="newsletter-content">
-            <h2>{title}</h2>
-            <div className="newsletter-button-wrap">
-              <button onClick={(e) => handleButt(e)} className={`button${open ? ' open' : ''}${send ? ' send' : ''}`}>
-                {!send && <span>Přihlásit k odběru</span>}
-                {send && <span>Děkujeme</span>}
-                <img src="/assets/paper-plane.svg" uk-svg="" />
-              </button>
-              <input 
-                className={error.email ? 'error-input' : ''}
-                value={email}
-                onChange={e => {setEmail(e.target.value); setError({email: false})}}
-                placeholder="Vas email" 
-                type="email"
-                onBlur={() => onBlur('email')}
-                ref={ref} />
-            </div>
-            <p>Vaše osobní údaje zpracováváme pro veden GDPR a práce s daty.</p>
-          </div>
+    <div className="newsleter">
+      <div className="newsletter-content">
+        <h2>{title}</h2>
+        <div className="newsletter-button-wrap">
+          <button onClick={e => handleButt(e)} className={`button${open ? ' open' : ''}${send ? ' send' : ''}`} type="button">
+            {!send && <span>Přihlásit k odběru</span>}
+            {send && <span>Děkujeme</span>}
+            <img src="/assets/paper-plane.svg" uk-svg="" />
+          </button>
+          <input 
+            className={error.email ? 'error-input' : ''}
+            value={email}
+            onChange={e => {setEmail(e.target.value); setError({email: false})}}
+            placeholder="Vas email" 
+            type="email"
+            onBlur={() => onBlur('email')}
+            ref={ref} />
         </div>
+        <p>Beru na vědomí zpracování osobních údajů. Můžete se podívat <a href="https://www.simplo.cz/zpracovani-osobnich-udaju">jak pracujeme s vašimi daty</a>.</p>
       </div>
     </div>
   )

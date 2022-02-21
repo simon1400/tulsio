@@ -8,7 +8,6 @@ const InfiniteArticle = ({
   return (
     <section>
       <div className="uk-container uk-container-small">
-      
         {!!hits.length && <ArticleShort
           title={hits[0].title}
           link={`/blog/${hits[0].slug}`}

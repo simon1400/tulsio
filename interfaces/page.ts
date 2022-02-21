@@ -16,6 +16,7 @@ interface PageProps {
   tags?: string
   ogTitle?: string
   ogDescription?: string
+  notFound?: boolean
 }
 
 export default PageProps

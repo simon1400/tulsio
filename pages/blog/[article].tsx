@@ -1,6 +1,5 @@
 import Page from '../../layout/Page'
 import Image from '../../components/Image'
-// import formatDatePublic from '../../helpers/formatDate'
 import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
@@ -14,6 +13,8 @@ import Label from '../../components/Label'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
 // import Rating from '../../components/Rating';
+// import Author from '../../components/Author'
+// import Comments from '../../components/Comments'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -30,7 +31,12 @@ const Article: NextPage = () => {
   let article = undefined;
  
   if(!loading && data) {
-    article = data.articles.data?.[0].attributes
+    console.log(error);
+    if(!data.articles.data.length){
+      router.push('/404')
+    }else{
+      article = data.articles.data?.[0].attributes
+    }
   }
 
   useEffect(() => {
@@ -63,7 +69,7 @@ const Article: NextPage = () => {
 
       <div className="breadcrumb-wrap">
         <div className="uk-container uk-container-large">
-          <Breadcrumb />
+          <Breadcrumb article />
         </div>
       </div>
 
@@ -114,72 +120,13 @@ const Article: NextPage = () => {
             </div>)}
 
             {/* <Rating rating={2.5}/> */}
+            {/* <Author name="name" description="description" publishDate="publishDate" /> */}
 
-            {/* <div className="author-block">
-              <div className="author">
-                <div className="img-author">
-                  <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-                </div>
-                <div className="name-author">
-                  <h5>{parsedData.author?.name}</h5>
-                  <span>{parsedData.author?.description}</span>
-                </div>
-              </div>
-              <div className="post-date">
-                <span>Publikováno {formatDatePublic(parsedData.published_at)}</span>
-              </div>
-            </div> */}
-
-            {/* {parsedData.labels?.length && <div className="labels">
-              <ul>
-                {parsedData.labels.map((item, index) => <li key={index}><Link href={`/stitky/${item.slug}`}><a>{item.title}</a></Link></li>)}
-              </ul>
-            </div>} */}
           </div>
         </section>
 
         
-        {/* <section className="comments">
-          <div className="uk-container uk-container-xsmall">
-            <div className="coment-control">
-              <div>
-                <h3>Komentáře</h3>
-              </div>
-              <div>
-                <Button link="/" text="přidat komentář" />
-              </div>
-            </div>
-            <div className="comments-wrap">
-              <div className="comments-item">
-                <div className="comment-img">
-                  <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-                </div>
-                <div className="comment-content">
-                  <h4>Vítek N.</h4>
-                  <p>One of the most painful steps in the product workflow is the designer and developer handoff. Today’s design files and tools aren’t developer friendly. Transitioning files, context.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
-        {/*<section className="blog-short">
-          <div className="uk-container">
-            <div className="uk-grid uk-grid-stack uk-child-width-1-3" uk-grid="">
-              <div>
-                <div className="blog-short-item">
-                  <div className="blog-short-img-wrap">
-                    <img className="uk-img" src="/assets/top.jpeg" uk-img="" />
-                  </div>
-                  <div className="blog-short-info-wrap">
-                    <label>Recenze</label>
-                    <h3>Superskunk also hear from designers all the time.</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>*/}
+        {/* <Comments /> */}
 
       </article>}
 

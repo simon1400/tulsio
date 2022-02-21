@@ -1,15 +1,12 @@
 // import {useEffect, useState} from 'react'
 import Link from 'next/link'
-import {useEffect, useState} from 'react'
-import { useLazyQuery } from '@apollo/client'
-import navHeader from '../../queries/navHeader'
+import {useState} from 'react'
 import TopNav from '../../components/TopNav'
 import {InstantSearch} from "react-instantsearch-dom";
 import { searchClient } from "../../lib/typesenseAdapter"
+import Menu from '../Menu'
 
 const Header = () => {
-
-  const [menu, setMenu] = useState(false)
 
   return (
     <header>
@@ -22,18 +19,18 @@ const Header = () => {
           </div>
           <InstantSearch indexName="navigation" searchClient={searchClient}>
             <TopNav />
-            <TopNav mobile menu={menu} />
+            <Menu />
           </InstantSearch>
           <div className="control">
             {/* <div className="lang uk-visible@m">
               <span>Čeština</span>
               <img className="uk-svg" src="/assets/down.svg" uk-svg="" />
             </div> */}
-            <a href="#search" uk-toggle="" aria-expanded="false" className="search uk-visible@m">
+            <a href="#search" uk-toggle="" aria-expanded="false" className="search">
               <img className="uk-svg" src="/assets/search.svg" uk-svg="" />
             </a>
             <div className="uk-hidden@m">
-              <button className={`hamburger hamburger--collapse ${menu ? "is-active" : ''}`} type="button" onClick={() => setMenu(!menu)}>
+              <button uk-toggle="target: #responsive-nav" className="hamburger hamburger--collapse" type="button">
                 <span className="hamburger-box">
                   <span className="hamburger-inner"></span>
                 </span>

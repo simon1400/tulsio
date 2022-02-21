@@ -4,9 +4,10 @@ import Head from 'next/head'
 import homepageQuery from '../queries/homepage'
 import { useQuery } from '@apollo/client'
 import ArticleShort from '../components/ArticleShort'
-import { useEffect } from 'react'
-import axios from 'axios'
 import { getStrapiURL } from '../lib/api'
+import ModalNewsletter from '../layout/Modals/Newsletter'
+import { useEffect } from 'react'
+import {modal} from 'uikit'
 
 const DOMAIN = process.env.APP_API;
 
@@ -15,6 +16,10 @@ const Home = () => {
   const {loading, data} = useQuery(homepageQuery);
   
   let mainArticle, seccondArticles, homepage;
+
+  // useEffect(() => {
+  //   modal('#modal-newsletter').show();
+  // }, [])
 
   if(!loading) {
     homepage = data.homepage.data.attributes
@@ -34,6 +39,8 @@ const Home = () => {
       <Head>
         <link rel="alternate" hrefLang="x-default" href={DOMAIN} />
       </Head>
+
+      <ModalNewsletter title="Všechno co se ve světě CBD děje ve vašem mailu." />
 
       {!loading && <section className="uk-padding-remove">
         <div className="uk-container uk-container-large">

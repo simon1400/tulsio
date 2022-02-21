@@ -83,7 +83,7 @@ const SubMenu = ({
   
   return (
     <div className="sub-menu">
-      <ScrollMenu scrollContainerClassName="scroll-container" wrapperClassName="wrap-sub-menu">
+      <ScrollMenu separatorClassName="separator-scrol" scrollContainerClassName="scroll-container" wrapperClassName="wrap-sub-menu">
         <El text="Všechny" link="/blog" itemId={0} active={currentRefinement === null} />
         {items.map((item, index) => <El 
           key={index} 

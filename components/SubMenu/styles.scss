@@ -10,6 +10,34 @@
   .wrap-sub-menu{
     max-width: calc(100vw - 15px);
     .scroll-container{
+      :-webkit-scrollbar-thumb{
+        background-color: red;
+        color: red;
+      }
+      :-webkit-scrollbar-track{
+        background-color: red;
+        color: red;
+      }
+      :-webkit-scrollbar{
+        background-color: red;
+        color: red;
+      }
+      :-webkit-scrollbar-button{
+        background-color: red;
+        color: red;
+      }
+      :-webkit-scrollbar-corner {
+        background-color: red;
+        color: red;
+      }
+      :-webkit-scrollbar-track-piece {
+        background-color: red;
+        color: red;
+      }
+      :-ms-scrollbar-base-color {
+        background-color: red;
+        color: red;
+      }
       height: 65.5px;
     }
   }

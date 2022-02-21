@@ -17,16 +17,22 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    max-width: 100%;
+    width: 100%;
     .img-wrap{
       width: 50px;
       min-width: 50px;
       height: 50px;
       display: flex;
       margin-right: 10px;
+      overflow: hidden;
+      align-self: flex-start;
+      border-radius: 5px;
       img{
-        object-fit: contain;
+        object-fit: cover;
         margin: auto;
         width: 100%;
+        height: 100%;
       }
     }
     h5{
@@ -37,6 +43,11 @@
       margin-bottom: 0;
       position: relative;
       transition: all .5s ease;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      display: block;
+      max-width: 100%;
     }
   }
   .additional{

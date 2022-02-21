@@ -12,8 +12,7 @@ const SearchItem: FC<SearchItemProps> = ({data}) => {
   let slug = '/'+data.slug
 
   if(data.category?.length) {
-    const parseCategory = data.category[0].split(' - ')
-    slug = `/${parseCategory[1]}/${data.slug}`
+    slug = `/blog/${data.slug}`
   }
 
   return (

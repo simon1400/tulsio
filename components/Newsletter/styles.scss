@@ -98,8 +98,8 @@
       width: calc(100% - 46px);
       display: block;
       &::placeholder {
-        color:$footer-color;
-        opacity: 1;
+        color: $footer-color;
+        opacity: .5;
       }
       &:focus{
         box-shadow: 0 0 5px 0 rgba(0, 0, 255, 0.5);

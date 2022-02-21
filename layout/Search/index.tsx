@@ -1,24 +1,27 @@
 import {
   InstantSearch,
-  Index
+  Index,
+  Configure
 } from "react-instantsearch-dom";
 import { searchClient } from "../../lib/typesenseAdapter";
 // import "instantsearch.css/themes/satellite.css";
 import SearchItems from './SearchItems'
 import SearchBox from './SearchBox';
 import HasResult from './HasResult';
+import {util} from 'uikit'
 
 import closeCanvas from "../../helpers/closeCanvas";
+import { useEffect, useRef } from "react";
 
 const Search = () => {
 
-  // const searchInput = useRef(null)
+  const searchInput = useRef(null)
 
-  
-
-  // useEffect(() => {
-  //   util.on('#search', 'beforeshow', () => searchInput.current.focus());
-  // })
+  useEffect(() => {
+    if(searchInput.current){
+      util.on('#search', 'beforeshow', () => searchInput.current.focus());
+    } 
+  })
 
   return (
     <div id="search" className="uk-offcanvas canvas" uk-offcanvas="flip: true; overlay: true">
@@ -31,14 +34,16 @@ const Search = () => {
         </div>
         <InstantSearch indexName="articles" searchClient={searchClient}>
 
-          <SearchBox />
+          <SearchBox searchInput={searchInput} />
 
           <Index indexName="categories">
+            <Configure hitsPerPage={5} />
             <SearchItems title="Kategorie" />
           </Index>
 
           <Index indexName="articles">
-            <SearchItems title="Clanky" />
+            <Configure hitsPerPage={5}/>
+            <SearchItems title="Članky" />
           </Index>
 
           <HasResult />

@@ -58,12 +58,12 @@ const Newsletter = ({
             className={error.email ? 'error-input' : ''}
             value={email}
             onChange={e => {setEmail(e.target.value); setError({email: false})}}
-            placeholder="Vas email" 
+            placeholder="Váš e-mail" 
             type="email"
             onBlur={() => onBlur('email')}
             ref={ref} />
         </div>
-        <p>Beru na vědomí zpracování osobních údajů. Můžete se podívat <a href="https://www.simplo.cz/zpracovani-osobnich-udaju">jak pracujeme s vašimi daty</a>.</p>
+        <p>Beru na vědomí zpracování osobních údajů. Můžete se podívat jak pracujeme s vašimi daty.</p>
       </div>
     </div>
   )

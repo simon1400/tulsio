@@ -1,6 +1,6 @@
 import { connectSearchBox } from 'react-instantsearch-dom';
 
-const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
+const SearchBox = ({ currentRefinement, isSearchStalled, refine, searchInput }) => {
 
   const clear = (e) => {
     e.preventDefault()
@@ -13,6 +13,7 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
         type="search"
         value={currentRefinement}
         onChange={event => refine(event.currentTarget.value)}
+        ref={searchInput}
       />
       {!!currentRefinement.length && <button onClick={(e) => clear(e)}>
         <img src="/assets/times.svg" uk-svg="" />

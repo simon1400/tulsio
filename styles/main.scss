@@ -9,10 +9,13 @@ html{
 ::-moz-selection { background: $accent; }
 ::selection { background: $accent; }
 
+
+
 *{
   padding: 0;
   margin: 0;
   font-family: $ffn, sans-serif!important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -112,7 +115,7 @@ section{
 }
 
 .homepage{
-  padding-top: 90px;
+  padding-top: 40px;
   .home-head{
     margin-bottom: 30px!important;
   }

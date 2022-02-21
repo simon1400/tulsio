@@ -18,7 +18,7 @@ const Label: FC<LabelDataProps> = ({
   }
 
   return (
-    <label className={`label ${data.color}`} onClick={e => handleLink(e)}>
+    <label className={`label ${data.color}`}>
       {data.title}
     </label>
   )

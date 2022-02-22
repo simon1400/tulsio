@@ -17,11 +17,12 @@ const ImageCompoennt: FC<ImageProps> = ({ image = undefined, url = '/assets/plac
   }
   
   if(svg) return <img uk-svg="" src={url} />
-  else{
-    return (
-      <img src={url} />
-    );
-  }
+  else return <Image
+    src={url}
+    // width={500}
+    // height={500}
+    layout="fill"
+  />
 };
 
 export default ImageCompoennt;

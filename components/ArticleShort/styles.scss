@@ -14,10 +14,12 @@
     text-decoration: none;
     box-shadow: 0 2px 6px 0 rgba(black, 0.15), inset 0px 0px 0px 1px rgba(black, .1);
   }
-  .img-wrap{
+  .img-wrap-back{
     padding-top: 90%;
     width: 100%;
     position: relative;
+    background-size: cover;
+    background-position: center center;
     // img{
     //   object-fit: cover;
     //   width: 100%;
@@ -44,7 +46,7 @@
   &.horizontal{
     display: flex;
     margin-bottom: 30px;
-    .img-wrap{
+    .img-wrap-back{
       width: 221px;
       min-width: 221px;
       max-width: 221px;
@@ -69,7 +71,7 @@
     &.horizontal{
       margin-bottom: 15px;
       align-items: center;
-      .img-wrap{
+      .img-wrap-back{
         padding-top: 0;
         height: 100%;
         max-height: 170px;

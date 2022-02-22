@@ -59,6 +59,7 @@ module.exports = (phase) => {
     env,
     images: {
       domains: ['localhost', 'tulsio.hardart.cz', 'admin.tulsio.cz'],
+      disableStaticImages: false,
     },
   }
 }

@@ -16,13 +16,13 @@ const Search = () => {
 
   const searchInput = useRef(null)
 
-  // useEffect(() => {
-  //   if(searchInput.current){
-  //     util.on(document, 'shown', "#search", () => {
-  //       searchInput.current.focus()
-  //     })
-  //   }
-  // }, [searchInput])
+  useEffect(() => {
+    if(searchInput.current){
+      util.on(document, 'shown', "#search", () => {
+        searchInput.current.focus()
+      })
+    }
+  }, [searchInput])
 
   return (
     <div id="search" className="uk-offcanvas canvas" uk-offcanvas="flip: true; overlay: true">
@@ -35,7 +35,7 @@ const Search = () => {
         </div>
         <InstantSearch indexName="articles" searchClient={searchClient}>
 
-          {/* <SearchBox searchInput={searchInput} /> */}
+          <SearchBox searchInput={searchInput} />
 
           {/* <Index indexName="categories">
             <Configure hitsPerPage={5} />

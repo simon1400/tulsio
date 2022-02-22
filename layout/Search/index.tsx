@@ -17,7 +17,7 @@ const Search = () => {
   const searchInput = useRef(null)
 
   useEffect(() => {
-    if(searchInput.current){
+    if(searchInput && searchInput.current !== null){
       util.on(document, 'shown', "#search", () => {
         searchInput.current.focus()
       })
@@ -33,6 +33,7 @@ const Search = () => {
             <img className="uk-svg" src="/assets/times.svg" uk-svg="" />
           </a>
         </div>
+
         <InstantSearch indexName="articles" searchClient={searchClient}>
 
           <SearchBox searchInput={searchInput} />
@@ -44,7 +45,7 @@ const Search = () => {
 
           <Index indexName="articles">
             <Configure hitsPerPage={5}/>
-            <SearchItems title="Članky" />
+            <SearchItems title="Články" />
           </Index>
 
           <HasResult />

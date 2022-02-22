@@ -28,8 +28,6 @@ const ArticleShort: FC<ArticleShortProps> = ({
   
   const className = ['article-short']
 
-  console.log(image)
-
   if(horizontal) className.push('horizontal')
   if(sticky) className.push('sticky-'+sticky)
   if(text) className.push('big')

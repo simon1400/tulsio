@@ -52,7 +52,7 @@ const Home = () => {
                   title={mainArticle.title}
                   link={`/blog/${mainArticle?.slug}`}
                   image={mainArticle.image.data}
-                  label={mainArticle?.labels?.data?.[0]?.attributes}
+                  label={mainArticle?.labels?.data.map(item => item.attributes)}
                   text={mainArticle.perex}
                   sticky="top"
                 />

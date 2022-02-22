@@ -9,13 +9,15 @@ html{
 ::-moz-selection { background: $accent; }
 ::selection { background: $accent; }
 
-
-
 *{
   padding: 0;
   margin: 0;
   font-family: $ffn, sans-serif!important;
   -webkit-tap-highlight-color: transparent;
+}
+
+.uk-offcanvas-bar{
+  overflow-y: scroll!important;
 }
 
 body{
@@ -121,10 +123,12 @@ section{
   }
   h1.home-head{
     line-height: 1;
+    font-size: 30px;
   }
   h2.home-head{
     line-height: 1;
     padding-top: 9px;
+    font-size: 20px;
   }
 }
 

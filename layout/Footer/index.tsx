@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import Image from '../../components/Image'
 import navFooter from '../../queries/navFooter'
 import Newsletter from '../../components/Newsletter'
-// import ModalNewsletter from '../Modals/Newsletter'
+import ModalNewsletter from '../Modals/Newsletter'
 
 const Footer = () => {
 
@@ -68,7 +68,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
+      {/* <ModalNewsletter /> */}
     </footer>
   )
 }

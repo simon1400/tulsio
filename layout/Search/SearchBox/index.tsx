@@ -14,6 +14,7 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine, searchInput }) 
         value={currentRefinement}
         onChange={event => refine(event.currentTarget.value)}
         ref={searchInput}
+        placeholder="Napište dotaz…"
       />
       {!!currentRefinement.length && <button onClick={(e) => clear(e)}>
         <img src="/assets/times.svg" uk-svg="" />

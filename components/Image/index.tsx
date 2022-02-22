@@ -19,7 +19,7 @@ const ImageCompoennt: FC<ImageProps> = ({ image = undefined, url = '/assets/plac
   if(svg) return <img uk-svg="" src={url} />
   else{
     return (
-      <img src={url} alt="" uk-img="" />
+      <img src={url} />
     );
   }
 };

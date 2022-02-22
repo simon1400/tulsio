@@ -37,7 +37,7 @@ const Search = () => {
 
           {/* <SearchBox searchInput={searchInput} /> */}
 
-          <Index indexName="categories">
+          {/* <Index indexName="categories">
             <Configure hitsPerPage={5} />
             <SearchItems title="Kategorie" />
           </Index>
@@ -45,7 +45,7 @@ const Search = () => {
           <Index indexName="articles">
             <Configure hitsPerPage={5}/>
             <SearchItems title="Članky" />
-          </Index>
+          </Index> */}
 
           <HasResult />
 

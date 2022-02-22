@@ -19,9 +19,9 @@ const SearchItem: FC<SearchItemProps> = ({data}) => {
     <Link href={slug}>
       <a className={`result-item${!data.image ? ' without-img' : ''}`}>
         <div className="content">
-          {!!data.image && <div className="img-wrap">
+          {/* {!!data.image && <div className="img-wrap">
             <img src={data.image} alt="" />
-          </div>}
+          </div>} */}
           <h5>{data.title}</h5>
         </div>
         {!!data.price && <div className="additional">

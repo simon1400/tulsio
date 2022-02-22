@@ -42,10 +42,10 @@ const Search = () => {
             <SearchItems title="Kategorie" />
           </Index>
 
-          {/*<Index indexName="articles">
+          <Index indexName="articles">
             <Configure hitsPerPage={5}/>
             <SearchItems title="Članky" />
-          </Index> */}
+          </Index>
 
           <HasResult />
 

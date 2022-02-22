@@ -3,7 +3,7 @@
   display: block;
   margin-bottom: 25px;
   input{
-    width: 100%;
+    width: calc(100% - 50px);
     border-radius: 73px;
     background-color: #fafafa;
     border: 1px solid rgba(black, .1);

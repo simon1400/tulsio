@@ -10,7 +10,7 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine, searchInput }) 
   return (
     <form className="search-box" noValidate action="" role="search">
       <input
-        type="search"
+        type="text"
         value={currentRefinement}
         onChange={event => refine(event.currentTarget.value)}
         ref={searchInput}

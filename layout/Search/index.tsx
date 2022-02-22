@@ -4,7 +4,6 @@ import {
   Configure
 } from "react-instantsearch-dom";
 import { searchClient } from "../../lib/typesenseAdapter";
-// import "instantsearch.css/themes/satellite.css";
 import SearchItems from './SearchItems'
 import SearchBox from './SearchBox';
 import HasResult from './HasResult';
@@ -17,11 +16,13 @@ const Search = () => {
 
   const searchInput = useRef(null)
 
-  useEffect(() => {
-    if(searchInput.current){
-      util.on('#search', 'beforeshow', () => searchInput.current.focus());
-    } 
-  })
+  // useEffect(() => {
+  //   if(searchInput.current){
+  //     util.on(document, 'shown', "#search", () => {
+  //       searchInput.current.focus()
+  //     })
+  //   }
+  // }, [searchInput])
 
   return (
     <div id="search" className="uk-offcanvas canvas" uk-offcanvas="flip: true; overlay: true">

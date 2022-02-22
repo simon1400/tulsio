@@ -19,7 +19,6 @@ const InfiniteArticle = ({
           }))}
           text={hits[0].perex}
         />}
-      
       </div>
       <div className="uk-container">
         <div className="cat-grid">

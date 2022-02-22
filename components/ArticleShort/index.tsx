@@ -28,9 +28,20 @@ const ArticleShort: FC<ArticleShortProps> = ({
   
   const className = ['article-short']
 
+  console.log(image)
+
   if(horizontal) className.push('horizontal')
   if(sticky) className.push('sticky-'+sticky)
   if(text) className.push('big')
+
+  let imgUrl = '/assets/placeholder.svg'
+
+  if(typeof image === 'object') {
+    {/* @ts-ignore */}
+    imgUrl = APP_API+image?.attributes?.url
+  }else if(image !== undefined) {
+    imgUrl = image
+  }
 
   return (
     <Link href={link}>
@@ -38,8 +49,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
         {/* <div className="img-wrap">
           {typeof image === 'object' ? <Image image={image} /> : <Image url={image} />}
         </div> */}
-        {/* @ts-ignore */}
-        {typeof image === 'object' ? <div className="img-wrap-back" style={{backgroundImage: `url(${APP_API+image?.attributes?.url})`}}></div> : <div className="img-wrap-back" style={{backgroundImage: image}}></div>}
+        <div className="img-wrap-back" style={{backgroundImage: `url(${imgUrl})`}}></div>
         <div className="info-wrap">
           <div>
             {text && <h2><span>{title}</span></h2>}

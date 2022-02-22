@@ -35,7 +35,7 @@ const Search = () => {
         </div>
         <InstantSearch indexName="articles" searchClient={searchClient}>
 
-          <SearchBox searchInput={searchInput} />
+          {/* <SearchBox searchInput={searchInput} /> */}
 
           <Index indexName="categories">
             <Configure hitsPerPage={5} />

@@ -57,9 +57,35 @@ module.exports = (phase) => {
   // next.config.js object
   return {
     env,
-    images: {
-      domains: ['localhost', 'tulsio.hardart.cz', 'admin.tulsio.cz'],
-      disableStaticImages: false,
+    // images: {
+    //   domains: ['localhost', 'tulsio.hardart.cz', 'admin.tulsio.cz'],
+    //   disableStaticImages: false,
+    // },
+    i18n: {
+      // These are all the locales you want to support in
+      // your application
+      locales: ['en', 'cs', 'catchAll'],
+      // This is the default locale you want to be used when visiting
+      // a non-locale prefixed path e.g. `/hello`
+      defaultLocale: 'catchAll',
+      // Set LocalDetection to false so that you not get redirected to "fake" as default
+      localeDetection: false
+    },
+    async redirects() {
+      return [
+        {
+          source: '/catchAll',
+          destination: '/en',
+          locale: false,
+          permanent: false,
+        },
+        {
+          source: '/catchAll/:slug*',
+          destination: '/en/:slug*',
+          locale: false,
+          permanent: false,
+        },
+      ]
     },
   }
 }

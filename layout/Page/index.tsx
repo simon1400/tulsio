@@ -8,7 +8,7 @@ import Search from '../Search'
 import PageProps from '../../interfaces/page';
 import { DataStateContext } from '../../context/dataStateContext';
 import axios from 'axios';
-
+// import { AnimatePresence } from 'framer-motion'
 
 const Page: FC<PageProps> = ({
   children,

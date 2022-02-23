@@ -75,13 +75,13 @@ module.exports = (phase) => {
       return [
         {
           source: '/catchAll',
-          destination: '/en',
+          destination: '/cs',
           locale: false,
           permanent: false,
         },
         {
           source: '/catchAll/:slug*',
-          destination: '/en/:slug*',
+          destination: '/cs/:slug*',
           locale: false,
           permanent: false,
         },

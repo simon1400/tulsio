@@ -1,6 +1,5 @@
 import { FC } from "react";
 import IImage from '../../interfaces/image'
-import Image from 'next/image'
 
 const APP_API = process.env.APP_API
 
@@ -17,11 +16,7 @@ const ImageCompoennt: FC<ImageProps> = ({ image = undefined, url = '/assets/plac
   }
   
   if(svg) return <img uk-svg="" src={url} />
-  else{
-    return (
-      <img src={url} alt="" uk-img="" />
-    );
-  }
+  else return <img src={url} />
 };
 
 export default ImageCompoennt;

@@ -13,6 +13,11 @@ html{
   padding: 0;
   margin: 0;
   font-family: $ffn, sans-serif!important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.uk-offcanvas-bar{
+  overflow-y: scroll!important;
 }
 
 body{
@@ -112,16 +117,18 @@ section{
 }
 
 .homepage{
-  padding-top: 90px;
+  padding-top: 40px;
   .home-head{
     margin-bottom: 30px!important;
   }
   h1.home-head{
     line-height: 1;
+    font-size: 30px;
   }
   h2.home-head{
     line-height: 1;
     padding-top: 9px;
+    font-size: 20px;
   }
 }
 
@@ -187,6 +194,7 @@ section{
         height: 100%;
         width: 100vw;
         background-color: rgba(black, .02);
+        z-index: -1;
       }
       .title-wrap{
         padding-left: 60px;
@@ -242,6 +250,25 @@ section{
 
 .gray-sec{
   background-color: $gray;
+}
+
+.not-found{
+  text-align: center;
+  min-height: calc(100vh - 71px);
+  padding-top: 0;
+  padding-bottom: 0;
+  img{
+    margin-bottom: 30px;
+  }
+  h1{
+    font-size: 279px;
+    opacity: 0.41;
+    position: relative;
+  }
+  p{
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
 }
 
 @import 'media';

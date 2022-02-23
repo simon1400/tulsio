@@ -4,6 +4,8 @@ import Image from "../Image"
 import Label from "../Label"
 import LabelProps from "../../interfaces/label"
 
+const APP_API = process.env.APP_API
+
 interface ArticleShortProps {
   link: string,
   image: string,
@@ -30,12 +32,22 @@ const ArticleShort: FC<ArticleShortProps> = ({
   if(sticky) className.push('sticky-'+sticky)
   if(text) className.push('big')
 
+  let imgUrl = '/assets/placeholder.svg'
+
+  if(typeof image === 'object') {
+    {/* @ts-ignore */}
+    imgUrl = APP_API+image?.attributes?.url
+  }else if(image !== undefined) {
+    imgUrl = image
+  }
+
   return (
     <Link href={link}>
       <a className={className.join(' ')}>
-        <div className="img-wrap">
+        {/* <div className="img-wrap">
           {typeof image === 'object' ? <Image image={image} /> : <Image url={image} />}
-        </div>
+        </div> */}
+        <div className="img-wrap-back" style={{backgroundImage: `url(${imgUrl})`}}></div>
         <div className="info-wrap">
           <div>
             {text && <h2><span>{title}</span></h2>}

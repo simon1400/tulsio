@@ -1,5 +1,9 @@
 footer{
   margin-top: 80px;
+  .footer-top{
+    margin-bottom: -160px;
+    position: relative;
+  }
   .footer-bottom{
     background-color: $footer-color;
   }
@@ -24,6 +28,7 @@ footer{
     nav{
       text-align: center;
       ul{
+        display: inline-block;
         li{
           display: block;
           padding-left: 15px;
@@ -43,6 +48,9 @@ footer{
             line-height: 1.67;
             transition: all .5s ease;
             &:hover{
+              &:after{
+                display: none;
+              }
               text-decoration: none;
               color: white;
             }

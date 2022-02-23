@@ -1,24 +1,28 @@
 import {
   InstantSearch,
-  Index
+  Index,
+  Configure
 } from "react-instantsearch-dom";
 import { searchClient } from "../../lib/typesenseAdapter";
-import "instantsearch.css/themes/satellite.css";
 import SearchItems from './SearchItems'
 import SearchBox from './SearchBox';
 import HasResult from './HasResult';
+import {util} from 'uikit'
 
 import closeCanvas from "../../helpers/closeCanvas";
+import { useEffect, useRef } from "react";
 
 const Search = () => {
 
-  // const searchInput = useRef(null)
+  const searchInput = useRef(null)
 
-  
-
-  // useEffect(() => {
-  //   util.on('#search', 'beforeshow', () => searchInput.current.focus());
-  // })
+  useEffect(() => {
+    if(searchInput && searchInput.current !== null){
+      util.on(document, 'shown', "#search", () => {
+        searchInput.current.focus()
+      })
+    }
+  }, [searchInput])
 
   return (
     <div id="search" className="uk-offcanvas canvas" uk-offcanvas="flip: true; overlay: true">
@@ -29,16 +33,19 @@ const Search = () => {
             <img className="uk-svg" src="/assets/times.svg" uk-svg="" />
           </a>
         </div>
+
         <InstantSearch indexName="articles" searchClient={searchClient}>
 
-          <SearchBox />
+          <SearchBox searchInput={searchInput} />
 
-          <Index indexName="categories">
+           <Index indexName="categories">
+            <Configure hitsPerPage={5} />
             <SearchItems title="Kategorie" />
           </Index>
 
           <Index indexName="articles">
-            <SearchItems title="Clanky" />
+            <Configure hitsPerPage={5}/>
+            <SearchItems title="Články" />
           </Index>
 
           <HasResult />

@@ -3,7 +3,7 @@
   display: block;
   margin-bottom: 25px;
   input{
-    width: 100%;
+    width: calc(100% - 50px);
     border-radius: 73px;
     background-color: #fafafa;
     border: 1px solid rgba(black, .1);
@@ -12,6 +12,12 @@
     font-size: 15px;
     padding: 0 25px;
     color: rgba(black, .9);
+    &:focus{
+      box-shadow: 0 0 5px 0 rgba(0, 0, 255, 0.5);
+      border: solid 1px #00f;
+      background-color: #fafafa;
+      outline: none;
+    }
   }
   button{
     background-color: transparent;

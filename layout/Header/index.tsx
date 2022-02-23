@@ -1,13 +1,10 @@
-// import {useEffect, useState} from 'react'
 import Link from 'next/link'
-import {useState} from 'react'
 import TopNav from '../../components/TopNav'
 import {InstantSearch} from "react-instantsearch-dom";
 import { searchClient } from "../../lib/typesenseAdapter"
 import Menu from '../Menu'
 
 const Header = () => {
-
   return (
     <header>
       <div className="uk-container uk-container-large">

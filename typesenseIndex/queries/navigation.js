@@ -3,13 +3,12 @@ const qs = require('qs');
 const query = qs.stringify({
   populate: {
     topNav: {
-      populate: ['item']
+      // populate: ['item']
+      populate: "*"
     }
   },
 }, {
   encodeValuesOnly: true,
 });
-
-console.log(query);
 
 module.exports = query

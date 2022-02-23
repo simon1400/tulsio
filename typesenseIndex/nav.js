@@ -12,8 +12,6 @@ module.exports = (async () => {
   const res = await axios.get(`${APP_API}/api/${nameCollection}?${query}`)
   const data = res.data.data.attributes.topNav.item
 
-  console.log(data)
-
   try {
     const collection = await client.collections(nameCollection).retrieve();
     console.log("Found existing collection of "+nameCollection);
@@ -46,6 +44,7 @@ module.exports = (async () => {
   });
 
   try {
+    console.log(transformData)
     const returnData = await client
       .collections(nameCollection)
       .documents()

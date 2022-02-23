@@ -1,21 +1,17 @@
-.footer-top{
-  margin-bottom: -160px;
+.newsleter {
+  overflow: hidden;
+  // height: 222px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
   position: relative;
-  .newsleter {
-    overflow: hidden;
-    height: 222px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 50px 60px;
-    border-radius: 20px;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), inset 0px 0px 0px 1px rgba(black, .1);
-    background-image: url('/assets/left.svg'), url('/assets/right-bg.svg');
-    background-repeat: no-repeat;
-    background-position: left center, right center;
-    background-size: auto 100%;
-  }
+  padding: 50px 60px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05), inset 0px 0px 0px 1px rgba(black, .1);
+  background-image: url('/assets/left.svg'), url('/assets/right-bg.svg');
+  background-repeat: no-repeat;
+  background-position: left center, right center;
+  background-size: 30% 100%;
   .newsletter-content{
     max-width: 500px;
     text-align: center;
@@ -102,8 +98,8 @@
       width: calc(100% - 46px);
       display: block;
       &::placeholder {
-        color:$footer-color;
-        opacity: 1;
+        color: $footer-color;
+        opacity: .5;
       }
       &:focus{
         box-shadow: 0 0 5px 0 rgba(0, 0, 255, 0.5);
@@ -120,28 +116,29 @@
   }
 }
 
+
+
 @media(max-width: $breakpoint-small) {
-  .footer-top{
-    .newsleter{
-      height: auto;
-      padding: 60px 20px;
-      text-align: center;
-      background-image: url('/assets/mobile-news.svg');
-      background-position: center bottom;
-      background-size: 100% auto;
-      .title{
-        width: 100%;
-      }
-      .newsletter-content{
-        h2{
-          font-size: 30px;
-        }
+  .newsleter{
+    height: auto;
+    padding: 60px 20px;
+    padding-bottom: 200px;
+    text-align: center;
+    background-image: url('/assets/mobile-news.svg');
+    background-position: center bottom;
+    background-size: 100% auto;
+    .title{
+      width: 100%;
+    }
+    .newsletter-content{
+      h2{
+        font-size: 30px;
       }
     }
-    .newsletter-button-wrap .button{
-      min-width: auto;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
+  }
+  .newsletter-button-wrap .button{
+    min-width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

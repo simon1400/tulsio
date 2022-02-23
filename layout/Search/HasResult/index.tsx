@@ -15,9 +15,9 @@ const HasResult = ({ searchState, allSearchResults }) => {
           <p>Je nám líto, ale Vašemu požadavku neodpovídá žádný záznam.</p>
         </div>
       </div>}
-      {hasResults && !!searchState.query?.length && <div className="button-wrap">
+      {/* {hasResults && !!searchState.query?.length && <div className="button-wrap">
         <Button link={`/search?q=${searchState.query}`} text="Zobrazit všechny výsledky" white full />
-      </div>}
+      </div>} */}
     </div>
   )
 }

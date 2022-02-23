@@ -22,9 +22,9 @@ module.exports = (phase) => {
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     APP_DOMAIN: (() => {
-      // if (isDev) return 'https://tulsio.hardart.cz'
+      // if (isDev) return 'https://tulsio.com'
       if (isDev) return 'http://localhost:3004'
-      if (isProd) return 'https://tulsio.hardart.cz'
+      if (isProd) return 'https://tulsio.com'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_SEARCH_ONLY_API_KEY: (() => {
@@ -57,5 +57,35 @@ module.exports = (phase) => {
   // next.config.js object
   return {
     env,
+    // images: {
+    //   domains: ['localhost', 'tulsio.com', 'admin.tulsio.cz'],
+    //   disableStaticImages: false,
+    // },
+    i18n: {
+      // These are all the locales you want to support in
+      // your application
+      locales: ['cs', 'catchAll'],
+      // This is the default locale you want to be used when visiting
+      // a non-locale prefixed path e.g. `/hello`
+      defaultLocale: 'catchAll',
+      // Set LocalDetection to false so that you not get redirected to "fake" as default
+      localeDetection: false
+    },
+    async redirects() {
+      return [
+        {
+          source: '/catchAll',
+          destination: '/cs',
+          locale: false,
+          permanent: false,
+        },
+        {
+          source: '/catchAll/:slug*',
+          destination: '/cs/:slug*',
+          locale: false,
+          permanent: false,
+        },
+      ]
+    },
   }
 }

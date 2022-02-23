@@ -12,27 +12,54 @@ import { NextPage } from 'next'
 import Label from '../../components/Label'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
+import axios from 'axios'
+import qs from 'qs'
 // import Rating from '../../components/Rating';
 // import Author from '../../components/Author'
 // import Comments from '../../components/Comments'
 
 const DOMAIN = process.env.APP_DOMAIN;
+const APP_API = process.env.APP_API;
 
-const Article: NextPage = () => {
+const controlQs = (router) => qs.stringify({
+  filters: {
+    slug: {
+      $eq: router.query.article,
+    }
+  },
+  populate: "*",
+})
 
+export async function getServerSideProps(context) {
+
+  if(!context.query.article) {
+    return {
+      notFound: true
+    }
+  }
+
+  const res = await axios.get(`${APP_API}/api/articles?${controlQs(context)}`)
+
+  if(!res.data.data.length) {
+    return {
+      notFound: true
+    }
+  }
+
+  return {
+    props: {
+      article: res.data.data[0].attributes
+    }
+  }
+}
+
+const Article: NextPage = ({
+  // @ts-ignore
+  article
+}) => {
   const router = useRouter();
 
   const { dispatch } = useContext(DataStateContext)
-  
-  const { loading, error, data} = useQuery(getArticle, { 
-    variables: { slug: router.query.article } 
-  });
-
-  let article = undefined;
- 
-  if(!loading && data) {
-    article = data.articles.data?.[0].attributes
-  }
 
   useEffect(() => {
     if(article){
@@ -59,7 +86,7 @@ const Article: NextPage = () => {
       image={getStrapiURL(article?.meta?.image?.data?.attributes?.url) || getStrapiURL(article?.image?.data)}
     >
       <Head>
-        <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
+        <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
 
       <div className="breadcrumb-wrap">

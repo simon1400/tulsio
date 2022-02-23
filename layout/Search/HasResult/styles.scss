@@ -25,5 +25,8 @@
   
   .button-wrap{
     margin-top: 50px;
+    .button{
+      max-width: calc(100% - 70px);
+    }
   }
 }

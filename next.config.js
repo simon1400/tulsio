@@ -22,9 +22,9 @@ module.exports = (phase) => {
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     APP_DOMAIN: (() => {
-      // if (isDev) return 'https://tulsio.hardart.cz'
+      // if (isDev) return 'https://tulsio.com'
       if (isDev) return 'http://localhost:3004'
-      if (isProd) return 'https://tulsio.hardart.cz'
+      if (isProd) return 'https://tulsio.com'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_SEARCH_ONLY_API_KEY: (() => {
@@ -58,7 +58,7 @@ module.exports = (phase) => {
   return {
     env,
     // images: {
-    //   domains: ['localhost', 'tulsio.hardart.cz', 'admin.tulsio.cz'],
+    //   domains: ['localhost', 'tulsio.com', 'admin.tulsio.cz'],
     //   disableStaticImages: false,
     // },
     i18n: {

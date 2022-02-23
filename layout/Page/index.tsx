@@ -33,11 +33,11 @@ const Page: FC<PageProps> = ({
 
   const router = useRouter()
   const global = {
-    site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz',
+    site_url: process.env.NODE_ENV === 'development' ? 'http://localhost:3004/cs' : 'https://tulsio.com/cs',
     facebook_app_id: '',
     defaultTitle: 'Tulsio',
     defaultDescription: 'Tulsio',
-    defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3004' : 'https://tulsio.cz'}`,
+    defaultImage: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3004/cs' : 'https://tulsio.com/cs'}`,
     defaultTwitter: '@cereallarceny',
     defaultSep: ' | ',
     gtm: ''
@@ -125,7 +125,7 @@ const Page: FC<PageProps> = ({
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{theTitle}</title>
-        <link rel="canonical" href={global.site_url+router.route} />
+        <link rel="canonical" href={global.site_url+router.asPath} />
         <meta itemProp="name" content={theTitle} />
         <meta itemProp="description" content={theDescription} />
         <meta itemProp="image" content={theImage} />
@@ -143,7 +143,7 @@ const Page: FC<PageProps> = ({
         <meta property="og:description" content={ogDescription || theDescription} />
         <meta property="og:site_name" content="TULSIO" />
         <meta property="fb:app_id" content={global.facebook_app_id} />
-        <meta name="robots" content="noindex, nofollow" />
+        {/* <meta name="robots" content="noindex, nofollow" /> */}
 
         {published && <meta name="article:published_time" content={published} />}
         {category && <meta name="article:section" content={category} />}

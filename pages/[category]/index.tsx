@@ -11,7 +11,8 @@ import { DataStateContext } from '../../context/dataStateContext'
 import axios from 'axios'
 import qs from 'qs'
 
-const DOMAIN = process.env.APP_API;
+const APP_API = process.env.APP_API;
+const DOMAIN = process.env.APP_DOMAIN;
 
 const controlQs = (router) => qs.stringify({
   filters: {
@@ -26,10 +27,9 @@ const Category: NextPage = () => {
   const router = useRouter()
   const { dispatch } = useContext(DataStateContext)
   
-
   useEffect(() => {
     if(router.query.category){
-      axios.get(`https://admin.tulsio.cz/api/categories?${controlQs(router)}`).then(res => {
+      axios.get(`${APP_API}/api/categories?${controlQs(router)}`).then(res => {
         if(!res.data.data.length) {
           router.push('404')
         }

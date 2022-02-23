@@ -9,7 +9,7 @@ import ModalNewsletter from '../layout/Modals/Newsletter'
 import { useEffect } from 'react'
 import {modal} from 'uikit'
 
-const DOMAIN = process.env.APP_API;
+const DOMAIN = process.env.APP_DOMAIN;
 
 const Home = () => {
 

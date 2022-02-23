@@ -8,9 +8,9 @@ import { searchClient } from "../../lib/typesenseAdapter";
 import InfiniteArticles from '../../components/InfiniteArticles'
 import { useContext, useEffect, useState } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
-import { QueryRuleCustomData } from 'react-instantsearch-dom';
+// import { QueryRuleCustomData } from 'react-instantsearch-dom';
 
-const DOMAIN = process.env.APP_API;
+const DOMAIN = process.env.APP_DOMAIN;
 
 const Category: NextPage = () => {
 

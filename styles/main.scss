@@ -194,6 +194,7 @@ section{
         height: 100%;
         width: 100vw;
         background-color: rgba(black, .02);
+        z-index: -1;
       }
       .title-wrap{
         padding-left: 60px;

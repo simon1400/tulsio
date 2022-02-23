@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
 import axios from 'axios'
 import qs from 'qs'
+import Error from 'next/error'
 
 const APP_API = process.env.APP_API;
 const DOMAIN = process.env.APP_DOMAIN;
@@ -22,20 +23,26 @@ const controlQs = (router) => qs.stringify({
   }
 })
 
+export async function getServerSideProps(context) {
+
+  const res = await axios.get(`${APP_API}/api/categories?${controlQs(context)}`)
+
+  if(!res.data.data.length) {
+    return {
+      notFound: true
+    }
+  }
+
+  return {
+    props: {}
+  }
+}
+
+
 const Category: NextPage = () => {
 
   const router = useRouter()
   const { dispatch } = useContext(DataStateContext)
-  
-  useEffect(() => {
-    if(router.query.category){
-      axios.get(`${APP_API}/api/categories?${controlQs(router)}`).then(res => {
-        if(!res.data.data.length) {
-          router.push('404')
-        }
-      })
-    }
-  }, [router.query.category])
 
   useEffect(() => {
     return () => {
@@ -50,7 +57,7 @@ const Category: NextPage = () => {
     >
       <Page>
         <Head>
-          <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
+          <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
         <PageHead title="Blog" />

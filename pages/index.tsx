@@ -6,8 +6,8 @@ import { useQuery } from '@apollo/client'
 import ArticleShort from '../components/ArticleShort'
 import { getStrapiURL } from '../lib/api'
 import ModalNewsletter from '../layout/Modals/Newsletter'
-import { useEffect } from 'react'
-import {modal} from 'uikit'
+// import { useEffect } from 'react'
+// import {modal} from 'uikit'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -37,7 +37,7 @@ const Home = () => {
     >
 
       <Head>
-        <link rel="alternate" hrefLang="x-default" href={DOMAIN} />
+        <link rel="alternate" hrefLang="x-default" href={DOMAIN+'/cs'} />
       </Head>
 
       <ModalNewsletter title="Všechno co se ve světě CBD děje ve vašem mailu." />

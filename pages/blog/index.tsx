@@ -30,7 +30,7 @@ const Category: NextPage = () => {
     >
       <Page>
         <Head>
-          <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}${router.asPath}`} />
+          <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
         <PageHead title="Blog" />

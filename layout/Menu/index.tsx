@@ -18,7 +18,7 @@ const Menu: FC<TopNavProps> = ({ hits }) => {
         </div>
         <nav className="menu-responsive">
           <ul>
-            {hits.reverse().map(item => <li key={item.id}>
+            {hits.map(item => <li key={item.id}>
               <Link href={item.link}>
                 <a className={item.link === router.asPath ? 'active' : ''}>{item.title}</a>
               </Link>

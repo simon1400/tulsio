@@ -6,11 +6,9 @@
     "dev": "next dev -p 3004",
     "build": "next build",
     "start": "next start -p 3004",
-    "testReq": "node functions/testRequest.js",
+    "deploy": "pm2 deploy production",
     "typesense": "node functions/startTypesenseServer.js",
-    "populateArticles": "node typesenseIndex/articles.js",
-    "populateCategories": "node typesenseIndex/categories.js",
-    "populateNav": "node typesenseIndex/nav.js"
+    "populate": "node typesenseIndex/articles.js && node typesenseIndex/categories.js && node typesenseIndex/nav.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",

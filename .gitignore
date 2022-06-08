@@ -36,3 +36,6 @@ yarn-error.log*
 
 # data search
 /typesense-server-data
+typesense-server-data/
+./typesense-server-data/
+./typesense-server-data

@@ -3,32 +3,19 @@ import Image from '../../components/Image'
 import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
-import {useQuery} from '@apollo/client'
 import getArticle from '../../queries/article';
-import { getStrapiURL } from '../../lib/api'
+import { client, getStrapiURL } from '../../lib/api'
 import Button from '../../components/Button'
 import Breadcrumb from '../../components/Breadcrumb'
 import { NextPage } from 'next'
 import Label from '../../components/Label'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
-import axios from 'axios'
-import qs from 'qs'
 // import Rating from '../../components/Rating';
 // import Author from '../../components/Author'
 // import Comments from '../../components/Comments'
 
 const DOMAIN = process.env.APP_DOMAIN;
-const APP_API = process.env.APP_API;
-
-const controlQs = (router) => qs.stringify({
-  filters: {
-    slug: {
-      $eq: router.query.article,
-    }
-  },
-  populate: "*",
-})
 
 export async function getServerSideProps(context) {
 
@@ -38,9 +25,14 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const res = await axios.get(`${APP_API}/api/articles?${controlQs(context)}`)
+  const { data } = await client.query({
+    query: getArticle,
+    variables: {
+      slug: context.query.article
+    }
+  });
 
-  if(!res.data.data.length) {
+  if(!data.articles.data.length) {
     return {
       notFound: true
     }
@@ -48,7 +40,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      article: res.data.data[0].attributes
+      article: data.articles.data[0].attributes
     }
   }
 }

@@ -6,8 +6,6 @@ import { useQuery } from '@apollo/client'
 import ArticleShort from '../components/ArticleShort'
 import { getStrapiURL } from '../lib/api'
 import ModalNewsletter from '../layout/Modals/Newsletter'
-// import { useEffect } from 'react'
-// import {modal} from 'uikit'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -16,10 +14,6 @@ const Home = () => {
   const {loading, data} = useQuery(homepageQuery);
   
   let mainArticle, seccondArticles, homepage;
-
-  // useEffect(() => {
-  //   modal('#modal-newsletter').show();
-  // }, [])
 
   if(!loading) {
     homepage = data.homepage.data.attributes

@@ -102,11 +102,11 @@ const Page: FC<PageProps> = ({
       <Head>
 
         {/*<!-- Google Tag Manager -->*/}
-        {global.gtm && <script dangerouslySetInnerHTML={{__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <script dangerouslySetInnerHTML={{__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-PQFGK4R');`}} />}
+          })(window,document,'script','dataLayer','GTM-PQFGK4R');`}} />
         {/*<!-- End Google Tag Manager -->*/}
 
         <meta charSet="utf-8" />
@@ -124,7 +124,7 @@ const Page: FC<PageProps> = ({
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{theTitle}</title>
-        <link rel="canonical" href={global.site_url+router.asPath} />
+        <link rel="canonical" href={global.site_url+(router.asPath !== '/' ? router.asPath : '')} />
         <meta itemProp="name" content={theTitle} />
         <meta itemProp="description" content={theDescription} />
         <meta itemProp="image" content={theImage} />
@@ -133,7 +133,6 @@ const Page: FC<PageProps> = ({
         <meta name="twitter:site" content="TULSIO" />
         <meta name="twitter:title" content={ogTitle || theTitle} />
         <meta name="twitter:description" content={ogDescription || theDescription} />
-        {/*<meta name="twitter:creator" content={twitter || global.defaultTwitter} />*/}
         <meta name="twitter:image:src" content={theImage} />
         <meta property="og:title" content={ogTitle || theTitle} />
         <meta property="og:type" content={contentType || 'website'} />
@@ -142,7 +141,6 @@ const Page: FC<PageProps> = ({
         <meta property="og:description" content={ogDescription || theDescription} />
         <meta property="og:site_name" content="TULSIO" />
         <meta property="fb:app_id" content={global.facebook_app_id} />
-        {/* <meta name="robots" content="noindex, nofollow" /> */}
 
         {published && <meta name="article:published_time" content={published} />}
         {category && <meta name="article:section" content={category} />}
@@ -153,7 +151,7 @@ const Page: FC<PageProps> = ({
       </Head>
 
       {/*<!-- Google Tag Manager (noscript) -->*/}
-      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${global.gtm || 'GTM-KH5BW7W'}`}
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id='GTM-PQFGK4R'}`}
       height="0" width="0" style={{display:'none', visibility:'hidden'}}></iframe></noscript>
       {/*<!-- End Google Tag Manager (noscript) -->*/}
 

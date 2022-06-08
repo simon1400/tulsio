@@ -16,8 +16,8 @@ module.exports = (phase) => {
 
   const env = {
     APP_API: (() => {
-      // if (isDev) return 'http://localhost:1335'
-      if (isDev) return 'https://admin.tulsio.cz'
+      if (isDev) return 'http://localhost:1335'
+      // if (isDev) return 'https://admin.tulsio.cz'
       if (isProd) return 'https://admin.tulsio.cz'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
@@ -57,18 +57,9 @@ module.exports = (phase) => {
   // next.config.js object
   return {
     env,
-    // images: {
-    //   domains: ['localhost', 'tulsio.com', 'admin.tulsio.cz'],
-    //   disableStaticImages: false,
-    // },
     i18n: {
-      // These are all the locales you want to support in
-      // your application
       locales: ['cs', 'catchAll'],
-      // This is the default locale you want to be used when visiting
-      // a non-locale prefixed path e.g. `/hello`
       defaultLocale: 'catchAll',
-      // Set LocalDetection to false so that you not get redirected to "fake" as default
       localeDetection: false
     },
     async redirects() {

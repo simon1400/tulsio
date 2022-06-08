@@ -47,11 +47,6 @@ const Search = () => {
             <Configure hitsPerPage={5}/>
             <SearchItems title="Články" />
           </Index>
-          
-          <Index indexName="faq">
-            <Configure hitsPerPage={5}/>
-            {/* <SearchItems title="FAQ" /> */}
-          </Index>
 
           <HasResult />
 

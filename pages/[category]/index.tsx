@@ -54,11 +54,7 @@ const Category: NextPage = ({
   category
 }) => {
 
-  console.log(category);
-  
-
   const router = useRouter()
-  console.log(router?.query);
   const { dispatch } = useContext(DataStateContext)
 
   useEffect(() => {
@@ -77,7 +73,7 @@ const Category: NextPage = ({
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead title="Blog" />
+        <PageHead title="Blog" category />
         <InfiniteArticles />
         
       </Page>

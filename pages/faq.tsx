@@ -5,10 +5,10 @@ import PageHead from '../components/PageHead'
 import { NextPage } from 'next'
 import {InstantSearch} from 'react-instantsearch-dom'
 import { searchClient } from "../lib/typesenseAdapter";
-// import InfiniteArticles from '../components/InfiniteArticles'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../context/dataStateContext'
 import FaqHits from '../components/FaqHits'
+import PageHeadBig from '../components/PageHeadBig'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -33,7 +33,7 @@ const Category: NextPage = () => {
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead title="Faq" />
+        <PageHeadBig title="FAQ" />
         <FaqHits />
         
       </Page>

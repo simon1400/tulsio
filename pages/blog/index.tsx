@@ -33,7 +33,7 @@ const Category: NextPage = () => {
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead title="Blog" />
+        <PageHead title="Blog" category />
         <InfiniteArticles />
         
       </Page>

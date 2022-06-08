@@ -74,6 +74,11 @@
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
 
+  .block{
+    padding: 30px;
+    padding-bottom: 20px;
+  }
+
   body{
     h1{
       font-size: 30px;

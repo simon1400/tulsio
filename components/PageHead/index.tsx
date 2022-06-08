@@ -4,10 +4,12 @@ import SubMenu from "../SubMenu"
 
 interface PageHeadProps {
   title: string
+  category?: boolean
 }
 
 const PageHead: FC<PageHeadProps> = ({
-  title
+  title,
+  category
 }) => {
   return (
     <section className="category-top">
@@ -15,7 +17,7 @@ const PageHead: FC<PageHeadProps> = ({
         <div className="category-top-wrap">
           <Breadcrumb posAbsolute />
           <h1>{title}</h1>
-          <SubMenu attribute='category' />
+          {category && <SubMenu attribute='category' />}
         </div>
       </div>
     </section>

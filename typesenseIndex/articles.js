@@ -12,23 +12,12 @@ module.exports = (async () => {
   const data = res.data.data 
 
   try {
-    
-    const collection = await client.collections(nameCollection).retrieve();
-    console.log("Found existing collection of "+nameCollection);
-    console.log(JSON.stringify(collection, null, 2));
-
-    // if (collection.num_documents !== data.length) {
-    //   console.log("Collection has different number of documents than data");
-    //   console.log(`Deleting collection ${nameCollection}...`);
-    //   await client.collections(nameCollection).delete();
-    // }
     await client.collections(nameCollection).delete();
   } catch (err) {
     console.error("Collection has same data: ", err);
   }
 
   console.log("Creating schema...");
-  console.log(JSON.stringify(schema, null, 2));
 
   await client.collections().create(schema);
 

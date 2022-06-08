@@ -12,7 +12,7 @@ const TYPESENSE_CONFIG = {
   apiKey: process.env.TYPESENSE_ADMIN_API_KEY,
 };
 
-console.log("Config: ", TYPESENSE_CONFIG);
+// console.log("Config: ", TYPESENSE_CONFIG);
 
 const client = new Typesense.Client(TYPESENSE_CONFIG);
 

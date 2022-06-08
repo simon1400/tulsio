@@ -16,9 +16,9 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine, searchInput }) 
         ref={searchInput}
         placeholder="Napište dotaz…"
       />
-      {!!currentRefinement.length && <button onClick={(e) => clear(e)}>
-        <img src="/assets/times.svg" uk-svg="" />
-      </button>}
+      {!!currentRefinement.length ? <button onClick={(e) => clear(e)}>
+        <img src="/assets/times.svg" uk-svg="" alt="remove search" />
+      </button> : <img className="search-icon" src="/assets/search.svg" uk-svg="" alt="search icon" />}
       {isSearchStalled ? 'My search is stalled' : ''}
     </form>
   )

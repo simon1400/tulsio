@@ -11,6 +11,7 @@ const DOMAIN = process.env.APP_DOMAIN;
 
 const Home = () => {
 
+  
   const {loading, data} = useQuery(homepageQuery);
   
   let mainArticle, seccondArticles, homepage;

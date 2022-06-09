@@ -1,0 +1,15 @@
+.category-top{
+  background-color: $gray;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+  .category-top-wrap{
+    position: relative;
+    padding-top: 85px;
+    padding-bottom: 0;
+  }
+  h1{
+    margin-bottom: 65px!important;
+  }
+}

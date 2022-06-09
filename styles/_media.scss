@@ -74,6 +74,12 @@
 @media(max-width: $breakpoint-small) {
   // $breakpoint-small: 640px
 
+  .alphabet-wrap{
+    &:last-child{
+      margin-bottom: 30px;
+    }
+  }
+
   .block{
     padding: 30px;
     padding-bottom: 20px;

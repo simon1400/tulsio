@@ -1,13 +1,15 @@
 import Page from '../layout/Page'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
+import PageHead from '../components/PageHead'
 import { NextPage } from 'next'
 import {InstantSearch} from 'react-instantsearch-dom'
 import { searchClient } from "../lib/typesenseAdapter";
+import InfiniteArticles from '../components/InfiniteArticles'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../context/dataStateContext'
-import FaqHits from '../components/FaqHits'
-import PageHeadBig from '../components/PageHeadBig'
+import DictionaryHits from '../components/DictionaryHits'
+import DictionaryHead from '../components/DictionaryHead'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -24,7 +26,7 @@ const Category: NextPage = () => {
 
   return (
     <InstantSearch 
-      indexName="faq" 
+      indexName="dictionaries" 
       searchClient={searchClient}
     >
       <Page>
@@ -32,8 +34,8 @@ const Category: NextPage = () => {
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHeadBig title="FAQ" />
-        <FaqHits />
+        <DictionaryHead title="Nejkomplexnější CBD slovník" />
+        <DictionaryHits />
         
       </Page>
     </InstantSearch>

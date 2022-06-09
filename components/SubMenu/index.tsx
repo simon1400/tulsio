@@ -1,10 +1,10 @@
-import { FC, useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { connectMenu } from "react-instantsearch-core";
 import { useRouter } from "next/router";
 import { DataStateContext } from '../../context/dataStateContext'
 import Link from 'next/link'
 import slugify from 'slugify'
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 
 
 const El = ({text, link, itemId, active}) => {

@@ -8,7 +8,7 @@
     "start": "next start -p 3004",
     "deploy": "pm2 deploy production",
     "typesense": "node functions/startTypesenseServer.js",
-    "populate": "node typesenseIndex/faq.js && node typesenseIndex/articles.js && node typesenseIndex/categories.js && node typesenseIndex/nav.js"
+    "populate": "node typesenseIndex/dictionaries.js && node typesenseIndex/faq.js && node typesenseIndex/articles.js && node typesenseIndex/categories.js && node typesenseIndex/nav.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",

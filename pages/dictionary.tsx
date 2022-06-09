@@ -1,11 +1,9 @@
 import Page from '../layout/Page'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import PageHead from '../components/PageHead'
 import { NextPage } from 'next'
 import {InstantSearch} from 'react-instantsearch-dom'
 import { searchClient } from "../lib/typesenseAdapter";
-import InfiniteArticles from '../components/InfiniteArticles'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../context/dataStateContext'
 import DictionaryHits from '../components/DictionaryHits'
@@ -21,7 +19,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      dictionary: data.global.data.attributes
+      dictionary: data.dictionaryPage.data.attributes
     }
   }
 }

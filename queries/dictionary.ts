@@ -2,19 +2,17 @@ import { gql } from "@apollo/client";
 
 const getDictionary = gql`
   query getDictionary {
-    global {
+    dictionaryPage {
       data {
         attributes {
-          dictionary{
+          title
+          meta{
             title
-            meta{
-              title
-              description
-              image{
-                data{
-                  attributes{
-                    url
-                  }
+            description
+            image{
+              data{
+                attributes{
+                  url
                 }
               }
             }

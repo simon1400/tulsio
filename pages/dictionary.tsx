@@ -10,11 +10,27 @@ import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../context/dataStateContext'
 import DictionaryHits from '../components/DictionaryHits'
 import DictionaryHead from '../components/DictionaryHead'
+import { client, getStrapiURL } from '../lib/api'
+import getDictionary from '../queries/dictionary'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
-const Category: NextPage = () => {
+export async function getServerSideProps() {
+  
+  const { data } = await client.query({query: getDictionary});
 
+  return {
+    props: {
+      dictionary: data.global.data.attributes
+    }
+  }
+}
+
+const Dictionary: NextPage = ({
+  // @ts-ignore
+  dictionary
+}) => {
+  
   const router = useRouter()
   const { dispatch } = useContext(DataStateContext)
 
@@ -29,12 +45,16 @@ const Category: NextPage = () => {
       indexName="dictionaries" 
       searchClient={searchClient}
     >
-      <Page>
+      <Page
+        title={dictionary?.meta?.title || dictionary.title}
+        description={dictionary?.meta?.description || ''}
+        image={dictionary?.meta?.image ? getStrapiURL(dictionary.meta.image) : null}
+      >
         <Head>
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <DictionaryHead title="Nejkomplexnější CBD slovník" />
+        <DictionaryHead title={dictionary.title} />
         <DictionaryHits />
         
       </Page>
@@ -42,4 +62,4 @@ const Category: NextPage = () => {
   )
 }
 
-export default Category
+export default Dictionary

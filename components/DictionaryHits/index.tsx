@@ -18,15 +18,18 @@ const DictionaryHits = ({
       alphabets.map(symbol => {
         const filtered = hits.filter(f => f.title.toUpperCase().startsWith(symbol))
         if(filtered.length) {
+          filtered.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
           result[symbol] = filtered
         }
       })
       numbers.map(number => {
         const filtered = hits.filter(f => f.title.startsWith(number))
         if(filtered.length) {
+          filtered.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
           result['0-9'] = filtered
         }
       })
+      
       setFiltered(result)
     }
   }, [hits])

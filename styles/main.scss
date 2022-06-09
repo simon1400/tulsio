@@ -4,6 +4,7 @@
 
 html{
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 ::-moz-selection { background: $accent; }
@@ -85,20 +86,29 @@ body{
   }
 
   .uk-accordion{
-    li{
+    > li{
       border-top: solid 1px rgba(black, .1);
     }
     .uk-accordion-title{
       font-weight: bold;
       padding-top: 30px;
       padding-bottom: 30px;
+      span{
+        color: $text;
+        transition: color .2s ease;
+      }
+      &:before{
+        width: 25px;
+        height: 25px;
+      }
+      &:hover{
+        span{
+          color: $accent;
+        }
+      }
     }
     .uk-accordion-content{
       padding-bottom: 30px;
-      p{
-        font-size: 17px;
-        line-height: 1.82;
-      }
     }
   }
   

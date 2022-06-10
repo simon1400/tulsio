@@ -8,11 +8,14 @@ const Highlight = ({ highlight, attribute, hit }) => {
     hit,
   });
 
+  console.log("parsedHit", parsedHit);
+  
   return (
     <>
-      {parsedHit.map((part, index) =>
-          part.isHighlighted ? <mark key={index}>{part.value}</mark> : <span key={index}>{part.value}</span>
-      )}
+      {parsedHit.map((part, index) =>{
+        console.log("part", part);
+        return part.isHighlighted ? <mark key={index}>{part.value}</mark> : <span key={index}>{part.value}</span>
+      })}
     </>
   );
 };

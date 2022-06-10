@@ -5,6 +5,9 @@ import Highlight from "../Highlight";
 const FaqHits = ({
   hits
 }) => {
+
+  console.log(hits);
+  
   
   return (
     <div className="uk-container uk-container-small">

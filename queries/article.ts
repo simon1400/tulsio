@@ -36,7 +36,7 @@ const getArticle = gql`
               }
             }
           }
-          chapters{
+          chapters(pagination: { pageSize: 50 }){
             title
             text
             galery{

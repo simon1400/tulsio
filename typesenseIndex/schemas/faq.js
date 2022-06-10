@@ -5,7 +5,7 @@ module.exports = {
     {
       name: "question",
       type: "string",
-      facet: false,
+      facet: true,
     },
     {
       name: "answer",

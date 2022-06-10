@@ -8,6 +8,7 @@ const Highlight = ({ highlight, attribute, hit }) => {
     hit,
   });
 
+  console.log("hit", hit);
   console.log("parsedHit", parsedHit);
   
   return (

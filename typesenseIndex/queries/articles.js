@@ -16,6 +16,10 @@ const query = qs.stringify({
       fields: ['title', 'slug', 'color']
     }
   },
+  pagination: {
+    pageSize: 100,
+    page: 1,
+  },
 }, {
   encodeValuesOnly: true,
 });

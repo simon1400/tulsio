@@ -5,6 +5,10 @@ const query = qs.stringify({
   populate: {
     faq: {
       fields: ['question', 'answer'],
+      pagination: {
+        pageSize: 100,
+        page: 1,
+      },
     },
   },
 }, {

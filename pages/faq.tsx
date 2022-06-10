@@ -17,12 +17,6 @@ export async function getServerSideProps() {
   
   const { data } = await client.query({query: getFaq});
 
-  // if(!data.faq.length) {
-  //   return {
-  //     notFound: true
-  //   }
-  // }
-
   return {
     props: {
       faq: data.faq.data.attributes

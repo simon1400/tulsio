@@ -13,6 +13,10 @@ const query = qs.stringify({
       fields: ['text', "link"],
     },
   },
+  pagination: {
+    pageSize: 100,
+    page: 1,
+  },
 }, {
   encodeValuesOnly: true,
 });

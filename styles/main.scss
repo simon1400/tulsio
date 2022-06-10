@@ -97,6 +97,15 @@ body{
         color: $text;
         transition: color .2s ease;
       }
+      em{
+        color: $text;
+        display: inline-block;
+        background-color: #FDD9FF;
+        font-style: normal;
+        line-height: 1;
+        padding: 5px;
+        border-radius: 4px;
+      }
       &:before{
         width: 25px;
         height: 25px;

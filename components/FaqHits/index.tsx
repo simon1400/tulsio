@@ -1,14 +1,10 @@
 import { connectHits } from "react-instantsearch-core";
 import SearchBox from "../../layout/Search/SearchBox";
-import Highlight from "../Highlight";
+import { Highlight } from 'react-instantsearch-dom';
 
 const FaqHits = ({
   hits
 }) => {
-
-  console.log(hits);
-  
-  
   return (
     <div className="uk-container uk-container-small">
       <div className="block margin-top-reverse">

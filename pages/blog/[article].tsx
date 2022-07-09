@@ -11,6 +11,8 @@ import { NextPage } from 'next'
 import Label from '../../components/Label'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
+import getBaners from '../../queries/baners'
+import Banner from '../../components/Banner'
 // import Rating from '../../components/Rating';
 // import Author from '../../components/Author'
 // import Comments from '../../components/Comments'
@@ -32,6 +34,19 @@ export async function getServerSideProps(context) {
     }
   });
 
+  const { data: banersData } = await client.query({
+    query: getBaners,
+    variables: {
+      query: [
+        { position: {eq: "Post"} }
+      ]
+    }
+  });
+
+  const baners = banersData.baners.data.map(item => item.attributes)
+
+  const baner = baners[Math.floor(Math.random() * baners.length)]
+
   if(!data.articles.data.length) {
     return {
       notFound: true
@@ -40,14 +55,15 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      article: data.articles.data[0].attributes
+      article: data.articles.data[0].attributes,
+      baner: baner || null
     }
   }
 }
 
 const Article: NextPage = ({
   // @ts-ignore
-  article
+  article, baner
 }) => {
   const router = useRouter();
 
@@ -131,6 +147,7 @@ const Article: NextPage = ({
               {!!item.button && <div className="uk-text-center uk-margin-bottom">
                 <Button link={item.button.link} text={item.button.text}/>
               </div>}
+              {!!item.baner && baner && <Banner data={baner} />}
             </div>)}
 
             {/* <Rating rating={2.5}/> */}

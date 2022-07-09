@@ -50,6 +50,7 @@ const getArticle = gql`
               link
               text
             }
+            baner
           }
           authors{
             data{

@@ -2,32 +2,71 @@
 import Page from '../layout/Page'
 import Head from 'next/head'
 import homepageQuery from '../queries/homepage'
-import { useQuery } from '@apollo/client'
 import ArticleShort from '../components/ArticleShort'
-import { getStrapiURL } from '../lib/api'
+import { client, getStrapiURL } from '../lib/api'
 import ModalNewsletter from '../layout/Modals/Newsletter'
+import getBaners from '../queries/baners'
+import Banner from '../components/Banner'
+
+enum BANER_POSITION {
+  POSITION_1='Home_1',
+  POSITION_2='Home_2',
+}
 
 const DOMAIN = process.env.APP_DOMAIN;
 
-const Home = () => {
+export async function getServerSideProps() {
 
-  const {loading, data} = useQuery(homepageQuery);
+  const { data: banersData } = await client.query({
+    query: getBaners,
+    variables: {
+      query: [
+        { position: {eq: "Home_1"} },
+        { position: {eq: "Home_2"} }
+      ]
+    }
+  });
   
-  let mainArticle, seccondArticles, homepage;
+  const { data: homepageData } = await client.query({ query: homepageQuery });
 
-  if(!loading) {
-    homepage = data.homepage.data.attributes
-    mainArticle = homepage.articles[0].article.data.attributes;
-    seccondArticles = homepage.articles.slice(1);
-    seccondArticles = seccondArticles.map(item => item.article.data.attributes)
+  const homepage = homepageData.homepage.data.attributes
+  const meta = homepage?.meta
+  const mainArticle = homepage.articles[0].article.data.attributes;
+  let seccondArticles = homepage.articles.slice(1);
+  seccondArticles = seccondArticles.map(item => item.article.data.attributes)
+  const baners = banersData.baners.data.map(item => item.attributes)
+
+  const filterBaners1 = baners.filter(item => item.position === BANER_POSITION.POSITION_1)
+  const filterBaners2 = baners.filter(item => item.position === BANER_POSITION.POSITION_2)
+
+  const baner1 = filterBaners1[Math.floor(Math.random() * filterBaners1.length)]
+  const baner2 = filterBaners2[Math.floor(Math.random() * filterBaners2.length)]
+
+  return {
+    props: {
+      baner1: baner1 || null,
+      baner2: baner2 || null,
+      mainArticle,
+      seccondArticles,
+      meta
+    }
   }
+}
+
+const Home = ({
+  baner1,
+  baner2,
+  mainArticle,
+  seccondArticles,
+  meta
+}) => {
   
   return (
     <Page 
       className="homepage" 
-      title={homepage?.meta?.title || 'Úvod'}
-      description={homepage?.meta?.description || ''}
-      image={homepage?.meta?.image ? getStrapiURL(homepage.meta.image) : null}
+      title={meta?.title || 'Úvod'}
+      description={meta?.description || ''}
+      image={meta?.image ? getStrapiURL(meta.image) : null}
     >
 
       <Head>
@@ -36,7 +75,7 @@ const Home = () => {
 
       <ModalNewsletter title="Všechno co se ve světě CBD děje ve vašem mailu." />
 
-      {!loading && <section className="uk-padding-remove">
+      <section className="uk-padding-remove">
         <div className="uk-container uk-container-large">
           <div className="hp-grid" uk-height-match=".hp-short">
             <div>
@@ -50,26 +89,42 @@ const Home = () => {
                   text={mainArticle.perex}
                   sticky="top"
                 />
+                {baner1 && <Banner data={baner1} />}
               </div>
-              {/* <Banner /> */}
+              
             </div>
 
             <div>
               <h2 className="home-head">Nejnovější</h2>
               <div className="hp-short resp-grid">
-                {seccondArticles.map((item, index) => <ArticleShort 
-                  key={index}
-                  title={item.title}
-                  link={`/blog/${item.slug}`}
-                  image={item.image.data} 
-                  label={item.labels?.data?.[0]?.attributes}
-                  horizontal
-                />)}
+                {seccondArticles.map((item, index) => {                  
+                  if(index === Math.floor(seccondArticles.length / 2) && baner2) {
+                    return <>
+                      <Banner data={baner2} />
+                      <ArticleShort 
+                        key={index}
+                        title={item.title}
+                        link={`/blog/${item.slug}`}
+                        image={item.image.data} 
+                        label={item.labels?.data?.[0]?.attributes}
+                        horizontal
+                      />
+                    </>
+                  }
+                  return <ArticleShort 
+                    key={index}
+                    title={item.title}
+                    link={`/blog/${item.slug}`}
+                    image={item.image.data} 
+                    label={item.labels?.data?.[0]?.attributes}
+                    horizontal
+                  />
+                })}
               </div>
             </div>
           </div>
         </div>
-      </section>}
+      </section>
     </Page>
   )
 }

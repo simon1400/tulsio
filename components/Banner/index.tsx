@@ -6,7 +6,7 @@ const Banner: FC<{data: any}> = ({
 }) => {
   return (
     <div className="banner">
-      <a href={data.link}>
+      <a href={data.link} target="_blank">
         <Image image={data.image.data} />
       </a>
     </div>

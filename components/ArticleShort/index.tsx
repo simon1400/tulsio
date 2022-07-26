@@ -23,7 +23,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   text = '',
   label = undefined,
   horizontal = false,
-  sticky = ''
+  sticky = '',
 }) => {
   
   const className = ['article-short']
@@ -33,12 +33,12 @@ const ArticleShort: FC<ArticleShortProps> = ({
   if(text) className.push('big')
 
   let imgUrl = '/assets/placeholder.svg'
+  const size = horizontal ? 'resize=221x221' : 'height=720'
 
   if(typeof image === 'object') {
-    {/* @ts-ignore */}
-    imgUrl = APP_API+image?.attributes?.url
+    imgUrl = `${APP_API}${image['attributes']['url']}?format=webp&${size}`    
   }else if(image !== undefined) {
-    imgUrl = image
+    imgUrl = image+`?format=webp&${size}`
   }
 
   return (

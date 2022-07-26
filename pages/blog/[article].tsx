@@ -110,7 +110,7 @@ const Article: NextPage = ({
             <div className="uk-grid uk-child-width-1-1 uk-child-width-1-2@l uk-grid-collapse" uk-grid="">
               <div>
                 <div className="full-img">
-                  <Image image={article.image.data} />
+                  <Image format="&resize=920x920" image={article.image.data} />
                 </div>
               </div>
               <div>
@@ -141,13 +141,13 @@ const Article: NextPage = ({
               {!!item.title && <h2>{item.title}</h2>}
               <div className="text-content" dangerouslySetInnerHTML={{__html: item.text}}></div>
               {!!item.galery?.data?.length && item.galery.data.map((img, indexImg) => <figure key={indexImg}>
-                <div><Image image={img} /></div>
+                <div><Image format="&width=830" image={img} /></div>
                 {!!img.caption?.length && <figcaption>{img.caption}</figcaption>}
               </figure>)}
               {!!item.button && <div className="uk-text-center uk-margin-bottom">
                 <Button link={item.button.link} text={item.button.text}/>
               </div>}
-              {!!item.baner && baner && <Banner data={baner} />}
+              {!!item.baner && baner && <Banner format="&width=750" data={baner} />}
             </div>)}
 
             {/* <Rating rating={2.5}/> */}
@@ -156,7 +156,6 @@ const Article: NextPage = ({
           </div>
         </section>
 
-        
         {/* <Comments /> */}
 
       </article>}

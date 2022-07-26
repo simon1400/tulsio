@@ -89,7 +89,7 @@ const Home = ({
                   text={mainArticle.perex}
                   sticky="top"
                 />
-                {baner1 && <Banner data={baner1} />}
+                {baner1 && <Banner format="&width=800" data={baner1} />}
               </div>
               
             </div>
@@ -100,7 +100,7 @@ const Home = ({
                 {seccondArticles.map((item, index) => {                  
                   if(index === Math.floor(seccondArticles.length / 2) && baner2) {
                     return <>
-                      <Banner data={baner2} />
+                      <Banner format="&width=540" data={baner2} />
                       <ArticleShort 
                         key={index}
                         title={item.title}

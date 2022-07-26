@@ -1,13 +1,14 @@
 import { FC } from "react"
 import Image from "../Image"
 
-const Banner: FC<{data: any}> = ({
-  data
+const Banner: FC<{data: any; format?: string}> = ({
+  data,
+  format
 }) => {
   return (
     <div className="banner">
       <a href={data.link} target="_blank">
-        <Image image={data.image.data} />
+        <Image format={format} image={data.image.data} />
       </a>
     </div>
   )

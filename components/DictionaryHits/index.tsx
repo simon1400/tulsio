@@ -3,6 +3,7 @@ import { connectHits } from "react-instantsearch-core";
 import alphabets from "../../data/alphabets";
 import colors from "../../data/colors";
 import numbers from "../../data/numbers";
+import Image from "../Image";
 
 const APP_API = process.env.APP_API
 
@@ -42,7 +43,7 @@ const DictionaryHits = ({
         <div className="uk-child-width-1-2@s uk-grid-medium uk-child-width-1-3@m" uk-grid="masonry: true">
           {filtered[key].map((item, indexChild) => <div key={indexChild}>
             <div className="box">
-              {item.image && <img src={APP_API+item.image} />}
+              {item.image && <Image format="&width=440" url={APP_API+item.image} />}
               <h3>{item.title}</h3>
               <div dangerouslySetInnerHTML={{__html: item.content}} />
               {item.textLink && item.link && <a href={item.link}>{item.textLink}</a>}

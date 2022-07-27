@@ -34,6 +34,7 @@ module.exports = (async () => {
 
     if(item.image?.data?.attributes?.url) {
       transformData[index].image = item.image?.data?.attributes?.url
+      transformData[index].alternativeText = item.image?.data?.attributes?.alternativeText
     }
     
     if(item.button) {

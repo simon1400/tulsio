@@ -42,24 +42,23 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {
-      category: res.data.data
-    }
+    props: {}
   }
 }
 
 
-const Category: NextPage = ({
-  // @ts-ignore
-  category
-}) => {
+const Category: NextPage = () => {
 
   const router = useRouter()
   const { dispatch } = useContext(DataStateContext)
 
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+
   useEffect(() => {
     return () => {
       dispatch({ state: '', type: 'slug'})
+      setTitle('Blog')
     }
   }, [])
 
@@ -68,12 +67,19 @@ const Category: NextPage = ({
       indexName="articles" 
       searchClient={searchClient}
     >
-      <Page>
+      <Page
+        title={title}
+        description={description}
+      >
         <Head>
           <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead title="Blog" category />
+        <PageHead 
+          title={title}
+          setTitle={setTitle} 
+          setDescription={setDescription} 
+          category />
         <InfiniteArticles />
         
       </Page>

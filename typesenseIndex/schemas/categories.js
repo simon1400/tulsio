@@ -18,5 +18,11 @@ module.exports = {
       facet: false,
       optional: true,
     },
+    {
+      name: "alternativeText",
+      type: "string",
+      facet: false,
+      optional: true,
+    },
   ]
 }

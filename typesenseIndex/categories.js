@@ -31,11 +31,13 @@ module.exports = (async () => {
     transformData[index] = {
       title: item.title,
       slug: item.slug,
-      image: undefined
+      image: undefined,
+      alternativeText: undefined
     };
 
     if(item.image?.data?.attributes?.url) {
       transformData[index].image = APP_API + item.image?.data?.attributes?.url
+      transformData[index].alternativeText = APP_API + item.image?.data?.attributes?.alternativeText
     }
 
   });

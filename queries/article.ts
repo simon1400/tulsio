@@ -43,6 +43,7 @@ const getArticle = gql`
               data{
                 attributes{
                   url
+                  alternativeText
                 }
               }
             }
@@ -71,6 +72,7 @@ const getArticle = gql`
             data {
               attributes {
                 url
+                alternativeText
               }
             }
           }

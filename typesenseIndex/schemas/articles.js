@@ -24,6 +24,12 @@ module.exports = {
       optional: true,
     },
     {
+      name: "alternativeText",
+      type: "string",
+      facet: false,
+      optional: true,
+    },
+    {
       name: "category",
       type: "string[]",
       facet: true,

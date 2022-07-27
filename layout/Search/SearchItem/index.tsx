@@ -10,7 +10,7 @@ interface SearchItemProps {
 
 const SearchItem: FC<SearchItemProps> = ({data}) => {
 
-  let slug = '/'+data.slug
+  let slug = '/' + data.slug
 
   if(data.category?.length) {
     slug = `/blog/${data.slug}`

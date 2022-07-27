@@ -59,39 +59,6 @@ const Page: FC<PageProps> = ({
       })
     }
   }, [title, description])
-
-  useEffect(() => {
-    if(state?.slug?.length) {
-      if(state.slug !== 'blog') {
-        axios.get(`https://admin.tulsio.cz/api/categories?${qs.stringify({
-          filters: {
-            slug: {
-              $eq: state.slug,
-            },
-          },
-          populate: {
-            meta: {
-              fields: ['title', 'description'],
-            },
-          },
-        })}`).then(resData => {
-          const resMeta = {...resData.data.data[0].attributes.meta}
-          if(!resMeta.image) {
-            resMeta.image = {
-              data: null
-            }
-          }
-          setMeta(resMeta)
-        }).catch(err => console.log('error', err))
-      }else{
-        setMeta({
-          ...meta,
-          title: 'Blog',
-          description: ''
-        })
-      }
-    }
-  }, [state])
   
   const theTitle = meta.title ? (meta.title + global.defaultSep + global.defaultTitle) : global.defaultTitle;
   const theDescription = meta.description ? meta.description : global.defaultDescription;

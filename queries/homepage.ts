@@ -25,6 +25,7 @@ const homepageQuery = gql`
                     data {
                       attributes {
                         url
+                        alternativeText
                       }
                     }
                   }

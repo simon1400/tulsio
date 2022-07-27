@@ -5,17 +5,23 @@ import { DataStateContext } from '../../context/dataStateContext'
 import Link from 'next/link'
 import slugify from 'slugify'
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
+import axios from "axios";
+import qs from 'qs'
+
+const query = (slug: string) => qs.stringify({
+  filters: {
+    slug: {
+      $eq: slug,
+    },
+  },
+  populate: {
+    meta: {
+      fields: ['title', 'description'],
+    },
+  },
+})
 
 
-const El = ({text, link, itemId, active}) => {
-  return (
-    <div className={`menu-item${active ? ' active' : ''}`}>
-      <Link href={link} shallow>
-        <a>{text}</a>
-      </Link>
-    </div>
-  )
-}
 interface SubMenuItemProps {
   id: string
   label: string
@@ -23,22 +29,12 @@ interface SubMenuItemProps {
   value: string,
 }
 
-interface SubMenuProps {
-  items: SubMenuItemProps[]
-  refine: (value) => void
-  currentRefinement: string,
-  createURL: (value) => string
-}
-
-const getItems = () =>
-  Array(20)
-    .fill(0)
-    .map((_, ind) => ({ id: `element-${ind}` }));
-
 const SubMenu = ({
   items,
   refine,
   currentRefinement,
+  setTitle,
+  setDescription
 }) => {
 
   const router = useRouter()
@@ -58,8 +54,8 @@ const SubMenu = ({
     }
   }, [items.length, router])
 
-  useEffect(() => {
-    const state = [
+  const handleMeta = () => {
+    const breadcrumbs = [
       {
         title: 'Blog',
         link: 'blog'
@@ -67,31 +63,55 @@ const SubMenu = ({
     ]
     
     if(currentRefinement) {
-      dispatch({ state: slugify(currentRefinement, {lower: true}), type: 'slug'})
-      state.push({
+      axios.get(`https://admin.tulsio.cz/api/categories?${query(slugify(currentRefinement, {lower: true}))}`).then(resData => {
+          const resMeta = {...resData.data.data[0].attributes.meta}
+          if(!resMeta.image) {
+            resMeta.image = {
+              data: null
+            }
+          }
+          setTitle(resMeta.title)
+          setDescription(resMeta.description)
+        }).catch(err => console.log('error', err))
+
+      breadcrumbs.push({
         title: currentRefinement,
         link: ''
       })
-    }else{
-      dispatch({ state: 'blog', type: 'slug'})
+    }else if(!currentRefinement){
+      setTitle('Blog')
+      setDescription('')
     }
-    dispatch({ state: state, type: 'breadcrumbs' })
-  }, [currentRefinement])
 
-  
-  
+    dispatch({ state: breadcrumbs, type: 'breadcrumbs' })
+  }
+
+  useEffect(() => {
+    handleMeta()
+  }, [currentRefinement])
   
   return (
     <div className="sub-menu">
       <ScrollMenu separatorClassName="separator-scrol" scrollContainerClassName="scroll-container" wrapperClassName="wrap-sub-menu">
         <El text="Všechny" link="/blog" itemId={0} active={currentRefinement === null} />
         {items.map((item, index) => <El 
-          key={index} 
+          key={index}
           text={item.label} 
           link={slugify(item.value, {lower: true})} 
           itemId={index+1} 
           active={item.isRefined} />)}
       </ScrollMenu>
+    </div>
+  )
+}
+
+
+const El = ({text, link, itemId, active}) => {
+  return (
+    <div className={`menu-item${active ? ' active' : ''}`}>
+      <Link href={link} shallow>
+        <a>{text}</a>
+      </Link>
     </div>
   )
 }

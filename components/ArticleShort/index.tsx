@@ -13,6 +13,7 @@ interface ArticleShortProps {
   title: string
   horizontal?: boolean,
   text?: string,
+  alt?: string,
   sticky?: string
 }
 
@@ -20,6 +21,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   link,
   image,
   title,
+  alt = '',
   text = '',
   label = undefined,
   horizontal = false,
@@ -44,9 +46,6 @@ const ArticleShort: FC<ArticleShortProps> = ({
   return (
     <Link href={link}>
       <a className={className.join(' ')}>
-        {/* <div className="img-wrap">
-          {typeof image === 'object' ? <Image image={image} /> : <Image url={image} />}
-        </div> */}
         <div className="img-wrap-back" style={{backgroundImage: `url(${imgUrl})`}}></div>
         <div className="info-wrap">
           <div>

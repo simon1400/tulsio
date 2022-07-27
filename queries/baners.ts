@@ -11,6 +11,7 @@ const getBaners = gql`
             data{
               attributes{
                 url
+                alternativeText
               }
             }
           }

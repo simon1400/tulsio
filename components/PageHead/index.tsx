@@ -1,15 +1,19 @@
-import { FC } from "react"
+import { Dispatch, FC, SetStateAction } from "react"
 import Breadcrumb from "../Breadcrumb"
 import SubMenu from "../SubMenu"
 
 interface PageHeadProps {
   title: string
-  category?: boolean
+  category?: boolean;
+  setTitle?: Dispatch<SetStateAction<string>>,
+  setDescription?: Dispatch<SetStateAction<string>>
 }
 
 const PageHead: FC<PageHeadProps> = ({
   title,
-  category
+  category,
+  setTitle,
+  setDescription
 }) => {
   return (
     <section className="category-top">
@@ -17,7 +21,7 @@ const PageHead: FC<PageHeadProps> = ({
         <div className="category-top-wrap">
           <Breadcrumb posAbsolute />
           <h1>{title}</h1>
-          {category && <SubMenu attribute='category' />}
+          {category && <SubMenu attribute='category' setTitle={setTitle} setDescription={setDescription} />}
         </div>
       </div>
     </section>

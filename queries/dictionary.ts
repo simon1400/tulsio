@@ -13,6 +13,7 @@ const getDictionary = gql`
               data{
                 attributes{
                   url
+                  alternativeText
                 }
               }
             }

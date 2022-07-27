@@ -2,6 +2,7 @@ const {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
 } = require('next/constants')
+// const withBundleAnalyzer = require('@next/bundle-analyzer')
 
 // This uses phases as outlined here: https://nextjs.org/docs/#custom-configuration
 module.exports = (phase) => {
@@ -28,22 +29,26 @@ module.exports = (phase) => {
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_SEARCH_ONLY_API_KEY: (() => {
-      if (isDev) return 'xyz'
+      // if (isDev) return 'xyz'
+      if (isDev) return 'asdfasdfasdf'
       if (isProd) return 'asdfasdfasdf'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_HOST: (() => {
-      if (isDev) return 'localhost'
+      // if (isDev) return 'localhost'
+      if (isDev) return 'search-tulsio.hardart.cz'
       if (isProd) return 'search-tulsio.hardart.cz'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_PORT: (() => {
-      if (isDev) return '8108'
+      // if (isDev) return '8108'
+      if (isDev) return '443'
       if (isProd) return '443'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),
     TYPESENSE_PROTOCOL: (() => {
-      if (isDev) return 'http'
+      // if (isDev) return 'http'
+      if (isDev) return 'https'
       if (isProd) return 'https'
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
     })(),

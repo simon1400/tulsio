@@ -19,6 +19,12 @@ module.exports = {
       optional: true
     },
     {
+      name: "alternativeText",
+      type: "string",
+      facet: false,
+      optional: true
+    },
+    {
       name: "textLink",
       type: "string",
       facet: false,

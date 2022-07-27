@@ -32,6 +32,7 @@ module.exports = (async () => {
       slug: item.slug,
       perex: item.perex,
       image: undefined,
+      alternativeText: undefined,
       chapters: [],
       titleLabels: [],
       slugLabels: [],
@@ -41,6 +42,7 @@ module.exports = (async () => {
 
     if(item.image?.data?.attributes?.url) {
       transformData[index].image = APP_API + item.image?.data?.attributes?.url
+      transformData[index].alternativeText = APP_API + item.image?.data?.attributes?.alternativeText
     }
 
     item.categories.data.forEach((category, idx) => {

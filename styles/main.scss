@@ -48,6 +48,10 @@ body{
     margin-top: 0;
   }
 
+  em{
+    color: inherit;
+  }
+
   h1{
     line-height: 1.25;
     font-size: $head1;

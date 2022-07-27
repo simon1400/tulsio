@@ -4,7 +4,7 @@ const query = qs.stringify({
   fields: ['title', 'slug'],
   populate: {
     image: {
-      fields: ['url'],
+      fields: ['url', 'alternativeText'],
     }
   },
 }, {

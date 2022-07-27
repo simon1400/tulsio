@@ -16,13 +16,16 @@ const ImageComponent: FC<ImageProps> = ({
   svg = false,
   format = ''
 }) => {
+
+  let altText = '', caption = ''
   
   if(image){
     url = APP_API+image.attributes.url
+    altText = image.attributes.alternativeText
   }
   
   if(svg) return <img uk-svg="" src={url} />
-  else return <img src={url+'?format=webp'+format} />
+  else return <img src={url+'?format=webp'+format} alt={altText} />
 };
 
 export default ImageComponent;

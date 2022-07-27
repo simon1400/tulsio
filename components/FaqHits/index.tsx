@@ -14,12 +14,12 @@ const FaqHits = ({
       <div className="block margin-top-reverse">
         <SearchBox />
         <ul uk-accordion="collapsible: true; multiple: true;">
-          {hits.map((item, index) => <li key={index}>
+          {hits.reverse().map((item, index) => <li key={index}>
               <a className="uk-accordion-title" href="#">
                 <Highlight hit={item} attribute="question" />
               </a>
               <div className="uk-accordion-content">
-                <div className="content" dangerouslySetInnerHTML={{__html: item.answer}} />
+                <div className="text-content" dangerouslySetInnerHTML={{__html: item.answer}} />
               </div>
           </li>)}
         </ul>

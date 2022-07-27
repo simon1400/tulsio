@@ -1,14 +1,12 @@
 import { useState, useEffect, FC, useContext } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import qs from 'qs'
 import Header from '../Header'
 import Footer from '../Footer'
 import Search from '../Search'
 import PageProps from '../../interfaces/page';
 import { DataStateContext } from '../../context/dataStateContext';
-import axios from 'axios';
-// import { AnimatePresence } from 'framer-motion'
+import CookieConsent from '../../components/CookieConsent'
 
 const Page: FC<PageProps> = ({
   children,
@@ -76,6 +74,8 @@ const Page: FC<PageProps> = ({
           })(window,document,'script','dataLayer','GTM-PQFGK4R');`}} />
         {/*<!-- End Google Tag Manager -->*/}
 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.js"></script>
+
         <meta charSet="utf-8" />
 
         {/* FAVICON */}
@@ -126,6 +126,7 @@ const Page: FC<PageProps> = ({
       <main id={id} className={className}>{children}</main>
       <Footer />
       <Search />
+      <CookieConsent />
     </div>
   );
 }

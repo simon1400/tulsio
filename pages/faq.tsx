@@ -49,7 +49,7 @@ const Faq: NextPage = ({
         image={faq?.meta?.image ? getStrapiURL(faq.meta.image) : null}
       >
         <Head>
-          <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
+          <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
         <PageHeadBig title={faq.title} />

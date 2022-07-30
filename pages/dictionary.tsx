@@ -49,7 +49,7 @@ const Dictionary: NextPage = ({
         image={dictionary?.meta?.image ? getStrapiURL(dictionary.meta.image) : null}
       >
         <Head>
-          <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
+          <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
         <DictionaryHead title={dictionary.title} />

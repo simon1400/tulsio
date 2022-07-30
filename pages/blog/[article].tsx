@@ -94,7 +94,7 @@ const Article: NextPage = ({
       image={getStrapiURL(article?.meta?.image?.data?.attributes?.url) || getStrapiURL(article?.image?.data)}
     >
       <Head>
-        <link rel="alternate" hrefLang="x-default" href={`${DOMAIN}/cs${router.asPath}`} />
+        <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
 
       <div className="breadcrumb-wrap">

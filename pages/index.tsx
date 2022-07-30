@@ -70,7 +70,7 @@ const Home = ({
     >
 
       <Head>
-        <link rel="alternate" hrefLang="x-default" href={DOMAIN+'/cs'} />
+        <link rel="alternate" hrefLang="cs" href={DOMAIN+'/cs'} />
       </Head>
 
       <ModalNewsletter title="Všechno co se ve světě CBD děje ve vašem mailu." />
